@@ -12,31 +12,26 @@ public class NumBlock {
     private int blockX;
     private int blockY;
     private int dim;
-    private Color color;
-    private Font font;
     private int value;
     
-    public NumBlock(int blockX, int blockY, int dim, Color color, int value) {
+    public NumBlock(int blockX, int blockY, int dim, int value) {
         this.blockX = blockX - dim / 2; // Center the disk horizontally
         this.blockY = blockY;
         this.dim = dim;
-        this.color = color;
         this.value = value;
     }
 
     public void draw(Graphics g) {
         if (GameData.getInstance().getSelectedBlock() == this) {
-            g.setColor(Color.YELLOW);
-            g.fillRect(blockX, blockY, dim, dim);
             g.setColor(Color.RED);
+            g.fillRect(blockX, blockY, dim, dim);
+            g.setColor(Color.BLACK);
             g.drawRect(blockX, blockY, dim, dim);
         } else {
-            g.setColor(color);
+            g.setColor(Color.GRAY);
             g.fillRect(blockX, blockY, dim, dim);
-
-            g.setFont(font);
             g.setColor(Color.BLACK);
-            g.drawString(Integer.toString(value), blockX, blockY);
+            g.drawRect(blockX, blockY, dim, dim);
         }
     }
 
