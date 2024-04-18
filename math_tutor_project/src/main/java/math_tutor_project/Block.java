@@ -7,14 +7,14 @@ import java.awt.*;
  * 
  * @author Fisher Lyon
  */
-public class NumBlock {
+public class Block {
 
     private int blockX;
     private int blockY;
     private int dim;
     private int value;
     
-    public NumBlock(int blockX, int blockY, int dim, int value) {
+    public Block(int blockX, int blockY, int dim, int value) {
         this.blockX = blockX - dim / 2; // Center the disk horizontally
         this.blockY = blockY;
         this.dim = dim;

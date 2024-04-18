@@ -11,7 +11,7 @@ public class GameMain extends JFrame {
 
       MathPanel mathPanel = new MathPanel();
       DuelPanel duelPanel = new DuelPanel();
-      // add(duelPanel);
+      add(duelPanel);
       add(mathPanel);
 
       GameController controller = new GameController();
@@ -26,7 +26,7 @@ public class GameMain extends JFrame {
   
       GameMain main = new GameMain();
       main.setTitle("Mathematical Madness");
-      main.setSize(1920, 1080);
+      main.setSize(1200, 600);
       main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       main.setVisible(true);
     }

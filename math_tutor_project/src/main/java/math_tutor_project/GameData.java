@@ -13,18 +13,18 @@ public class GameData extends PropertyChangeSupport {
     
     private static GameData instance;
 
-    private List<NumBlock> numBlocks;
-    private List<NumBlock> freeBlocks;
-    private NumBlock selectedBlock = null;
+    private List<Block> lockedBlocks;
+    private List<Block> unlockedBlocks;
+    private Block selectedBlock = null;
     private int mouseXOffset = 25; // half block width
     private int mouseYOffset = 25; // half block height
 
-    private int NUM_OF_BLOCKS = 10;
+    private int NUM_LOCKED_BLOCKS = 10;
 
     private GameData() {
         super(new Object());
-        numBlocks = new ArrayList<NumBlock>();
-        freeBlocks = new ArrayList<NumBlock>();
+        lockedBlocks = new ArrayList<Block>();
+        unlockedBlocks = new ArrayList<Block>();
         this.recalculate();
     }
 
@@ -36,8 +36,10 @@ public class GameData extends PropertyChangeSupport {
     }
 
     public void recalculate() {
-        for (int i = 0; i < NUM_OF_BLOCKS; i++) {
-            numBlocks.add(new NumBlock(1400, (i * 60) + 50, 50, i));
+        lockedBlocks.clear();
+        unlockedBlocks.clear();
+        for (int i = 0; i < NUM_LOCKED_BLOCKS; i++) {
+            lockedBlocks.add(new Block(550, (i * 50) + 30, 40, i));
         }
     }
 
@@ -45,10 +47,10 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("repaint", null, null);
     }
 
-    public NumBlock getSelectedBlock() { return selectedBlock; }
-    public void setSelectedBlock(NumBlock block) { this.selectedBlock = block; }
-    public List<NumBlock> getNumBlocks() { return numBlocks; }
-    public List<NumBlock> getFreeBlocks() { return freeBlocks; }
+    public Block getSelectedBlock() { return selectedBlock; }
+    public void setSelectedBlock(Block block) { this.selectedBlock = block; }
+    public List<Block> getLockedBlocks() { return lockedBlocks; }
+    public List<Block> getUnlockedBlocks() { return unlockedBlocks; }
     public int getMouseXOffset() { return mouseXOffset; }
     public void setMouseXOffset(int x) { this.mouseXOffset = x; }
     public int getMouseYOffset() { return mouseYOffset; }
