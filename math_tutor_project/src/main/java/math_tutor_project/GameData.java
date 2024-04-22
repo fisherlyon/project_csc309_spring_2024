@@ -16,8 +16,11 @@ public class GameData extends PropertyChangeSupport {
     private List<Block> lockedBlocks;
     private List<Block> unlockedBlocks;
     private Block selectedBlock = null;
-    private int mouseXOffset = 25; // half block width
-    private int mouseYOffset = 25; // half block height
+    private int mouseXOffset = 20; // half block width
+    private int mouseYOffset = 20; // half block height
+    private int answerBoxXOffset = 5;
+    private int answerBoxYOffset = 5;
+    private AnswerBox answerBox;
 
     private int NUM_LOCKED_BLOCKS = 10;
 
@@ -25,6 +28,7 @@ public class GameData extends PropertyChangeSupport {
         super(new Object());
         lockedBlocks = new ArrayList<Block>();
         unlockedBlocks = new ArrayList<Block>();
+        answerBox = new AnswerBox(300, 540);
         this.recalculate();
     }
 
@@ -55,4 +59,7 @@ public class GameData extends PropertyChangeSupport {
     public void setMouseXOffset(int x) { this.mouseXOffset = x; }
     public int getMouseYOffset() { return mouseYOffset; }
     public void setMouseYOffset(int y) { this.mouseYOffset = y; }
+    public AnswerBox getAnswerBox() { return answerBox; }
+    public int getAnswerBoxXOffset() { return answerBoxXOffset; }
+    public int getAnswerBoxYOffset() { return answerBoxYOffset; }
 }

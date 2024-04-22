@@ -9,9 +9,6 @@ import java.awt.event.*;
  */
 public class GameController implements MouseListener, MouseMotionListener, ComponentListener {
 
-    private int initialX;
-    private int initialY;
-
     @Override
     public void mousePressed(MouseEvent e) {
         
@@ -19,6 +16,7 @@ public class GameController implements MouseListener, MouseMotionListener, Compo
             Block block = GameData.getInstance().getLockedBlocks().get(i);
             if (block.contains(e.getX(), e.getY())) {
                 Block unlockedBlock = new Block(block.getBlockX(), block.getBlockY(), block.getDim(), block.getValue());
+                unlockedBlock.setSelected(true);
                 GameData.getInstance().getUnlockedBlocks().add(unlockedBlock);
                 GameData.getInstance().setSelectedBlock(unlockedBlock);
                 break;
@@ -29,13 +27,59 @@ public class GameController implements MouseListener, MouseMotionListener, Compo
             Block block = GameData.getInstance().getUnlockedBlocks().get(i);
             if (block.contains(e.getX(), e.getY())) {
                 GameData.getInstance().setSelectedBlock(block);
+                block.setSelected(true);
+                break;
             }
         }
     }
+
+    // MERGE!
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+        
+        if (GameData.getInstance().getSelectedBlock() != null) {
+            Block selectedBlock = GameData.getInstance().getSelectedBlock();
+            boolean merged = false;
+            
+            for (Block block : GameData.getInstance().getUnlockedBlocks()) {
+                if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
+                    int mergeVal = block.getValue() + selectedBlock.getValue();
+                    if (mergeVal > 9) mergeVal = 9;
+                    Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(), block.getBlockY() + GameData.getInstance().getMouseYOffset(), block.getDim(), mergeVal);
+                    GameData.getInstance().getUnlockedBlocks().add(mergedBlock);
+                    GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
+                    GameData.getInstance().getUnlockedBlocks().remove(block);
+                    merged = true;
+                    break;
+                }
+            }
+            
+            if (!merged) {
+                selectedBlock.setBlockX(e.getX() - GameData.getInstance().getMouseXOffset());
+                selectedBlock.setBlockY(e.getY() - GameData.getInstance().getMouseYOffset());
+            }
+
+            AnswerBox answerBox = GameData.getInstance().getAnswerBox();
+            if (answerBox.contains(e.getX(), e.getY())) {
+                selectedBlock.setBlockX(answerBox.getX() + GameData.getInstance().getAnswerBoxXOffset());
+                selectedBlock.setBlockY(answerBox.getY() + GameData.getInstance().getAnswerBoxYOffset());
+                selectedBlock.setAnswer(true);
+                answerBox.setAnswerBlock(selectedBlock);
+                answerBox.setFilled(true);
+            }
+
+            if (!answerBox.contains(selectedBlock.getBlockX(), selectedBlock.getBlockY())) {
+                selectedBlock.setAnswer(false);
+                answerBox.setAnswerBlock(null);
+                answerBox.setFilled(false);
+            }
+            
+            GameData.getInstance().getSelectedBlock().setSelected(false);
+            GameData.getInstance().setSelectedBlock(null);
+            GameData.getInstance().repaint();
+        }
     }
+
 
     @Override
     public void mouseDragged(MouseEvent e) {

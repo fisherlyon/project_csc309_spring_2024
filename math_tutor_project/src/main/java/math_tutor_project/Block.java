@@ -13,10 +13,12 @@ public class Block {
     private int blockY;
     private int dim;
     private int value;
+    private boolean selected = false;
+    private boolean answer = false;
     
     public Block(int blockX, int blockY, int dim, int value) {
         this.blockX = blockX - dim / 2; // Center the disk horizontally
-        this.blockY = blockY;
+        this.blockY = blockY - dim / 2;
         this.dim = dim;
         this.value = value;
     }
@@ -45,4 +47,8 @@ public class Block {
     public void setBlockY(int y) { this.blockY = y; }
     public int getDim() { return dim; }
     public int getValue() { return value; }
+    public Boolean isSelected() { return selected; }
+    public void setSelected(Boolean b) { selected = b; }
+    public Boolean isAnswer() { return answer; }
+    public void setAnswer(Boolean b) { answer = b; }
 }

@@ -15,11 +15,23 @@ public class MathPanel extends JPanel implements PropertyChangeListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        GameData.getInstance().getAnswerBox().draw(g);
+ 
         for (Block block : GameData.getInstance().getLockedBlocks()) {
-            block.draw(g);
+            if (!block.isSelected()) {
+                block.draw(g);
+            }
         }
         for (Block block : GameData.getInstance().getUnlockedBlocks()) {
-            block.draw(g);
+            if (!block.isSelected()) {
+                block.draw(g);
+            }
+        }
+
+        Block selectedBlock = GameData.getInstance().getSelectedBlock();
+        if (selectedBlock != null) {
+            selectedBlock.draw(g);
         }
     }
 
