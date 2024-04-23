@@ -40,7 +40,7 @@ public class AnswerBox {
     } 
 
     public void setAnswerBlock(Block b) { answerBlock = b; }
-    public void setFilled(Boolean b) { filled = b; }
+    public void setFilled(boolean b) { filled = b; }
     public boolean isFilled() { return filled; }
     public int getX() { return this.answerBoxX; }
     public int getY() { return this.answerBoxY; }

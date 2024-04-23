@@ -7,7 +7,7 @@ import java.awt.event.*;
  * 
  * @author Fisher
  */
-public class GameController implements MouseListener, MouseMotionListener, ComponentListener {
+public class GameController implements MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -90,13 +90,9 @@ public class GameController implements MouseListener, MouseMotionListener, Compo
         }
     }
 
-    @Override public void componentHidden(ComponentEvent arg0) {}
-    @Override public void componentMoved(ComponentEvent arg0) {}
-    @Override public void componentResized(ComponentEvent arg0) {}
-    @Override public void componentShown(ComponentEvent arg0) {}
-    @Override public void mouseMoved(MouseEvent arg0) {}
-    @Override public void mouseClicked(MouseEvent arg0) {}
-    @Override public void mouseEntered(MouseEvent arg0) {}
-    @Override public void mouseExited(MouseEvent arg0) {}
+    @Override public void mouseMoved(MouseEvent e) {}
+    @Override public void mouseClicked(MouseEvent e) {}
+    @Override public void mouseEntered(MouseEvent e) {}
+    @Override public void mouseExited(MouseEvent e) {}
   
 }

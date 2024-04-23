@@ -17,7 +17,6 @@ public class GameMain extends JFrame {
       GameController controller = new GameController();
       mathPanel.addMouseListener(controller);
       mathPanel.addMouseMotionListener(controller);
-      mathPanel.addComponentListener(controller);
 
       GameData.getInstance().addPropertyChangeListener(mathPanel);
     }
