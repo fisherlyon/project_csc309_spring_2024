@@ -25,16 +25,24 @@ public class Block {
 
     public void draw(Graphics g) {
         if (GameData.getInstance().getSelectedBlock() == this) {
-            g.setColor(Color.RED);
+            g.setColor(new Color(128, 0, 128));
             g.fillRect(blockX, blockY, dim, dim);
             g.setColor(Color.BLACK);
             g.drawRect(blockX, blockY, dim, dim);
         } else {
-            g.setColor(Color.GRAY);
+            g.setColor(new Color(0, 200, 200));
             g.fillRect(blockX, blockY, dim, dim);
             g.setColor(Color.BLACK);
             g.drawRect(blockX, blockY, dim, dim);
         }
+        g.setFont(new Font("Impact", 20, 20));
+        FontMetrics fm = g.getFontMetrics();
+        int textWidth = fm.stringWidth(Integer.toString(value));
+        int textHeight = fm.getHeight();
+        int x = blockX + (dim - textWidth) / 2;
+        int y = blockY + (dim + textHeight - 10) / 2;
+        g.setColor(Color.WHITE);
+        g.drawString(Integer.toString(value), x, y);
     }
 
     public boolean contains(int x, int y) {
