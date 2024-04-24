@@ -44,7 +44,6 @@ public class GameController implements MouseListener, MouseMotionListener {
             for (Block block : GameData.getInstance().getUnlockedBlocks()) {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
                     int mergeVal = block.getValue() + selectedBlock.getValue();
-                    if (mergeVal > 9) mergeVal = 9;
                     Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(), block.getBlockY() + GameData.getInstance().getMouseYOffset(), block.getDim(), mergeVal);
                     GameData.getInstance().getUnlockedBlocks().add(mergedBlock);
                     GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
