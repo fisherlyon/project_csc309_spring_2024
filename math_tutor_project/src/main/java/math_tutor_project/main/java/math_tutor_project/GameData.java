@@ -1,4 +1,4 @@
-package math_tutor_project;
+package main.java.math_tutor_project;
 
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;

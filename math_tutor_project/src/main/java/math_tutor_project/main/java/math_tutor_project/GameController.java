@@ -1,4 +1,4 @@
-package math_tutor_project;
+package main.java.math_tutor_project;
 
 import java.awt.event.*;
 
@@ -45,7 +45,9 @@ public class GameController implements MouseListener, MouseMotionListener {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
                     int mergeVal = block.getValue() + selectedBlock.getValue();
                     if (mergeVal > 9) mergeVal = 9;
-                    Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(), block.getBlockY() + GameData.getInstance().getMouseYOffset(), block.getDim(), mergeVal);
+                    Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(),
+                                                  block.getBlockY() + GameData.getInstance().getMouseYOffset(),
+                                                         block.getDim(), mergeVal);
                     GameData.getInstance().getUnlockedBlocks().add(mergedBlock);
                     GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
                     GameData.getInstance().getUnlockedBlocks().remove(block);
