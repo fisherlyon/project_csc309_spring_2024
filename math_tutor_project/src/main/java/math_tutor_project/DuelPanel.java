@@ -2,6 +2,11 @@ package math_tutor_project;
 
 import javax.swing.*;
 import java.awt.*;
+/**
+ * ...
+ *
+ * @author Leo Rivera
+ */
 public class DuelPanel extends JPanel {
     private final Image backgroundImage;
     private UserPlayer userPlayer;
