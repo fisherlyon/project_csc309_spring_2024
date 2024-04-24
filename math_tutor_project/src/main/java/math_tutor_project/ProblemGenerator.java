@@ -17,22 +17,30 @@ public class ProblemGenerator {
         this.difficulty = difficulty;
     }
 
-    public int generateProblemByOperator(char operator) {
+    public int[] generateProblemByOperator(char operator) {
         Random rand = new Random();
-        int result = 1;
         int scaledLowerBound = 1 + (difficulty / 10);
         int scaledUpperBound = 2 + ((difficulty / 10) * 2);
         int numberOfTerms = rand.nextInt(scaledLowerBound, scaledUpperBound);
+        int[] result = new int[numberOfTerms];
 
         for (int i = 0; i < numberOfTerms; i++) {
             int termToAppend = rand.nextInt(1, 10);
             switch (operator) {
                 case '+':
-                    result += termToAppend;
+                    result[i] = termToAppend;
                     break;
                 default:
                     break;
             }
+        }
+        return result;
+    }
+
+    public int solve(int[] problem, char operator){
+        int result = 0;
+        for(int i=0; i < problem.length; i++){
+            result += problem[i];
         }
         return result;
     }
