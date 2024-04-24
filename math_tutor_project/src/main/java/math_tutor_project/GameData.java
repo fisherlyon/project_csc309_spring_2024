@@ -21,7 +21,7 @@ public class GameData extends PropertyChangeSupport {
     private int answerBoxXOffset = 5;
     private int answerBoxYOffset = 5;
     private AnswerBox answerBox;
-
+    private TrashBin trashBin;
     private int NUM_LOCKED_BLOCKS = 10;
 
     private GameData() {
@@ -29,6 +29,7 @@ public class GameData extends PropertyChangeSupport {
         lockedBlocks = new ArrayList<Block>();
         unlockedBlocks = new ArrayList<Block>();
         answerBox = new AnswerBox(300, 540);
+        trashBin = new TrashBin(530, 520);
         this.recalculate();
     }
 
@@ -47,6 +48,10 @@ public class GameData extends PropertyChangeSupport {
         }
     }
 
+    public void removeUnlockedBlock(Block block){
+        unlockedBlocks.remove(block);
+    }
+    
     public void repaint() {
         firePropertyChange("repaint", null, null);
     }
@@ -62,4 +67,5 @@ public class GameData extends PropertyChangeSupport {
     public AnswerBox getAnswerBox() { return answerBox; }
     public int getAnswerBoxXOffset() { return answerBoxXOffset; }
     public int getAnswerBoxYOffset() { return answerBoxYOffset; }
+    public TrashBin getTrashBin(){return trashBin;}
 }

@@ -17,6 +17,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener {
         super.paintComponent(g);
 
         GameData.getInstance().getAnswerBox().draw(g);
+        GameData.getInstance().getTrashBin().paintComponent(g);
  
         for (Block block : GameData.getInstance().getLockedBlocks()) {
             if (!block.isSelected()) {

@@ -59,6 +59,12 @@ public class GameController implements MouseListener, MouseMotionListener {
                 selectedBlock.setBlockY(e.getY() - GameData.getInstance().getMouseYOffset());
             }
 
+            TrashBin trashBin = GameData.getInstance().getTrashBin();
+            if(trashBin.contains(e.getX(), e.getY())){
+                // Data change runs repaint
+                GameData.getInstance().removeUnlockedBlock(selectedBlock);
+            }
+
             AnswerBox answerBox = GameData.getInstance().getAnswerBox();
             if (answerBox.contains(e.getX(), e.getY())) {
                 selectedBlock.setBlockX(answerBox.getX() + GameData.getInstance().getAnswerBoxXOffset());
