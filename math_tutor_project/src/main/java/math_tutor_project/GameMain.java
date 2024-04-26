@@ -5,16 +5,17 @@ import java.awt.*;
 
 public class GameMain extends JFrame {
 
+
+
     public GameMain() {
         
       setLayout(new GridLayout(1, 2));
 
+      MathPanel mathPanel = new MathPanel();
+      UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
+      CpuPlayer cpu = new CpuPlayer(325, 200,  100);
 
-    MathPanel mathPanel = new MathPanel();
-    UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
-    CpuPlayer cpu = new CpuPlayer(325, 200,  100);
-
-    DuelPanel duelPanel = new DuelPanel(player, cpu);
+      DuelPanel duelPanel = new DuelPanel(player, cpu);
       add(duelPanel);
       add(mathPanel);
 
