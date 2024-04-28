@@ -60,9 +60,9 @@ public class Metrics {
         String fileName = args[0];
         try {
             LineCounts lineCounts = countLines(fileName);
-            System.out.println("LOC: " + lineCounts.getTotalLines());
-            System.out.println("eLOC: " + lineCounts.getEffectiveLines());
-            System.out.println("lLOC: " + lineCounts.getLogicalLines());
+            System.out.println("LOC:    " + lineCounts.getTotalLines());
+            System.out.println("eLOC    " + lineCounts.getEffectiveLines());
+            System.out.println("lLOC    " + lineCounts.getLogicalLines());
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
