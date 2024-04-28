@@ -46,16 +46,6 @@ public class Metrics {
                 if (line.contains(";")) {
                     logicalLines++;
                 }
-                // Count for, while, and if statements
-                if (line.startsWith("for")) {
-                    forCount++;
-                } else if (line.startsWith("while")) {
-                    whileCount++;
-                } else if (line.startsWith("if")) {
-                    ifCount++;
-                } else if (line.startsWith("else if")) {
-                    ifCount++;
-                }
             }
         }
         return new LineCounts(totalLines, effectiveLines, logicalLines, forCount, whileCount, ifCount);
@@ -73,7 +63,6 @@ public class Metrics {
             System.out.println("LOC: " + lineCounts.getTotalLines());
             System.out.println("eLOC: " + lineCounts.getEffectiveLines());
             System.out.println("lLOC: " + lineCounts.getLogicalLines());
-            System.out.println("CC: "  + (lineCounts.getForCount() + lineCounts.getIfCount() + lineCounts.getWhileCount() + 1));
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
