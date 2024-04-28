@@ -28,8 +28,7 @@ public class ProblemGenerator {
         int[] result = new int[numberOfTerms];
 
         for (int i = 0; i < numberOfTerms; i++) {
-            int termToAppend = rand.nextInt(10) + 1; // Generate numbers from 1 to 10
-
+            int termToAppend = rand.nextInt(1, 30);
             switch (operator) {
                 case '+':
                     result[i] = termToAppend;
