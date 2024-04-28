@@ -1,5 +1,6 @@
 package math_tutor_project;
 
+
 import javax.swing.*;
 import java.awt.*;
 /**
@@ -8,7 +9,7 @@ import java.awt.*;
  * @author Leo Rivera
  */
 public class DuelPanel extends JPanel {
-    private final Image backgroundImage;
+    private Image backgroundImage;
     private UserPlayer userPlayer;
     private CpuPlayer cpuPlayer;
     public DuelPanel(UserPlayer player, CpuPlayer cpu) {
@@ -18,6 +19,23 @@ public class DuelPanel extends JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null)));
     }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+
+    public void setBackgroundImage(String imagePath) {
+        ImageIcon icon = new ImageIcon(DuelPanel.class.getResource(imagePath));
+        if (icon.getImage() != null) {
+            this.backgroundImage = icon.getImage();
+            repaint(); // Trigger a repaint to show the new background
+        } else {
+            throw new IllegalArgumentException("Image could not be loaded: " + imagePath);
+        }
+    }
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

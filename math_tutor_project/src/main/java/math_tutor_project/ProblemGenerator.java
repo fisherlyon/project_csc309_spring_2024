@@ -1,6 +1,7 @@
 package math_tutor_project;
 
 import java.util.*;
+import java.util.Random;
 
 /**
  * 
@@ -21,11 +22,14 @@ public class ProblemGenerator {
         Random rand = new Random();
         int scaledLowerBound = 1 + (difficulty / 10);
         int scaledUpperBound = 2 + ((difficulty / 10) * 2);
-        int numberOfTerms = rand.nextInt(scaledLowerBound, scaledUpperBound);
+        int range = scaledUpperBound - scaledLowerBound + 1;
+        int numberOfTerms = rand.nextInt(range) + scaledLowerBound; // Adjusted line
+
         int[] result = new int[numberOfTerms];
 
         for (int i = 0; i < numberOfTerms; i++) {
-            int termToAppend = rand.nextInt(1, 10);
+            int termToAppend = rand.nextInt(10) + 1; // Generate numbers from 1 to 10
+
             switch (operator) {
                 case '+':
                     result[i] = termToAppend;
@@ -36,6 +40,7 @@ public class ProblemGenerator {
         }
         return result;
     }
+
 
     public int solve(int[] problem, char operator){
         int result = 0;
