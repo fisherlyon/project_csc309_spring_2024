@@ -43,12 +43,22 @@ public class GameController implements MouseListener, MouseMotionListener {
             
             for (Block block : GameData.getInstance().getUnlockedBlocks()) {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
-                    int mergeVal = block.getValue() + selectedBlock.getValue();
-                    Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(), block.getBlockY() + GameData.getInstance().getMouseYOffset(), block.getDim(), mergeVal);
-                    GameData.getInstance().getUnlockedBlocks().add(mergedBlock);
-                    GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
-                    GameData.getInstance().getUnlockedBlocks().remove(block);
-                    merged = true;
+                    OpButton pressedButton = GameData.getInstance().getPressedButton();
+                    if (pressedButton != null) {
+                        int mergeVal;
+                        try {
+                            mergeVal = pressedButton.doOp(block.getValue(), selectedBlock.getValue());
+                        } catch (ArithmeticException er) {
+                            System.out.println("div by zero");
+                            break;
+                        }
+                        Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(), block.getBlockY() + GameData.getInstance().getMouseYOffset(), block.getDim(), mergeVal);
+                        GameData.getInstance().getUnlockedBlocks().add(mergedBlock);
+                        GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
+                        GameData.getInstance().getUnlockedBlocks().remove(block);
+                        merged = true;
+                    }
+                    
                     break;
                 }
             }
@@ -74,7 +84,7 @@ public class GameController implements MouseListener, MouseMotionListener {
 
                 int targetAnswer = GameData.getInstance().getTargetAnswer();
                 Tutor  tutor = GameData.getInstance().getTutor();
-                if(selectedBlock.getValue() != targetAnswer){
+                if (selectedBlock.getValue() != targetAnswer){
                     tutor.help();
                 }
                 else{

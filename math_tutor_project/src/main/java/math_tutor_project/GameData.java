@@ -28,6 +28,9 @@ public class GameData extends PropertyChangeSupport {
     private int NUM_LOCKED_BLOCKS = 10;
     private int[] problem;
     private int targetAnswer;
+    private OpButton pressedButton = null;
+
+
     private GameData() {
         super(new Object());
         lockedBlocks = new ArrayList<Block>();
@@ -79,9 +82,9 @@ public class GameData extends PropertyChangeSupport {
     public Tutor getTutor() {return tutor;}
     public int[] getProblem() {return problem;}
     public int getTargetAnswer() {return targetAnswer;}
-    public ProblemGenerator getProblemGenerator() {
-        return problemGenerator;
-    }
+    public ProblemGenerator getProblemGenerator() { return problemGenerator; }
     public void setTargetAnswer(int targetAnswer) {this.targetAnswer = targetAnswer;}
     public void setProblem(int[] problem) {this.problem = problem;}
+    public OpButton getPressedButton() { return pressedButton; }
+    public void setPressedButton(OpButton opButton) { pressedButton = opButton; }
 }

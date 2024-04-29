@@ -2,16 +2,23 @@ package math_tutor_project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GameMain extends JFrame {
-
-
+public class GameMain extends JFrame implements ActionListener {
 
     public GameMain() {
         
       setLayout(new GridLayout(1, 3));
 
+      String[] ops = { "+", "-", "*", "/" };
       MathPanel mathPanel = new MathPanel();
+      for (String op : ops) {
+        OpButton button = new OpButton(op);
+        button.addActionListener(this);
+        mathPanel.add(button);
+      }
+
       UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
       CpuPlayer cpu = new CpuPlayer(325, 200,  100);
       DuelPanel duelPanel = new DuelPanel(player, cpu);
@@ -38,5 +45,14 @@ public class GameMain extends JFrame {
       main.setSize(1800, 600);
       main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       main.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      
+      if (e.getSource() instanceof OpButton) {
+          OpButton button = (OpButton) e.getSource();
+          GameData.getInstance().setPressedButton(button);
+      }
     }
   }
