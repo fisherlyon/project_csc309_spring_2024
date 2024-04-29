@@ -21,7 +21,6 @@ public class MapLevel extends JPanel {
         JButton button = new JButton(text);
         button.setBackground(Color.white);
         button.setForeground(Color.black);
-        button.setBorder(BorderFactory.createEmptyBorder());
         button.setFocusPainted(false);
         button.setBounds(x, y, width, height);
         button.addActionListener(e -> {

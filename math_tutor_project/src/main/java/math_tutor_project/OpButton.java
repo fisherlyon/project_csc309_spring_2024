@@ -2,6 +2,12 @@ package math_tutor_project;
 
 import javax.swing.*;
 
+/**
+ * 
+ * 
+ * @author Fisher
+ */
+
 public class OpButton extends JButton {
     
     private String op;
@@ -10,8 +16,6 @@ public class OpButton extends JButton {
         this.op = op;
         this.setText(op);
     }
-
-    public String getOp() { return this.op; }
 
     public int doOp(int x, int y) {
         try {
