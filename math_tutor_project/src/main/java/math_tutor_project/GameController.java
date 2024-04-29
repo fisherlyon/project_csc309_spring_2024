@@ -83,11 +83,11 @@ public class GameController implements MouseListener, MouseMotionListener {
                 answerBox.setFilled(true);
 
                 int targetAnswer = GameData.getInstance().getTargetAnswer();
-                Tutor  tutor = GameData.getInstance().getTutor();
+                Tutor tutor = GameData.getInstance().getTutor();
                 if (selectedBlock.getValue() != targetAnswer){
                     tutor.help();
                 }
-                else{
+                else {
                     ProblemGenerator problemGenerator = GameData.getInstance().getProblemGenerator();
                     int[] newProblem = problemGenerator.generateProblemByOperator('+');
                     GameData.getInstance().setProblem(

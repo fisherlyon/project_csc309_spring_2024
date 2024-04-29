@@ -7,52 +7,68 @@ import java.awt.event.ActionListener;
 
 public class GameMain extends JFrame implements ActionListener {
 
+    JPanel startScreen = new JPanel();
+    JPanel levelScreen = new JPanel();
+    JPanel playScreen = new JPanel();
+
     public GameMain() {
+
+        // ---- CREATE : Start Screen
+        startScreen.setLayout(new GridLayout(1, 1));
+        StartPanel startPanel = new StartPanel();
+        StartButton playButton = new StartButton("PLAY", 600, 400, 200, 60);
+        startPanel.addButton(playButton); // Remove coordinate parameters since we're using absolute positioning
+        playButton.addActionListener(this);
+        startScreen.add(startPanel);
+
+        // ---- CREATE : Level Select Screen
+        levelScreen.setLayout(new GridLayout(1, 2));
+        //levelScreen.add(new MapLevel(null));
+        //levelScrean.add(new LevelPanel());
+
+        // ---- CREATE : Gameplay Screen
+        UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
+        CpuPlayer cpu = new CpuPlayer(325, 200,  100);
+        playScreen.add(new DuelPanel(player, cpu));
+        playScreen.setLayout(new GridLayout(1, 2));
+        String[] ops = { "+", "-", "*", "/" };
+        MathPanel mathPanel = new MathPanel();
+        for (String op : ops) {
+            OpButton button = new OpButton(op);
+            button.addActionListener(this);
+            mathPanel.add(button);
+        }
+        playScreen.add(mathPanel);
         
-      setLayout(new GridLayout(1, 3));
+        GameData.getInstance().display(this, startScreen, levelScreen, playScreen);
+        
+        GameController controller = new GameController();
+        mathPanel.addMouseListener(controller);
+        mathPanel.addMouseMotionListener(controller);
 
-      String[] ops = { "+", "-", "*", "/" };
-      MathPanel mathPanel = new MathPanel();
-      for (String op : ops) {
-        OpButton button = new OpButton(op);
-        button.addActionListener(this);
-        mathPanel.add(button);
-      }
-
-      UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
-      CpuPlayer cpu = new CpuPlayer(325, 200,  100);
-      DuelPanel duelPanel = new DuelPanel(player, cpu);
-
-      UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
-      CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);
-      MapLevel mapLevel = new MapLevel(duelPanel);
-
-      add(duelPanel);
-      add(mathPanel);
-      add(mapLevel);
-
-      GameController controller = new GameController();
-      mathPanel.addMouseListener(controller);
-      mathPanel.addMouseMotionListener(controller);
-
-      GameData.getInstance().addPropertyChangeListener(mathPanel);
+        GameData.getInstance().addPropertyChangeListener(mathPanel);
     }
   
     public static void main(String[] args) {
-  
-      GameMain main = new GameMain();
-      main.setTitle("Mathematical Madness");
-      main.setSize(1800, 600);
-      main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      main.setVisible(true);
+        GameMain main = new GameMain();
+        main.setTitle("Mathematical Madness");
+        main.setSize(1200, 600);
+        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
       
-      if (e.getSource() instanceof OpButton) {
-          OpButton button = (OpButton) e.getSource();
-          GameData.getInstance().setPressedButton(button);
-      }
+        if (e.getSource() instanceof OpButton) {
+            OpButton button = (OpButton) e.getSource();
+            GameData.getInstance().setPressedButton(button);
+        } else if (e.getSource() instanceof StartButton) {
+            StartButton button = (StartButton) e.getSource();
+            if (button.getOption().equals("PLAY")) {
+                GameData.getInstance().setDisplayScreen("PLAY");
+                GameData.getInstance().display(this, startScreen, levelScreen, playScreen);
+            }
+        }
     }
-  }
+}

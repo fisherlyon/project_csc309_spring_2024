@@ -4,6 +4,7 @@ package math_tutor_project;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 
 /**
  * ...
@@ -29,7 +30,8 @@ public class GameData extends PropertyChangeSupport {
     private int[] problem;
     private int targetAnswer;
     private OpButton pressedButton = null;
-
+    private String displayScreen = "START";
+    private JPanel curScreen = null;
 
     private GameData() {
         super(new Object());
@@ -67,6 +69,25 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("repaint", null, null);
     }
 
+    public void display(JFrame main, JPanel start, JPanel level, JPanel play) {
+        if (curScreen != null) {
+            main.remove(curScreen);
+            curScreen = null;
+        }
+        if (displayScreen.equals("START")) {
+            main.add(start);
+            curScreen = start;
+        } else if (displayScreen.equals("LEVEL")) {
+            main.add(level);
+            curScreen = level;
+        } else if (displayScreen.equals("PLAY")) {
+            main.add(play);
+            curScreen = play;
+        }
+        main.repaint();
+        main.revalidate();
+    }
+
     public Block getSelectedBlock() { return selectedBlock; }
     public void setSelectedBlock(Block block) { this.selectedBlock = block; }
     public List<Block> getLockedBlocks() { return lockedBlocks; }
@@ -87,4 +108,5 @@ public class GameData extends PropertyChangeSupport {
     public void setProblem(int[] problem) {this.problem = problem;}
     public OpButton getPressedButton() { return pressedButton; }
     public void setPressedButton(OpButton opButton) { pressedButton = opButton; }
+    public void setDisplayScreen(String s) { displayScreen = s; }
 }
