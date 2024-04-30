@@ -1,25 +1,21 @@
 package math_tutor_project;
 
-import javax.swing.*;
-
 /**
  * 
  * 
  * @author Fisher
  */
-
-public class OpButton extends JButton {
+public class OpButton extends Button {
     
-    private String op;
 
-    public OpButton(String op) {
-        this.op = op;
-        this.setText(op);
+
+    public OpButton(String label, int x, int y, int w, int h) {
+        super(label, x, y, w, h);
     }
 
     public int doOp(int x, int y) {
         try {
-            switch (op) {
+            switch (super.getLabel()) {
                 case "+" : return x + y;
                 case "-" : return x - y;
                 case "*" : return x * y;

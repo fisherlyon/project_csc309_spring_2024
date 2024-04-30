@@ -17,7 +17,7 @@ public class GameMain extends JFrame implements ActionListener {
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
         StartButton playButton = new StartButton("PLAY", 600, 400, 200, 60);
-        startPanel.addButton(playButton); // Remove coordinate parameters since we're using absolute positioning
+        playButton.addSelf(startPanel); // Remove coordinate parameters since we're using absolute positioning
         playButton.addActionListener(this);
         startScreen.add(startPanel);
 
@@ -33,10 +33,10 @@ public class GameMain extends JFrame implements ActionListener {
         playScreen.setLayout(new GridLayout(1, 2));
         String[] ops = { "+", "-", "*", "/" };
         MathPanel mathPanel = new MathPanel();
-        for (String op : ops) {
-            OpButton button = new OpButton(op);
+        for (int i = 0; i < ops.length; i++) {
+            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 50, 50);
             button.addActionListener(this);
-            mathPanel.add(button);
+            button.addSelf(mathPanel);;
         }
         playScreen.add(mathPanel);
         
@@ -65,7 +65,7 @@ public class GameMain extends JFrame implements ActionListener {
             GameData.getInstance().setPressedButton(button);
         } else if (e.getSource() instanceof StartButton) {
             StartButton button = (StartButton) e.getSource();
-            if (button.getOption().equals("PLAY")) {
+            if (button.getLabel().equals("PLAY")) {
                 GameData.getInstance().setDisplayScreen("PLAY");
                 GameData.getInstance().display(this, startScreen, levelScreen, playScreen);
             }
