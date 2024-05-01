@@ -56,8 +56,6 @@ public class DuelPanel extends JPanel {
         g.fillRect(365, 25, 200, 50);
 
 
-        g.setColor(Color.BLACK);
-        g.fillOval(240, 20, 100, 100);
 
         g.setColor(Color.RED);
         g.fillRect(25, 35, 180, 30);

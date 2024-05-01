@@ -15,6 +15,10 @@ public class GameMain extends JFrame implements ActionListener {
       MathPanel mathPanel = new MathPanel();
       for (String op : ops) {
         OpButton button = new OpButton(op);
+          button.setBackground(Color.gray);
+          button.setForeground(Color.black);
+//          button.setBorder(BorderFactory.createEmptyBorder());
+          button.setFocusPainted(false);
         button.addActionListener(this);
         mathPanel.add(button);
       }

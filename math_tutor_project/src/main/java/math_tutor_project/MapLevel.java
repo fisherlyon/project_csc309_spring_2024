@@ -37,7 +37,7 @@ public class MapLevel extends JPanel {
                     duelPanel.setBackgroundImage("/csc309.png");
                     break;
                 case "/":
-                    duelPanel.setBackgroundImage("/temples.png");
+                    duelPanel.setBackgroundImage("/brazil.png");
                     break;
             }
         });
