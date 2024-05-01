@@ -33,7 +33,7 @@ public class GameMain extends JFrame implements ActionListener {
 
       add(duelPanel);
       add(mathPanel);
-      add(mapLevel);
+      //add(mapLevel);
 
       GameController controller = new GameController();
       mathPanel.addMouseListener(controller);
