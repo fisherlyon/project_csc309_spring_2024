@@ -24,10 +24,8 @@ public class GameData extends PropertyChangeSupport {
     private AnswerBox answerBox;
     private TrashBin trashBin;
     private Tutor tutor;
-    private ProblemGenerator problemGenerator;
     private int NUM_LOCKED_BLOCKS = 10;
-    private int[] problem;
-    private int targetAnswer;
+    private Level level;
     private GameData() {
         super(new Object());
         lockedBlocks = new ArrayList<Block>();
@@ -35,9 +33,7 @@ public class GameData extends PropertyChangeSupport {
         answerBox = new AnswerBox(300, 540);
         trashBin = new TrashBin(530, 520);
         tutor = new Tutor(100, 50);
-        problemGenerator = new ProblemGenerator(0);
-        problem = problemGenerator.generateProblemByOperator('+');
-        targetAnswer = problemGenerator.solve(problem,'+');
+        level = new Level('+', 0);
         this.recalculate();
     }
 
@@ -77,11 +73,5 @@ public class GameData extends PropertyChangeSupport {
     public int getAnswerBoxYOffset() { return answerBoxYOffset; }
     public TrashBin getTrashBin(){return trashBin;}
     public Tutor getTutor() {return tutor;}
-    public int[] getProblem() {return problem;}
-    public int getTargetAnswer() {return targetAnswer;}
-    public ProblemGenerator getProblemGenerator() {
-        return problemGenerator;
-    }
-    public void setTargetAnswer(int targetAnswer) {this.targetAnswer = targetAnswer;}
-    public void setProblem(int[] problem) {this.problem = problem;}
+    public Level getLevel() {return level;}
 }
