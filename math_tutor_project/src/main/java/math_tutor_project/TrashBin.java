@@ -3,6 +3,11 @@ package math_tutor_project;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ *
+ * @author Eric Berber
+ */
+
 public class TrashBin extends JComponent {
     private Image image;
     private String IMAGE_PATH = "./math_tutor_project/src/main/resources/trash.png";

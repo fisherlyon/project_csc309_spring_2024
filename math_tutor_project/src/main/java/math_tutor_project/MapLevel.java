@@ -3,6 +3,11 @@ package math_tutor_project;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * ...
+ *
+ * @author Leo Rivera
+ */
 public class MapLevel extends JPanel {
     private final Image Earth;
     private DuelPanel duelPanel; // Reference to DuelPanel
