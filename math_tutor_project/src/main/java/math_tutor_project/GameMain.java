@@ -46,7 +46,7 @@ public class GameMain extends JFrame implements ActionListener {
   
       GameMain main = new GameMain();
       main.setTitle("Mathematical Madness");
-      main.setSize(1800, 600);
+      main.setSize(1200, 600);
       main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       main.setVisible(true);
     }

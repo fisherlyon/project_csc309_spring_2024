@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/math_tutor_project/src/main/resources/cpuhealth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/math_tutor_project/src/main/resources/userhealth.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/MapLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/MapLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/TrashBin.java" beforeDir="false" afterPath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/TrashBin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/GameMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/ProblemGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/math_tutor_project/src/main/java/math_tutor_project/ProblemGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,8 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="GameMain (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="GameMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="MAIN_CLASS_NAME" value="math_tutor_project.GameMain" />
       <module name="math_tutor_project" />
       <extension name="coverage">
@@ -116,7 +115,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GameMain (1)" />
+        <item itemvalue="Application.GameMain" />
       </list>
     </recent_temporary>
   </component>
@@ -140,7 +139,7 @@
       <workItem from="1714014200122" duration="6303000" />
       <workItem from="1714276372930" duration="2367000" />
       <workItem from="1714281953817" duration="11013000" />
-      <workItem from="1714523857129" duration="1639000" />
+      <workItem from="1714523857129" duration="1935000" />
     </task>
     <servers />
   </component>

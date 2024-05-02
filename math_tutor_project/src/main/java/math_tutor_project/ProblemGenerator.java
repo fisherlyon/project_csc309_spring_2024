@@ -22,7 +22,8 @@ public class ProblemGenerator {
         Random rand = new Random();
         int scaledLowerBound = 1 - ((difficulty / 10) * 2);
         int scaledUpperBound = 15 + ((difficulty / 10) * 2);
-        return rand.nextInt(scaledLowerBound, scaledUpperBound);
+        // Compute the range size and then shift by the lower bound
+        return scaledLowerBound + rand.nextInt(scaledUpperBound - scaledLowerBound);
     }
 
     public int getDifficulty() {
