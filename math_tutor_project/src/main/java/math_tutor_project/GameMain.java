@@ -16,8 +16,8 @@ public class GameMain extends JFrame implements ActionListener {
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
-        StartButton playButton = new StartButton("PLAY", 600, 400, 200, 60);
-        playButton.addSelf(startPanel); // Remove coordinate parameters since we're using absolute positioning
+        GenericButton playButton = new GenericButton("START", 600, 400, 200, 60, Color.white, Color.blue, Color.red);
+        playButton.addSelf(startPanel);
         playButton.addActionListener(this);
         startScreen.add(startPanel);
 
@@ -34,13 +34,13 @@ public class GameMain extends JFrame implements ActionListener {
         String[] ops = { "+", "-", "*", "/" };
         MathPanel mathPanel = new MathPanel();
         for (int i = 0; i < ops.length; i++) {
-            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 50, 50);
+            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.blue, Color.red);
             button.addActionListener(this);
-            button.addSelf(mathPanel);;
+            button.addSelf(mathPanel);
         }
         playScreen.add(mathPanel);
         
-        GameData.getInstance().display(this, startScreen, levelScreen, playScreen);
+        add(startScreen);
         
         GameController controller = new GameController();
         mathPanel.addMouseListener(controller);
@@ -59,16 +59,22 @@ public class GameMain extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() instanceof Button) {
+            GameData.getInstance().doButtonAction(this, (Button) e.getSource());
+        }
       
-        if (e.getSource() instanceof OpButton) {
+        if (e.getSource() instanceof GenericButton) {
+            GenericButton button = (GenericButton) e.getSource();
+            if (button.getLabel() == "START")
+                getContentPane().removeAll();
+                getContentPane().add(playScreen);
+                revalidate(); 
+        } 
+
+        else if (e.getSource() instanceof OpButton) {
             OpButton button = (OpButton) e.getSource();
             GameData.getInstance().setPressedButton(button);
-        } else if (e.getSource() instanceof StartButton) {
-            StartButton button = (StartButton) e.getSource();
-            if (button.getLabel().equals("PLAY")) {
-                GameData.getInstance().setDisplayScreen("PLAY");
-                GameData.getInstance().display(this, startScreen, levelScreen, playScreen);
-            }
         }
     }
 }

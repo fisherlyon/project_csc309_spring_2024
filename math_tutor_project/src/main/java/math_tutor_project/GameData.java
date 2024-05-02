@@ -29,9 +29,7 @@ public class GameData extends PropertyChangeSupport {
     private int NUM_LOCKED_BLOCKS = 10;
     private int[] problem;
     private int targetAnswer;
-    private OpButton pressedButton = null;
-    private String displayScreen = "START";
-    private JPanel curScreen = null;
+    private Button pressedButton = null;
 
     private GameData() {
         super(new Object());
@@ -69,21 +67,18 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("repaint", null, null);
     }
 
-    public void display(JFrame main, JPanel start, JPanel level, JPanel play) {
-        if (curScreen != null) {
-            main.remove(curScreen);
-            curScreen = null;
+    public void doButtonAction(JFrame main, Button button) {
+
+        if (pressedButton == null) {
+            setPressedButton(button);
+        } else {
+            pressedButton.setDefaultColor();
+            main.repaint();
+            main.revalidate();
         }
-        if (displayScreen.equals("START")) {
-            main.add(start);
-            curScreen = start;
-        } else if (displayScreen.equals("LEVEL")) {
-            main.add(level);
-            curScreen = level;
-        } else if (displayScreen.equals("PLAY")) {
-            main.add(play);
-            curScreen = play;
-        }
+
+        setPressedButton(button);
+        pressedButton.setPressedColor();
         main.repaint();
         main.revalidate();
     }
@@ -106,7 +101,6 @@ public class GameData extends PropertyChangeSupport {
     public ProblemGenerator getProblemGenerator() { return problemGenerator; }
     public void setTargetAnswer(int targetAnswer) {this.targetAnswer = targetAnswer;}
     public void setProblem(int[] problem) {this.problem = problem;}
-    public OpButton getPressedButton() { return pressedButton; }
-    public void setPressedButton(OpButton opButton) { pressedButton = opButton; }
-    public void setDisplayScreen(String s) { displayScreen = s; }
+    public Button getPressedButton() { return pressedButton; }
+    public void setPressedButton(Button button) { pressedButton = button; }
 }
