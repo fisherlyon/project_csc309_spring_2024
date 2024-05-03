@@ -23,9 +23,12 @@ public class GameMain extends JFrame implements ActionListener {
         mathPanel.add(button);
       }
 
+      PlayerHealth phealth = new PlayerHealth(15, 25);
+      CpuHealth chealth = new CpuHealth(365, 25);
+
       UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
       CpuPlayer cpu = new CpuPlayer(325, 200,  100);
-      DuelPanel duelPanel = new DuelPanel(player, cpu);
+      DuelPanel duelPanel = new DuelPanel(player, cpu, chealth, phealth);
 
       UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
       CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);

@@ -2,6 +2,7 @@ package math_tutor_project;
 
 import java.awt.event.*;
 
+
 /**
  * ...
  * 
@@ -87,10 +88,14 @@ public class GameController implements MouseListener, MouseMotionListener {
                 Level level = data.getLevel();
                 if (selectedBlock.getValue() != targetAnswer){
                     tutor.help();
+                    // need to get minus 10 here for player
+
                 }
                 else{
                     level.nextProblem(); 
                     tutor.setVisible(false);
+                    // need to get minus 10 here for cpu
+
                 }
             }
 

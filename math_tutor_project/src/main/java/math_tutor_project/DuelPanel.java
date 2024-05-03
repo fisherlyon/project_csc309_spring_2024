@@ -12,7 +12,11 @@ public class DuelPanel extends JPanel {
     private Image backgroundImage;
     private UserPlayer userPlayer;
     private CpuPlayer cpuPlayer;
-    public DuelPanel(UserPlayer player, CpuPlayer cpu) {
+    private CpuHealth cpuHealth;
+    private PlayerHealth playerHealth;
+
+
+    public DuelPanel(UserPlayer player, CpuPlayer cpu, CpuHealth cpuHealth, PlayerHealth playerHealth) {
         this.cpuPlayer = cpu;
         this.userPlayer = player;
         backgroundImage = new ImageIcon(getClass().getResource("/stage1.png")).getImage();
@@ -49,17 +53,20 @@ public class DuelPanel extends JPanel {
         if (cpuPlayer != null) {
             g.drawImage(cpuPlayer.getImage(), cpuPlayer.getcpuX(), cpuPlayer.getcpuY(), this);
         }
+        if (playerHealth != null) {
+            g.drawImage(playerHealth.getPlayerhealthbar(), playerHealth.getUserHealthBarX(), playerHealth.getUserHealthBarY(), this);
+        }
+        if (cpuHealth != null) {
+            g.drawImage(cpuHealth.getCpuhealthbar(), cpuHealth.getCpuHealthBarX(), cpuHealth.getCpuHealthBarY(), this);
+        }
 
-        g.setColor(Color.BLACK);
-        g.fillRect(15, 25, 200, 50);
-        g.setColor(Color.BLACK);
-        g.fillRect(365, 25, 200, 50);
+//        if (!GameController.getDecider()){
+//            g.drawRect(18, 26, 20, 8);
+//        }
+//        else{
+//            g.drawRect(368, 26, 20, 8);
+//        }
 
 
-
-        g.setColor(Color.RED);
-        g.fillRect(25, 35, 180, 30);
-        g.setColor(Color.RED);
-        g.fillRect(375, 35, 180, 30);
     }
 }
