@@ -3,6 +3,11 @@ package math_tutor_project;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * ...
+ *
+ * @author Leo Rivera
+ */
 public class MapLevel extends JPanel {
     private final Image Earth;
     private DuelPanel duelPanel; // Reference to DuelPanel
@@ -36,7 +41,7 @@ public class MapLevel extends JPanel {
                     duelPanel.setBackgroundImage("/csc309.png");
                     break;
                 case "/":
-                    duelPanel.setBackgroundImage("/temples.png");
+                    duelPanel.setBackgroundImage("/brazil.png");
                     break;
             }
         });

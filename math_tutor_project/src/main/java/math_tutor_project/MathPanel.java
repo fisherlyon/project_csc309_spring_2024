@@ -22,7 +22,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener {
         GameData.getInstance().getTrashBin().paintComponent(g);
         GameData.getInstance().getTutor().paintComponent(g);
         
-        int targetAnswer = GameData.getInstance().getTargetAnswer();
+        int targetAnswer = GameData.getInstance().getLevel().getTarget();
         g.setFont(new Font("Ariel", Font.PLAIN, 50));
         g.drawString(Integer.toString(targetAnswer), 25, 50);
 

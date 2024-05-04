@@ -15,13 +15,20 @@ public class GameMain extends JFrame implements ActionListener {
       MathPanel mathPanel = new MathPanel();
       for (String op : ops) {
         OpButton button = new OpButton(op);
+          button.setBackground(Color.gray);
+          button.setForeground(Color.black);
+//          button.setBorder(BorderFactory.createEmptyBorder());
+          button.setFocusPainted(false);
         button.addActionListener(this);
         mathPanel.add(button);
       }
 
+      PlayerHealth phealth = new PlayerHealth(15, 25);
+      CpuHealth chealth = new CpuHealth(365, 25);
+
       UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
       CpuPlayer cpu = new CpuPlayer(325, 200,  100);
-      DuelPanel duelPanel = new DuelPanel(player, cpu);
+      DuelPanel duelPanel = new DuelPanel(player, cpu, chealth, phealth);
 
       UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
       CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);
@@ -29,7 +36,7 @@ public class GameMain extends JFrame implements ActionListener {
 
       add(duelPanel);
       add(mathPanel);
-      add(mapLevel);
+      //add(mapLevel);
 
       GameController controller = new GameController();
       mathPanel.addMouseListener(controller);
@@ -42,7 +49,7 @@ public class GameMain extends JFrame implements ActionListener {
   
       GameMain main = new GameMain();
       main.setTitle("Mathematical Madness");
-      main.setSize(1800, 600);
+      main.setSize(1200, 600);
       main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       main.setVisible(true);
     }

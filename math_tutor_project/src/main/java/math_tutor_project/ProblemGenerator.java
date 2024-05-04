@@ -18,35 +18,12 @@ public class ProblemGenerator {
         this.difficulty = difficulty;
     }
 
-    public int[] generateProblemByOperator(char operator) {
+    public int generateProblem() {
         Random rand = new Random();
-        int scaledLowerBound = 1 + (difficulty / 10);
-        int scaledUpperBound = 2 + ((difficulty / 10) * 2);
-        int range = scaledUpperBound - scaledLowerBound + 1;
-        int numberOfTerms = rand.nextInt(range) + scaledLowerBound; // Adjusted line
-
-        int[] result = new int[numberOfTerms];
-
-        for (int i = 0; i < numberOfTerms; i++) {
-            int termToAppend = rand.nextInt(1, 30);
-            switch (operator) {
-                case '+':
-                    result[i] = termToAppend;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return result;
-    }
-
-
-    public int solve(int[] problem, char operator){
-        int result = 0;
-        for(int i=0; i < problem.length; i++){
-            result += problem[i];
-        }
-        return result;
+        int scaledLowerBound = 1 - ((difficulty / 10) * 2);
+        int scaledUpperBound = 15 + ((difficulty / 10) * 2);
+        // Compute the range size and then shift by the lower bound
+        return scaledLowerBound + rand.nextInt(scaledUpperBound - scaledLowerBound);
     }
 
     public int getDifficulty() {

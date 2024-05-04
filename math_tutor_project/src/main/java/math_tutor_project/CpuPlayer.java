@@ -27,6 +27,6 @@ public class CpuPlayer {
     public int getcpuY() { return y; }
     public Image getImage() { return playertwo; }
     public String getName() { return name; }
-    public int getHealth() { return health; }
-    public void setHealth(int health) { this.health = health; }
+    public int getCpuHealth() { return health; }
+    public void setCpuHealth(int health) { this.health = health;}
 }

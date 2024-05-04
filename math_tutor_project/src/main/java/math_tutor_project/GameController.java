@@ -2,31 +2,32 @@ package math_tutor_project;
 
 import java.awt.event.*;
 
+
 /**
  * ...
  * 
  * @author Fisher
  */
 public class GameController implements MouseListener, MouseMotionListener {
-
+    GameData data = GameData.getInstance();
     @Override
     public void mousePressed(MouseEvent e) {
         
-        for (int i = 0; i < GameData.getInstance().getLockedBlocks().size(); i++) {
-            Block block = GameData.getInstance().getLockedBlocks().get(i);
+        for (int i = 0; i < data.getLockedBlocks().size(); i++) {
+            Block block = data.getLockedBlocks().get(i);
             if (block.contains(e.getX(), e.getY())) {
                 Block unlockedBlock = new Block(block.getBlockX(), block.getBlockY(), block.getDim(), block.getValue());
                 unlockedBlock.setSelected(true);
-                GameData.getInstance().getUnlockedBlocks().add(unlockedBlock);
-                GameData.getInstance().setSelectedBlock(unlockedBlock);
+                data.getUnlockedBlocks().add(unlockedBlock);
+                data.setSelectedBlock(unlockedBlock);
                 break;
             }
         }
 
-        for (int i = 0; i < GameData.getInstance().getUnlockedBlocks().size(); i++) {
-            Block block = GameData.getInstance().getUnlockedBlocks().get(i);
+        for (int i = 0; i < data.getUnlockedBlocks().size(); i++) {
+            Block block = data.getUnlockedBlocks().get(i);
             if (block.contains(e.getX(), e.getY())) {
-                GameData.getInstance().setSelectedBlock(block);
+                data.setSelectedBlock(block);
                 block.setSelected(true);
                 break;
             }
@@ -37,13 +38,13 @@ public class GameController implements MouseListener, MouseMotionListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         
-        if (GameData.getInstance().getSelectedBlock() != null) {
-            Block selectedBlock = GameData.getInstance().getSelectedBlock();
+        if (data.getSelectedBlock() != null) {
+            Block selectedBlock = data.getSelectedBlock();
             boolean merged = false;
             
-            for (Block block : GameData.getInstance().getUnlockedBlocks()) {
+            for (Block block : data.getUnlockedBlocks()) {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
-                    OpButton pressedButton = GameData.getInstance().getPressedButton();
+                    OpButton pressedButton = data.getPressedButton();
                     if (pressedButton != null) {
                         int mergeVal;
                         try {
@@ -52,10 +53,10 @@ public class GameController implements MouseListener, MouseMotionListener {
                             System.out.println("div by zero");
                             break;
                         }
-                        Block mergedBlock = new Block(block.getBlockX() + GameData.getInstance().getMouseXOffset(), block.getBlockY() + GameData.getInstance().getMouseYOffset(), block.getDim(), mergeVal);
-                        GameData.getInstance().getUnlockedBlocks().add(mergedBlock);
-                        GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
-                        GameData.getInstance().getUnlockedBlocks().remove(block);
+                        Block mergedBlock = new Block(block.getBlockX() + data.getMouseXOffset(), block.getBlockY() + data.getMouseYOffset(), block.getDim(), mergeVal);
+                        data.getUnlockedBlocks().add(mergedBlock);
+                        data.getUnlockedBlocks().remove(selectedBlock);
+                        data.getUnlockedBlocks().remove(block);
                         merged = true;
                     }
                     
@@ -64,39 +65,37 @@ public class GameController implements MouseListener, MouseMotionListener {
             }
             
             if (!merged) {
-                selectedBlock.setBlockX(e.getX() - GameData.getInstance().getMouseXOffset());
-                selectedBlock.setBlockY(e.getY() - GameData.getInstance().getMouseYOffset());
+                selectedBlock.setBlockX(e.getX() - data.getMouseXOffset());
+                selectedBlock.setBlockY(e.getY() - data.getMouseYOffset());
             }
 
-            TrashBin trashBin = GameData.getInstance().getTrashBin();
+            TrashBin trashBin = data.getTrashBin();
             if(trashBin.contains(e.getX(), e.getY())){
                 // Data change runs repaint
-                GameData.getInstance().removeUnlockedBlock(selectedBlock);
+                data.removeUnlockedBlock(selectedBlock);
             }
 
-            AnswerBox answerBox = GameData.getInstance().getAnswerBox();
+            AnswerBox answerBox = data.getAnswerBox();
             if (answerBox.contains(e.getX(), e.getY())) {
-                selectedBlock.setBlockX(answerBox.getX() + GameData.getInstance().getAnswerBoxXOffset());
-                selectedBlock.setBlockY(answerBox.getY() + GameData.getInstance().getAnswerBoxYOffset());
+                selectedBlock.setBlockX(answerBox.getX() + data.getAnswerBoxXOffset());
+                selectedBlock.setBlockY(answerBox.getY() + data.getAnswerBoxYOffset());
                 selectedBlock.setAnswer(true);
                 answerBox.setAnswerBlock(selectedBlock);
                 answerBox.setFilled(true);
 
-                int targetAnswer = GameData.getInstance().getTargetAnswer();
-                Tutor  tutor = GameData.getInstance().getTutor();
+                int targetAnswer = data.getLevel().getTarget();
+                Tutor  tutor = data.getTutor();
+                Level level = data.getLevel();
                 if (selectedBlock.getValue() != targetAnswer){
                     tutor.help();
+                    // need to get minus 10 here for player
+
                 }
                 else{
-                    ProblemGenerator problemGenerator = GameData.getInstance().getProblemGenerator();
-                    int[] newProblem = problemGenerator.generateProblemByOperator('+');
-                    GameData.getInstance().setProblem(
-                        newProblem
-                    );
-                    GameData.getInstance().setTargetAnswer(
-                        problemGenerator.solve(newProblem, '+')
-                    );
+                    level.nextProblem(); 
                     tutor.setVisible(false);
+                    // need to get minus 10 here for cpu
+
                 }
             }
 
@@ -106,19 +105,19 @@ public class GameController implements MouseListener, MouseMotionListener {
                 answerBox.setFilled(false);
             }
             
-            GameData.getInstance().getSelectedBlock().setSelected(false);
-            GameData.getInstance().setSelectedBlock(null);
-            GameData.getInstance().repaint();
+            data.getSelectedBlock().setSelected(false);
+            data.setSelectedBlock(null);
+            data.repaint();
         }
     }
 
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (GameData.getInstance().getSelectedBlock() != null) {
-            GameData.getInstance().getSelectedBlock().setBlockX(e.getX() - GameData.getInstance().getMouseXOffset());
-            GameData.getInstance().getSelectedBlock().setBlockY(e.getY() - GameData.getInstance().getMouseYOffset());
-            GameData.getInstance().repaint();
+        if (data.getSelectedBlock() != null) {
+            data.getSelectedBlock().setBlockX(e.getX() - data.getMouseXOffset());
+            data.getSelectedBlock().setBlockY(e.getY() - data.getMouseYOffset());
+            data.repaint();
         }
     }
 
