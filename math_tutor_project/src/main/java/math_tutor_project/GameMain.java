@@ -16,7 +16,7 @@ public class GameMain extends JFrame implements ActionListener {
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
-        GenericButton playButton = new GenericButton("START", 600, 400, 200, 60, Color.white, Color.blue, Color.red);
+        GenericButton playButton = new GenericButton("PRESS TO START", 600, 400, 200, 60, Color.white, Color.blue, Color.red);
         playButton.addSelf(startPanel);
         playButton.addActionListener(this);
         startScreen.add(startPanel);
@@ -73,7 +73,7 @@ public class GameMain extends JFrame implements ActionListener {
       
         if (e.getSource() instanceof GenericButton) {
             GenericButton button = (GenericButton) e.getSource();
-            if (button.getLabel() == "START") {
+            if (button.getLabel() == "PRESS TO START") {
                 getContentPane().removeAll();
                 getContentPane().add(playScreen);
                 revalidate(); 
