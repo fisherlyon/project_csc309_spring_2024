@@ -19,6 +19,8 @@ public class DuelPanel extends JPanel {
     public DuelPanel(UserPlayer player, CpuPlayer cpu, CpuHealth cpuHealth, PlayerHealth playerHealth) {
         this.cpuPlayer = cpu;
         this.userPlayer = player;
+        this.cpuHealth = cpuHealth;
+        this.playerHealth = playerHealth;
         backgroundImage = new ImageIcon(getClass().getResource("/stage1.png")).getImage();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null)));

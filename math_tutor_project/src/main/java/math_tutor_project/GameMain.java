@@ -27,6 +27,7 @@ public class GameMain extends JFrame implements ActionListener {
         //levelScrean.add(new LevelPanel());
 
         // ---- CREATE : Gameplay Screen
+        playScreen.setLayout(new GridLayout(1, 2));
         PlayerHealth phealth = new PlayerHealth(15, 25);
         CpuHealth chealth = new CpuHealth(365, 25);
   
@@ -74,7 +75,7 @@ public class GameMain extends JFrame implements ActionListener {
             GenericButton button = (GenericButton) e.getSource();
             if (button.getLabel() == "START") {
                 getContentPane().removeAll();
-                getContentPane().add(levelScreen);
+                getContentPane().add(playScreen);
                 revalidate(); 
             } else if (button.getLabel() == "PROCEED") {
                 getContentPane().removeAll();
