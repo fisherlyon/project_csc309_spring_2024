@@ -23,7 +23,7 @@ public class GameMain extends JFrame implements ActionListener {
 
         // ---- CREATE : Level Select Screen
         levelScreen.setLayout(new GridLayout(1, 2));
-        //levelScreen.add(new MapLevel(null));
+        //levelScreen.add(new MapLevel());
         //levelScrean.add(new LevelPanel());
 
         // ---- CREATE : Gameplay Screen
@@ -34,7 +34,7 @@ public class GameMain extends JFrame implements ActionListener {
         String[] ops = { "+", "-", "*", "/" };
         MathPanel mathPanel = new MathPanel();
         for (int i = 0; i < ops.length; i++) {
-            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.blue, Color.red);
+            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray);
             button.addActionListener(this);
             button.addSelf(mathPanel);
         }
@@ -66,10 +66,15 @@ public class GameMain extends JFrame implements ActionListener {
       
         if (e.getSource() instanceof GenericButton) {
             GenericButton button = (GenericButton) e.getSource();
-            if (button.getLabel() == "START")
+            if (button.getLabel() == "START") {
+                getContentPane().removeAll();
+                getContentPane().add(levelScreen);
+                revalidate(); 
+            } else if (button.getLabel() == "PROCEED") {
                 getContentPane().removeAll();
                 getContentPane().add(playScreen);
-                revalidate(); 
+                revalidate();
+            }
         } 
 
         else if (e.getSource() instanceof OpButton) {
