@@ -14,6 +14,10 @@ import java.beans.PropertyChangeListener;
  */
 public class MathPanel extends JPanel implements PropertyChangeListener {
 
+    public MathPanel() {
+        setLayout(null);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -4,6 +4,7 @@ package math_tutor_project;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 
 /**
  * ...
@@ -25,7 +26,7 @@ public class GameData extends PropertyChangeSupport {
     private TrashBin trashBin;
     private Tutor tutor;
     private int NUM_LOCKED_BLOCKS = 10;
-    private OpButton pressedButton = null;
+    private Button pressedButton = null;
     private Level level;
 
     private GameData() {
@@ -62,6 +63,22 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("repaint", null, null);
     }
 
+    public void doButtonAction(JFrame main, Button button) {
+
+        if (pressedButton == null) {
+            setPressedButton(button);
+        } else {
+            pressedButton.setDefaultColor();
+            main.repaint();
+            main.revalidate();
+        }
+
+        setPressedButton(button);
+        pressedButton.setPressedColor();
+        main.repaint();
+        main.revalidate();
+    }
+
     public Block getSelectedBlock() { return selectedBlock; }
     public void setSelectedBlock(Block block) { this.selectedBlock = block; }
     public List<Block> getLockedBlocks() { return lockedBlocks; }
@@ -75,7 +92,7 @@ public class GameData extends PropertyChangeSupport {
     public int getAnswerBoxYOffset() { return answerBoxYOffset; }
     public TrashBin getTrashBin(){return trashBin;}
     public Tutor getTutor() {return tutor;}
-    public OpButton getPressedButton() { return pressedButton; }
-    public void setPressedButton(OpButton opButton) { pressedButton = opButton; }
+    public Button getPressedButton() { return pressedButton; }
+    public void setPressedButton(Button button) { pressedButton = button; }
     public Level getLevel() {return level;}
 }

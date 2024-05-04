@@ -1,25 +1,21 @@
 package math_tutor_project;
 
-import javax.swing.*;
+import java.awt.Color;
 
 /**
  * 
  * 
  * @author Fisher
  */
+public class OpButton extends Button {
 
-public class OpButton extends JButton {
-    
-    private String op;
-
-    public OpButton(String op) {
-        this.op = op;
-        this.setText(op);
+    public OpButton(String label, int x, int y, int w, int h, Color fc1, Color bc1, Color bc2) {
+        super(label, x, y, w, h, fc1, bc1, bc2);
     }
 
     public int doOp(int x, int y) {
         try {
-            switch (op) {
+            switch (super.getLabel()) {
                 case "+" : return x + y;
                 case "-" : return x - y;
                 case "*" : return x * y;

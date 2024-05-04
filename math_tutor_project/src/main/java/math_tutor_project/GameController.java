@@ -44,11 +44,11 @@ public class GameController implements MouseListener, MouseMotionListener {
             
             for (Block block : data.getUnlockedBlocks()) {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
-                    OpButton pressedButton = data.getPressedButton();
+                    Button pressedButton = GameData.getInstance().getPressedButton();
                     if (pressedButton != null) {
                         int mergeVal;
                         try {
-                            mergeVal = pressedButton.doOp(block.getValue(), selectedBlock.getValue());
+                            mergeVal = ((OpButton) pressedButton).doOp(block.getValue(), selectedBlock.getValue());
                         } catch (ArithmeticException er) {
                             System.out.println("div by zero");
                             break;
