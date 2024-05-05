@@ -45,5 +45,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with: 
         name: math-madness-app
-        path: project_csc309_spring_2024-1.0-SNAPSHOT.jar
-
+        path: target/project_csc309_spring_2024-1.0-SNAPSHOT.jar
