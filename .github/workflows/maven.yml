@@ -30,7 +30,7 @@ jobs:
         cache: maven
         
     - name: Step 02 - Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B clean package --file pom.xml
       
     - name: Step 03 - Run Tests
       run: mvn test
