@@ -30,7 +30,7 @@ jobs:
         cache: maven
         
     - name: Step 02 - Build with Maven
-      run: mvn -B package --file math_tutor_project/pom.xml
+      run: mvn -B package --file pom.xml
       
     - name: Step 03 - Run Tests
       run: mvn test
@@ -39,7 +39,7 @@ jobs:
       run: mkdir staging && cp target/*.jar staging
 
     - name: Step 05 - Set Executable Permissions
-      run: chmod +x math_tutor_project/target/math_tutor_project-1.0-SNAPSHOT.jar
+      run: chmod +x target/math_tutor_project-1.0-SNAPSHOT.jar
 
     - name: STEP 07. Upload Artifact
       uses: actions/upload-artifact@v4
