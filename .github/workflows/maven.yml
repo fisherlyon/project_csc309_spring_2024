@@ -41,7 +41,7 @@ jobs:
     - name: Step 05 - Set Executable Permissions
       run: chmod +x target/math_tutor_project-1.0-SNAPSHOT.jar
 
-    - name: STEP 07. Upload Artifact
+    - name: STEP 06 - Upload Artifact
       uses: actions/upload-artifact@v4
       with: 
         name: math-madness-app
