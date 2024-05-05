@@ -28,14 +28,6 @@
     </dependency>
   </dependencies>
 
-  <archive>
-    <manifest>
-      <mainClass>
-        GameMain
-      </mainClass>
-    </manifest>
-  </archive>
-
   <build>
     <resources>
       <resource>
