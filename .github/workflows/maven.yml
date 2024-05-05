@@ -22,28 +22,28 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Step 01 - Set up JDK 17
+    - name: STEP 01 - Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
         
-    - name: Step 02 - Build with Maven
+    - name: STEP 02 - Build with Maven
       run: mvn -B clean package --file pom.xml
       
-    - name: Step 03 - Run Tests
+    - name: STEP 03 - Run Tests
       run: mvn test
       
-    - name: Step 04 - Deploy
+    - name: STEP 04 - Deploy
       run: mkdir staging && cp target/*.jar staging
 
-    - name: Step 05 - Set Executable Permissions
-      run: chmod +x target/math_tutor_project-1.0-SNAPSHOT.jar
+    - name: STEP 05 - Set Executable Permissions
+      run: chmod +x target/project_csc309_spring_2024-1.0-SNAPSHOT.jar
 
     - name: STEP 06 - Upload Artifact
       uses: actions/upload-artifact@v4
       with: 
         name: math-madness-app
-        path: math_tutor_project-1.0-SNAPSHOT.jar
+        path: project_csc309_spring_2024-1.0-SNAPSHOT.jar
 
