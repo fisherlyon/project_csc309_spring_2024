@@ -1,38 +1,37 @@
-name: Add JAR to GitHub Release
+name: Add JAR to GitHub release
 on: 
-  release:
+  release: 
     types: [created]
 
-jobs:
+jobs: 
   upload-jar:
     runs-on: ubuntu-latest
     steps:
 
       - uses: actions/checkout@v4
 
-      - name: STEP 01 - Set up JDK 17
+      - name: STEP 01. Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
 
-      - name: STEP 02 - Build with Maven
+      - name: STEP 02. Build with Maven
         run: mvn clean package
 
-      - name: STEP 03 - Deploy
+      - name: STEP 03. Deploy
         run: mkdir staging && cp target/*.jar staging
 
-      - name: STEP 04 - Set Executable Permissions
+      - name: STEP 04. Set Executable Permissions
         run: chmod +x target/project_csc309_spring_2024-1.0-SNAPSHOT.jar
 
-      - name: STEP 05 - Upload JAR to GitHub Release
-        uses : actions/upload-release-asset@v1
-        env: 
+      - name: STEP 05. Upload JAR to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with: 
+        with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: "target/project_csc309_spring_2024-1.0-SNAPSHOT.jar"
           asset_name: "project_csc309_spring_2024-1.0-SNAPSHOT.jar"
           asset_content_type: "applications/java-archive"
-        
