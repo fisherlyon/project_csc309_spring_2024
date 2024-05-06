@@ -12,6 +12,7 @@ public class GameMain extends JFrame implements ActionListener {
     JPanel playScreen = new JPanel();
 
     public GameMain() {
+        GameData.getInstance().setMain(this);
 
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
@@ -23,8 +24,8 @@ public class GameMain extends JFrame implements ActionListener {
 
         // ---- CREATE : Level Select Screen
         levelScreen.setLayout(new GridLayout(1, 2));
-        //levelScreen.add(new MapLevel());
-        //levelScrean.add(new LevelPanel());
+        levelScreen.add(new LevelPanel());
+        levelScreen.add(new MapPanel());
 
         // ---- CREATE : Gameplay Screen
         playScreen.setLayout(new GridLayout(1, 2));
@@ -38,13 +39,8 @@ public class GameMain extends JFrame implements ActionListener {
         //UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
         //CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);
         //MapLevel mapLevel = new MapLevel(duelPanel);
-        String[] ops = { "+", "-", "*", "/" };
         MathPanel mathPanel = new MathPanel();
-        for (int i = 0; i < ops.length; i++) {
-            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray);
-            button.addActionListener(this);
-            button.addSelf(mathPanel);
-        }
+ 
         playScreen.add(mathPanel);
         
         add(startScreen);
@@ -66,27 +62,18 @@ public class GameMain extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() instanceof Button) {
-            GameData.getInstance().doButtonAction(this, (Button) e.getSource());
-        }
       
         if (e.getSource() instanceof GenericButton) {
             GenericButton button = (GenericButton) e.getSource();
             if (button.getLabel() == "PRESS TO START") {
                 getContentPane().removeAll();
-                getContentPane().add(playScreen);
+                getContentPane().add(levelScreen);
                 revalidate(); 
-            } else if (button.getLabel() == "PROCEED") {
+            } else if (button.getLabel() == "SELECT SCENE") {
                 getContentPane().removeAll();
                 getContentPane().add(playScreen);
                 revalidate();
             }
         } 
-
-        else if (e.getSource() instanceof OpButton) {
-            OpButton button = (OpButton) e.getSource();
-            GameData.getInstance().setPressedButton(button);
-        }
     }
 }

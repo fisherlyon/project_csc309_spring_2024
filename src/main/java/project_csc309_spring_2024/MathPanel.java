@@ -6,16 +6,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * ...
  * 
  * @author Fisher
  */
-public class MathPanel extends JPanel implements PropertyChangeListener {
+public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 
     public MathPanel() {
         setLayout(null);
+        String[] ops = { "+", "-", "*", "/" };
+        for (int i = 0; i < ops.length; i++) {
+            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray);
+            button.addActionListener(this);
+            button.addSelf(this);
+        }
     }
 
     @Override
@@ -50,5 +58,16 @@ public class MathPanel extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         repaint();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof Button) {
+            GameData.getInstance().doButtonAction(this, (Button) e.getSource());
+        }
+        if (e.getSource() instanceof OpButton) {
+            OpButton button = (OpButton) e.getSource();
+            GameData.getInstance().setPressedButton(button);
+        }
     }
 }

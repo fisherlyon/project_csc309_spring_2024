@@ -28,6 +28,8 @@ public class GameData extends PropertyChangeSupport {
     private int NUM_LOCKED_BLOCKS = 10;
     private Button pressedButton = null;
     private Level level;
+    private LevelPanel levelPanel;
+    private JFrame mainFrame;
 
     private GameData() {
         super(new Object());
@@ -63,20 +65,25 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("repaint", null, null);
     }
 
-    public void doButtonAction(JFrame main, Button button) {
+    public void doButtonAction(JPanel panel, Button button) {
 
         if (pressedButton == null) {
             setPressedButton(button);
         } else {
             pressedButton.setDefaultColor();
-            main.repaint();
-            main.revalidate();
+            panel.repaint();
+            panel.revalidate();
         }
 
         setPressedButton(button);
         pressedButton.setPressedColor();
-        main.repaint();
-        main.revalidate();
+        panel.repaint();
+        panel.revalidate();
+    }
+
+    public void setMainPanel(JFrame main, JPanel panel) {
+        main.getContentPane().removeAll();
+        main.getContentPane().add(panel);
     }
 
     public Block getSelectedBlock() { return selectedBlock; }
@@ -94,5 +101,9 @@ public class GameData extends PropertyChangeSupport {
     public Tutor getTutor() {return tutor;}
     public Button getPressedButton() { return pressedButton; }
     public void setPressedButton(Button button) { pressedButton = button; }
-    public Level getLevel() {return level;}
+    public Level getLevel() { return level; }
+    public void setLevelPanel(LevelPanel l) { levelPanel = l; }   
+    public LevelPanel getLevelPanel() { return levelPanel; }
+    public void setMain(JFrame main) { mainFrame = main; }
+    public JFrame getMain() { return mainFrame; }
 }
