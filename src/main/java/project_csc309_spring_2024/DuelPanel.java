@@ -47,6 +47,10 @@ public class DuelPanel extends JPanel {
         super.paintComponent(g);
         // Draw the background image
         g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+        g.setColor(Color.black);
+        g.fillRect(15, 28, 200, 38);
+        g.setColor(Color.black);
+        g.fillRect(365, 28, 200, 38);
 
         if (userPlayer != null) {
             g.drawImage(userPlayer.getImage(), userPlayer.getplayerX(), userPlayer.getplayerY(), this);
@@ -62,12 +66,11 @@ public class DuelPanel extends JPanel {
             g.drawImage(cpuHealth.getCpuhealthbar(), cpuHealth.getCpuHealthBarX(), cpuHealth.getCpuHealthBarY(), this);
         }
 
-//        if (!GameController.getDecider()){
-//            g.drawRect(18, 26, 20, 8);
-//        }
-//        else{
-//            g.drawRect(368, 26, 20, 8);
-//        }
+        // should increase by 20 width and decrease x by 20
+        g.setColor(Color.blue);
+        g.fillRect(210, 28, 5, 38);
+        g.setColor(Color.blue);
+        g.fillRect(558, 28, 5, 38);
 
 
     }

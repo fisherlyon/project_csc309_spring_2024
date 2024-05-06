@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="math_tutor_project" />
+        <module name="project_csc309_spring_2024" />
       </profile>
     </annotationProcessing>
   </component>
