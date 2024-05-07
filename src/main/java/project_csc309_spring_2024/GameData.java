@@ -7,7 +7,8 @@ import java.util.List;
 import javax.swing.*;
 
 /**
- * ...
+ * Our singleton implementation
+ * for storing data of all kinds.
  * 
  * @author Fisher Lyon
  */
@@ -29,15 +30,14 @@ public class GameData extends PropertyChangeSupport {
     private Button pressedButton = null;
     private Level level;
     private LevelPanel levelPanel;
-    private JFrame mainFrame;
 
     private GameData() {
         super(new Object());
         lockedBlocks = new ArrayList<Block>();
         unlockedBlocks = new ArrayList<Block>();
-        answerBox = new AnswerBox(300, 540);
+        answerBox = new AnswerBox(300, 520);
         trashBin = new TrashBin(530, 520);
-        tutor = new Tutor(100, 50);
+        tutor = new Tutor(100, 120);
         level = new Level(0);
         this.recalculate();
     }
@@ -104,6 +104,4 @@ public class GameData extends PropertyChangeSupport {
     public Level getLevel() { return level; }
     public void setLevelPanel(LevelPanel l) { levelPanel = l; }   
     public LevelPanel getLevelPanel() { return levelPanel; }
-    public void setMain(JFrame main) { mainFrame = main; }
-    public JFrame getMain() { return mainFrame; }
 }

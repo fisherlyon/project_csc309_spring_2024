@@ -31,6 +31,7 @@ public abstract class Button extends JButton {
         this.bc2 = bc2;
         setDefaultColor();
         setButtonSpecs();
+
     }
 
     public void addSelf(JPanel panel) {
@@ -47,6 +48,7 @@ public abstract class Button extends JButton {
     }
 
     private void setButtonSpecs() {
+        setFont(new Font("Impact", 20, 20));
         setOpaque(true);
         setBorderPainted(false);
         setFocusPainted(false);

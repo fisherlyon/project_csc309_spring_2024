@@ -5,6 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A panel that displays the world map with a series
+ * of buttons that activate different level previews
+ * on LevelPanel.
+ * 
+ * @author Fisher and Leo
+ */
+
 public class MapPanel extends JPanel implements ActionListener {
 
     private final Image earth; 
@@ -17,9 +25,6 @@ public class MapPanel extends JPanel implements ActionListener {
         addButton(270, 50, 55, 25, "-");
         addButton(100, 150, 55, 25, "+");
         addButton(230, 300, 55, 25, "/");
-        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 500, 150, 40, Color.black, Color.white, Color.lightGray);
-        selectButton.addActionListener(this);
-        add(selectButton);
     }
 
     private void addButton(int x, int y, int width, int height, String text) {
@@ -55,11 +60,6 @@ public class MapPanel extends JPanel implements ActionListener {
                 case "/":
                     lp.setBackgroundImage("/brazil.png");
                     break;
-            }
-
-            if (button.getText() == "SELECT SCENE") {
-                JFrame main = GameData.getInstance().getMain();
-                //TODO
             }
         }    
     }

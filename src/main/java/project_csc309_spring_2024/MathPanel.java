@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
  */
 public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 
+    boolean buttonPressed = false;
+
     public MathPanel() {
         setLayout(null);
         String[] ops = { "+", "-", "*", "/" };
@@ -53,6 +55,16 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         if (selectedBlock != null) {
             selectedBlock.draw(g);
         }
+
+        g.setColor(Color.black);
+        g.setFont(new Font("Impact", 15, 15));
+        if (!buttonPressed) {
+            g.drawString("Press buttons above to choose between different operations.", 80, 85);
+        }
+
+        if (GameData.getInstance().getAnswerBox().getAnswerBlock() == null) {
+            g.drawString("Place your answer in here!", 215, 565);
+        }
     }
 
     @Override
@@ -66,6 +78,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
             GameData.getInstance().doButtonAction(this, (Button) e.getSource());
         }
         if (e.getSource() instanceof OpButton) {
+            buttonPressed = true;
             OpButton button = (OpButton) e.getSource();
             GameData.getInstance().setPressedButton(button);
         }

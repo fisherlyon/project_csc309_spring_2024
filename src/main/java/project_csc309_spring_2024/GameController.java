@@ -94,6 +94,9 @@ public class GameController implements MouseListener, MouseMotionListener {
                 else{
                     level.nextProblem(); 
                     tutor.setVisible(false);
+                    data.getUnlockedBlocks().remove(answerBox.getAnswerBlock());
+                    answerBox.setFilled(false);
+                    answerBox.setAnswerBlock(null);
                     // need to get minus 10 here for cpu
 
                 }

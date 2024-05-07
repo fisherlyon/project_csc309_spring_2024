@@ -11,8 +11,10 @@ public class GameMain extends JFrame implements ActionListener {
     JPanel levelScreen = new JPanel();
     JPanel playScreen = new JPanel();
 
+    LevelPanel levelPanel;
+    DuelPanel duelPanel;
+
     public GameMain() {
-        GameData.getInstance().setMain(this);
 
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
@@ -24,8 +26,13 @@ public class GameMain extends JFrame implements ActionListener {
 
         // ---- CREATE : Level Select Screen
         levelScreen.setLayout(new GridLayout(1, 2));
-        levelScreen.add(new LevelPanel());
-        levelScreen.add(new MapPanel());
+        levelPanel = new LevelPanel();
+        levelScreen.add(levelPanel);
+        MapPanel mapPanel = new MapPanel();
+        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 500, 150, 40, Color.black, Color.white, Color.lightGray);
+        selectButton.addSelf(mapPanel);
+        selectButton.addActionListener(this);
+        levelScreen.add(mapPanel);
 
         // ---- CREATE : Gameplay Screen
         playScreen.setLayout(new GridLayout(1, 2));
@@ -34,15 +41,13 @@ public class GameMain extends JFrame implements ActionListener {
   
         UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
         CpuPlayer cpu = new CpuPlayer(325, 200,  100);
-        DuelPanel duelPanel = new DuelPanel(player, cpu, chealth, phealth);
+        duelPanel = new DuelPanel(player, cpu, chealth, phealth);
         playScreen.add(duelPanel);
         //UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
         //CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);
         //MapLevel mapLevel = new MapLevel(duelPanel);
         MathPanel mathPanel = new MathPanel();
- 
         playScreen.add(mathPanel);
-        
         add(startScreen);
         
         GameController controller = new GameController();
@@ -70,6 +75,7 @@ public class GameMain extends JFrame implements ActionListener {
                 getContentPane().add(levelScreen);
                 revalidate(); 
             } else if (button.getLabel() == "SELECT SCENE") {
+                duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
                 getContentPane().removeAll();
                 getContentPane().add(playScreen);
                 revalidate();

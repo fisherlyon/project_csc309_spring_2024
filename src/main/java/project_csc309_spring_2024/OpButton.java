@@ -3,7 +3,9 @@ package project_csc309_spring_2024;
 import java.awt.Color;
 
 /**
- * 
+ * A button that is used on MathPanel
+ * that dictates the current operation
+ * in use.
  * 
  * @author Fisher
  */

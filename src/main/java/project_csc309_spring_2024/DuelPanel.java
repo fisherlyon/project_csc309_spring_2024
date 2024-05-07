@@ -31,13 +31,12 @@ public class DuelPanel extends JPanel {
     }
 
 
-    public void setBackgroundImage(String imagePath) {
-        ImageIcon icon = new ImageIcon(DuelPanel.class.getResource(imagePath));
-        if (icon.getImage() != null) {
-            this.backgroundImage = icon.getImage();
-            repaint(); // Trigger a repaint to show the new background
+    public void setBackgroundImage(Image image) {
+        if (image != null) {
+            this.backgroundImage = image;
+            repaint(); 
         } else {
-            throw new IllegalArgumentException("Image could not be loaded: " + imagePath);
+            throw new IllegalArgumentException("Image could not be loaded");
         }
     }
 
@@ -45,7 +44,6 @@ public class DuelPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // Draw the background image
         g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         g.setColor(Color.black);
         g.fillRect(15, 28, 200, 38);
