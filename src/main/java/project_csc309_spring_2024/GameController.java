@@ -4,10 +4,11 @@ import java.awt.event.*;
 
 
 /**
- * ...
  * 
- * @author Fisher
+ * 
+ * @author Fisher, Eric, Leo
  */
+
 public class GameController implements MouseListener, MouseMotionListener {
     GameData data = GameData.getInstance();
     @Override

@@ -1,7 +1,5 @@
 package project_csc309_spring_2024;
 
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -10,10 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * ...
+ * A panel that displays the Blocks,
+ * Trash Bin, OpButtons, and a couple
+ * of helpful messages.
  * 
  * @author Fisher
  */
+
 public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 
     boolean buttonPressed = false;

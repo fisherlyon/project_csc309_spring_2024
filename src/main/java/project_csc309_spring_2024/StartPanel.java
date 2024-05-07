@@ -3,6 +3,14 @@ package project_csc309_spring_2024;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * A panel that acts as the start screen.
+ * It displays the Math Madness logo and 
+ * acts as a transition to the level screen.
+ * 
+ * @author
+ */
+
 public class StartPanel extends JPanel {
 
     public StartPanel() {

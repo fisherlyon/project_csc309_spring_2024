@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * 
+ * Blocks that have numbers that the player uses
+ * to drag and merge with other blocks to solve
+ * the provided math problem.
  * 
  * @author Fisher Lyon
  */
