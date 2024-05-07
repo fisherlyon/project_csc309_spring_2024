@@ -1,5 +1,13 @@
 package project_csc309_spring_2024;
 
+/**
+ * A box that lies on the MathPanel that
+ * acts as a place for the player to 
+ * store their answer.
+ * 
+ * @author Fisher
+ */
+
 
 import java.awt.*;
 
