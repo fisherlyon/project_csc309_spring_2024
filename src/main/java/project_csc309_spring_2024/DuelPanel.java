@@ -14,6 +14,8 @@ public class DuelPanel extends JPanel {
     private CpuPlayer cpuPlayer;
     private CpuHealth cpuHealth;
     private PlayerHealth playerHealth;
+    private int prevUserHealth;
+    private int prevCpuHealth;
 
 
     public DuelPanel(UserPlayer player, CpuPlayer cpu, CpuHealth cpuHealth, PlayerHealth playerHealth) {
@@ -34,7 +36,7 @@ public class DuelPanel extends JPanel {
     public void setBackgroundImage(Image image) {
         if (image != null) {
             this.backgroundImage = image;
-            repaint(); 
+            repaint();
         } else {
             throw new IllegalArgumentException("Image could not be loaded");
         }
@@ -64,12 +66,28 @@ public class DuelPanel extends JPanel {
             g.drawImage(cpuHealth.getCpuhealthbar(), cpuHealth.getCpuHealthBarX(), cpuHealth.getCpuHealthBarY(), this);
         }
 
-        // should increase by 20 width and decrease x by 20
-        g.setColor(Color.blue);
-        g.fillRect(210, 28, 5, 38);
-        g.setColor(Color.blue);
-        g.fillRect(558, 28, 5, 38);
+        int userHealth = userPlayer.getPlayerHealth();
+        int cpuHealth = cpuPlayer.getCpuHealth();
 
+
+        int maxHealthBarWidth = 200;
+        int healthBarHeight = 38;
+
+        int playerBarWidth = (20 * (100 - userHealth))/10;
+        int cpuBarWidth = (20 * (100 - cpuHealth))/10;
+
+        int playerHealthX = 210 - (20 * (100 - userHealth))/10;
+        int cpuHealthX = 560 - (20 * (100 - cpuHealth))/10;
+
+        // Draw the health bars
+        g.setColor(Color.black);
+        g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight);
+        g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight);
+
+        // Update the previous health values after the bars are repainted
+        prevUserHealth = userHealth;
+        prevCpuHealth = cpuHealth;
+        repaint();
 
     }
 }

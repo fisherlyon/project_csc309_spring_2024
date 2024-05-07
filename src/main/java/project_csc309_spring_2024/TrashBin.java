@@ -10,9 +10,8 @@ import javax.swing.*;
 
 public class TrashBin extends JComponent {
     private Image image;
-    private String IMAGE_PATH = "./src/main/resources/trash.png";
     public TrashBin(int x, int y) {
-        this.image = new ImageIcon(IMAGE_PATH).getImage();
+        this.image = new ImageIcon(getClass().getResource("/trash.png")).getImage();
         setLocation(x, y);
     }
 

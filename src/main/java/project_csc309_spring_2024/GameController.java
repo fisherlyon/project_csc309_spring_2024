@@ -4,16 +4,22 @@ import java.awt.event.*;
 
 
 /**
- * 
- * 
- * @author Fisher, Eric, Leo
+ * ...
+ *
+ * @author Fisher
  */
-
 public class GameController implements MouseListener, MouseMotionListener {
     GameData data = GameData.getInstance();
+    private UserPlayer userPlayer;
+    private CpuPlayer cpuPlayer;
+
+    public GameController(UserPlayer userPlayer, CpuPlayer cpuPlayer) {
+        this.userPlayer = userPlayer;
+        this.cpuPlayer = cpuPlayer;
+    }
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
         for (int i = 0; i < data.getLockedBlocks().size(); i++) {
             Block block = data.getLockedBlocks().get(i);
             if (block.contains(e.getX(), e.getY())) {
@@ -38,11 +44,11 @@ public class GameController implements MouseListener, MouseMotionListener {
     // MERGE!
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
         if (data.getSelectedBlock() != null) {
             Block selectedBlock = data.getSelectedBlock();
             boolean merged = false;
-            
+
             for (Block block : data.getUnlockedBlocks()) {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
                     Button pressedButton = GameData.getInstance().getPressedButton();
@@ -60,11 +66,11 @@ public class GameController implements MouseListener, MouseMotionListener {
                         data.getUnlockedBlocks().remove(block);
                         merged = true;
                     }
-                    
+
                     break;
                 }
             }
-            
+
             if (!merged) {
                 selectedBlock.setBlockX(e.getX() - data.getMouseXOffset());
                 selectedBlock.setBlockY(e.getY() - data.getMouseYOffset());
@@ -87,18 +93,20 @@ public class GameController implements MouseListener, MouseMotionListener {
                 int targetAnswer = data.getLevel().getTarget();
                 Tutor  tutor = data.getTutor();
                 Level level = data.getLevel();
+
                 if (selectedBlock.getValue() != targetAnswer){
                     tutor.help();
                     // need to get minus 10 here for player
+                    int newHealth = userPlayer.getPlayerHealth() - 10;
+                    userPlayer.setPlayerHealth(newHealth);
 
                 }
                 else{
-                    level.nextProblem(); 
+                    level.nextProblem();
                     tutor.setVisible(false);
-                    data.getUnlockedBlocks().remove(answerBox.getAnswerBlock());
-                    answerBox.setFilled(false);
-                    answerBox.setAnswerBlock(null);
                     // need to get minus 10 here for cpu
+                    int newCpuHealth = cpuPlayer.getCpuHealth() - 10;
+                    cpuPlayer.setCpuHealth(newCpuHealth);
 
                 }
             }
@@ -108,7 +116,7 @@ public class GameController implements MouseListener, MouseMotionListener {
                 answerBox.setAnswerBlock(null);
                 answerBox.setFilled(false);
             }
-            
+
             data.getSelectedBlock().setSelected(false);
             data.setSelectedBlock(null);
             data.repaint();
@@ -129,5 +137,5 @@ public class GameController implements MouseListener, MouseMotionListener {
     @Override public void mouseClicked(MouseEvent e) {}
     @Override public void mouseEntered(MouseEvent e) {}
     @Override public void mouseExited(MouseEvent e) {}
-  
+
 }

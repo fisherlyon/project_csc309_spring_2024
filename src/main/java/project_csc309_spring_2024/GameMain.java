@@ -49,8 +49,8 @@ public class GameMain extends JFrame implements ActionListener {
         MathPanel mathPanel = new MathPanel();
         playScreen.add(mathPanel);
         add(startScreen);
-        
-        GameController controller = new GameController();
+
+        GameController controller = new GameController(player, cpu);
         mathPanel.addMouseListener(controller);
         mathPanel.addMouseMotionListener(controller);
 
