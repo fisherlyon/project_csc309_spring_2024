@@ -18,6 +18,7 @@ public class AnswerBox {
     private Block answerBlock = null;
     private boolean filled = false;
     private int dim = 50;
+    private Color color = Color.white;
 
     public AnswerBox(int answerBoxX, int answerBoxY) {
         this.answerBoxX = answerBoxX - dim / 2; // Center the box horizontally;
@@ -25,16 +26,11 @@ public class AnswerBox {
     }
 
     public void draw(Graphics g) {
-        if (isFilled()) {
-            g.setColor(Color.blue);
-            g.fillRect(answerBoxX, answerBoxY, dim, dim);
-            g.setColor(Color.black);
-            g.drawRect(answerBoxX, answerBoxY, dim, dim);
-        }
-        else {
-            g.setColor(Color.black);
-            g.drawRect(answerBoxX, answerBoxY, dim, dim);
-        }
+        g.setColor(Color.black);
+        g.drawRect(answerBoxX, answerBoxY, dim, dim);
+        g.setColor(color);
+        g.fillRect(answerBoxX, answerBoxY, dim, dim);
+        g.setColor(Color.black);
     }
 
     public boolean contains(int x, int y) {
@@ -53,4 +49,5 @@ public class AnswerBox {
     public boolean isFilled() { return filled; }
     public int getX() { return this.answerBoxX; }
     public int getY() { return this.answerBoxY; }
+    public void setBoxColor(Color c) { color = c; }
 }

@@ -1,7 +1,7 @@
 package project_csc309_spring_2024;
 
 import java.awt.event.*;
-
+import java.awt.*;
 
 /**
  * ...
@@ -99,11 +99,12 @@ public class GameController implements MouseListener, MouseMotionListener {
                     // need to get minus 10 here for player
                     int newHealth = userPlayer.getPlayerHealth() - 10;
                     userPlayer.setPlayerHealth(newHealth);
-
+                    answerBox.setBoxColor(Color.red);
                 }
                 else  {
                     level.nextProblem();
                     tutor.setVisible(false);
+                    answerBox.setBoxColor(Color.green);
                     GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
                     answerBox.setAnswerBlock(null);
                     answerBox.setFilled(false);
@@ -118,6 +119,7 @@ public class GameController implements MouseListener, MouseMotionListener {
                 selectedBlock.setAnswer(false);
                 answerBox.setAnswerBlock(null);
                 answerBox.setFilled(false);
+                answerBox.setBoxColor(Color.white);
             }
 
             data.getSelectedBlock().setSelected(false);
