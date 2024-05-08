@@ -101,9 +101,12 @@ public class GameController implements MouseListener, MouseMotionListener {
                     userPlayer.setPlayerHealth(newHealth);
 
                 }
-                else{
+                else  {
                     level.nextProblem();
                     tutor.setVisible(false);
+                    GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
+                    answerBox.setAnswerBlock(null);
+                    answerBox.setFilled(false);
                     // need to get minus 10 here for cpu
                     int newCpuHealth = cpuPlayer.getCpuHealth() - 10;
                     cpuPlayer.setCpuHealth(newCpuHealth);
