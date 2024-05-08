@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir="math_tutor_project/src/main/java/math_tutor_project"
+dir="./src/main/java/project_csc309_spring_2024"
 
 for file in "$dir"/*.java; do
     filename=$(basename -- "$file")
