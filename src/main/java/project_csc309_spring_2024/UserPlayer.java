@@ -28,7 +28,10 @@ public class UserPlayer {
 
     public int getplayerX() { return x; }
     public int getplayerY() { return y; }
-    public Image getImage() { return playerone; }
+    public Image getPlayerOne() { return playerone; }
+    public void setPlayerOne(Image playerone){
+        this.playerone = playerone;
+    }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

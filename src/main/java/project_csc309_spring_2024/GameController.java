@@ -1,5 +1,6 @@
 package project_csc309_spring_2024;
 
+import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
@@ -12,6 +13,10 @@ public class GameController implements MouseListener, MouseMotionListener {
     GameData data = GameData.getInstance();
     private UserPlayer userPlayer;
     private CpuPlayer cpuPlayer;
+    private Image bobbyhit = new ImageIcon(getClass().getResource("/bobbydamaged.png")).getImage();
+    private Image bobbyattack = new ImageIcon(getClass().getResource("/bobbyattack.png")).getImage();
+    private Image grampshit = new ImageIcon(getClass().getResource("/grampsdamaged.png")).getImage();
+    private Image grampsattack = new ImageIcon(getClass().getResource("/grampsattack.png")).getImage();
 
     public GameController(UserPlayer userPlayer, CpuPlayer cpuPlayer) {
         this.userPlayer = userPlayer;
@@ -100,6 +105,31 @@ public class GameController implements MouseListener, MouseMotionListener {
                     int newHealth = userPlayer.getPlayerHealth() - 10;
                     userPlayer.setPlayerHealth(newHealth);
                     answerBox.setBoxColor(Color.red);
+
+                    Image tempGramps = cpuPlayer.getPlayerTwo();
+                    cpuPlayer.setPlayerTwo(grampsattack);
+                    Timer timer2 = new Timer(1000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            cpuPlayer.setPlayerTwo(tempGramps);
+                        }
+                    });
+
+                    timer2.setRepeats(false);
+                    timer2.start();
+
+
+                    Image temp = userPlayer.getPlayerOne();
+                    userPlayer.setPlayerOne(bobbyhit);
+                    Timer timer = new Timer(2000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            userPlayer.setPlayerOne(temp);
+                        }
+                    });
+                    timer.setRepeats(false);
+                    timer.start();
+
                 }
                 else  {
                     level.nextProblem();
@@ -111,6 +141,33 @@ public class GameController implements MouseListener, MouseMotionListener {
                     // need to get minus 10 here for cpu
                     int newCpuHealth = cpuPlayer.getCpuHealth() - 10;
                     cpuPlayer.setCpuHealth(newCpuHealth);
+
+                    Image tempBobby = userPlayer.getPlayerOne();
+                    userPlayer.setPlayerOne(bobbyattack);
+                    Timer timer2 = new Timer(1000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            userPlayer.setPlayerOne(tempBobby);
+                        }
+                    });
+
+                    timer2.setRepeats(false);
+                    timer2.start();
+
+
+
+                    Image tempGramps = cpuPlayer.getPlayerTwo();
+                    cpuPlayer.setPlayerTwo(grampshit);
+                    Timer timer = new Timer(2000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            cpuPlayer.setPlayerTwo(tempGramps);
+                        }
+                    });
+                    timer.setRepeats(false);
+                    timer.start();
+
+
 
                 }
             }

@@ -53,11 +53,11 @@ public class DuelPanel extends JPanel {
         g.fillRect(365, 28, 200, 38);
 
         if (userPlayer != null) {
-            g.drawImage(userPlayer.getImage(), userPlayer.getplayerX(), userPlayer.getplayerY(), this);
+            g.drawImage(userPlayer.getPlayerOne(), userPlayer.getplayerX(), userPlayer.getplayerY(), this);
         }
 
         if (cpuPlayer != null) {
-            g.drawImage(cpuPlayer.getImage(), cpuPlayer.getcpuX(), cpuPlayer.getcpuY(), this);
+            g.drawImage(cpuPlayer.getPlayerTwo(), cpuPlayer.getcpuX(), cpuPlayer.getcpuY(), this);
         }
         if (playerHealth != null) {
             g.drawImage(playerHealth.getPlayerhealthbar(), playerHealth.getUserHealthBarX(), playerHealth.getUserHealthBarY(), this);

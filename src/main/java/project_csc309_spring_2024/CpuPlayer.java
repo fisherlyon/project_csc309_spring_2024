@@ -10,7 +10,7 @@ import java.awt.*;
  * @author Leo Rivera
  */
 public class CpuPlayer {
-    private final Image playertwo;
+    private Image playertwo;
     private int health;
     private String name = "CPU";
     private  int x;
@@ -23,9 +23,16 @@ public class CpuPlayer {
         playertwo = new ImageIcon(getClass().getResource("/gramps.png")).getImage();
     }
 
+    public Image getPlayerTwo() {
+        return playertwo;
+    }
+
+    public void setPlayerTwo(Image playertwo){
+        this.playertwo = playertwo;
+    }
+
     public int getcpuX() { return x; }
     public int getcpuY() { return y; }
-    public Image getImage() { return playertwo; }
     public String getName() { return name; }
     public int getCpuHealth() { return health; }
     public void setCpuHealth(int health) { this.health = health;}
