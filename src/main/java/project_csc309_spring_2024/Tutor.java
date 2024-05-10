@@ -124,11 +124,6 @@ public class Tutor extends JComponent implements KeyEventDispatcher {
         return term1;
     }
 
-    /*
-     * 
-     * So we use this function to determine what operator we use for
-     * also based on level difficulty
-     */
     public char getGuideOperator(int target, int current) {
 
         if (target < current && distance(target, current) <= 15) {
