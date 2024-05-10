@@ -5,9 +5,10 @@ import java.awt.event.*;
 import java.awt.*;
 
 /**
- * ...
+ * The controller of all events that 
+ * take place in main.
  *
- * @author Fisher
+ * @author Fisher, Leo, Eric
  */
 public class GameController implements MouseListener, MouseMotionListener {
     GameData data = GameData.getInstance();

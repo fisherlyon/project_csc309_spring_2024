@@ -8,9 +8,8 @@ import javax.swing.*;
  * It displays the Math Madness logo and 
  * acts as a transition to the level screen.
  * 
- * @author
+ * @author Fisher
  */
-
 public class StartPanel extends JPanel {
 
     public StartPanel() {

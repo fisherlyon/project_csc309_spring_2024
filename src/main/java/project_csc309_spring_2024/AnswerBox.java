@@ -1,5 +1,7 @@
 package project_csc309_spring_2024;
 
+import java.awt.*;
+
 /**
  * A box that lies on the MathPanel that
  * acts as a place for the player to 
@@ -7,10 +9,6 @@ package project_csc309_spring_2024;
  * 
  * @author Fisher
  */
-
-
-import java.awt.*;
-
 public class AnswerBox {
 
     private int answerBoxX;

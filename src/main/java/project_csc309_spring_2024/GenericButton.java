@@ -8,7 +8,6 @@ import java.awt.Color;
  * 
  * @author Fisher
  */
-
 public class GenericButton extends Button {
 
     public GenericButton(String label, int x, int y, int w, int h, Color fc1, Color bc1, Color bc2) {

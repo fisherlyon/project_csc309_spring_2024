@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
  * 
  * @author Fisher
  */
-
 public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 
     boolean buttonPressed = false;

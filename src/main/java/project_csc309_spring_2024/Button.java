@@ -10,7 +10,6 @@ import java.awt.*;
  * 
  * @author Fisher Lyon
  */
-
 public abstract class Button extends JButton {
 
     private String label;

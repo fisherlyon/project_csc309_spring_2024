@@ -3,7 +3,8 @@ package project_csc309_spring_2024;
 import java.awt.*;
 
 /**
- * ...
+ * The blocks that are used on the MathPanel
+ * for math operations.
  * 
  * @author Fisher Lyon
  */

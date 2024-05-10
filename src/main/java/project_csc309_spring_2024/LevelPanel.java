@@ -9,7 +9,6 @@ import java.awt.*;
  * 
  * @author Fisher and Leo
  */
-
 public class LevelPanel extends JPanel {
 
     private Image backgroundImage = null;

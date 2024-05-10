@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
  * 
  * @author Fisher and Leo
  */
-
 public class MapPanel extends JPanel implements ActionListener {
 
     private final Image earth; 

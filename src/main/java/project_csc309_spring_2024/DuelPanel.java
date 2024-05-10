@@ -69,25 +69,23 @@ public class DuelPanel extends JPanel {
         int userHealth = userPlayer.getPlayerHealth();
         int cpuHealth = cpuPlayer.getCpuHealth();
 
-
         int maxHealthBarWidth = 200;
         int healthBarHeight = 38;
 
-        int playerBarWidth = (20 * (100 - userHealth))/10;
-        int cpuBarWidth = (20 * (100 - cpuHealth))/10;
+        int playerBarWidth = Math.min(maxHealthBarWidth, (20 * (100 - userHealth)) / 10);
+        int cpuBarWidth = Math.min(maxHealthBarWidth, (20 * (100 - cpuHealth)) / 10);
 
-        int playerHealthX = 210 - (20 * (100 - userHealth))/10;
-        int cpuHealthX = 560 - (20 * (100 - cpuHealth))/10;
+        int playerHealthX = 210 - playerBarWidth;
+        int cpuHealthX = 560 - cpuBarWidth;
 
-        // Draw the health bars
         g.setColor(Color.black);
-        g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight);
-        g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight);
+        g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight); // Player Health Bar
+        g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight); // CPU Health Bar
 
-        // Update the previous health values after the bars are repainted
         prevUserHealth = userHealth;
         prevCpuHealth = cpuHealth;
         repaint();
+
 
     }
 }
