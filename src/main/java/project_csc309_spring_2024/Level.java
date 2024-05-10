@@ -25,5 +25,7 @@ public class Level {
         return target;
     }
 
-
+    public int getDifficulty() {
+        return difficulty;
+    }
 }

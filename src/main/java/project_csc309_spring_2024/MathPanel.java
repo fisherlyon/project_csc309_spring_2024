@@ -20,6 +20,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
 
     public MathPanel() {
         setLayout(null);
+        add(GameData.getInstance().getTutor());
         String[] ops = { "+", "-", "*", "/" };
         for (int i = 0; i < ops.length; i++) {
             OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray, 20);
@@ -34,7 +35,6 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
 
         GameData.getInstance().getAnswerBox().draw(g);
         GameData.getInstance().getTrashBin().paintComponent(g);
-        GameData.getInstance().getTutor().paintComponent(g);
         
         int targetAnswer = GameData.getInstance().getLevel().getTarget();
         g.setFont(new Font("Ariel", Font.PLAIN, 50));
