@@ -37,7 +37,7 @@ public class GameData extends PropertyChangeSupport {
         unlockedBlocks = new ArrayList<Block>();
         answerBox = new AnswerBox(300, 520);
         trashBin = new TrashBin(520, 510);
-        tutor = new Tutor(100, 120);
+        tutor = new Tutor(50, 50);
         level = new Level(0);
         this.recalculate();
     }
