@@ -13,6 +13,22 @@ public class Expression {
         this.op = op;
     }
 
+    public char getOp() {
+        return op;
+    }
+
+    public int getRes() {
+        return res;
+    }
+
+    public int getTerm1() {
+        return term1;
+    }
+
+    public int getTerm2() {
+        return term2;
+    }
+
     @Override
     public String toString() {
         return term1 + " " + Character.toString(op) + " " + term2 + "  = " + res;

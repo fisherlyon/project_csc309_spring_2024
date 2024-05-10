@@ -67,6 +67,10 @@ public class Tutor extends JComponent implements KeyEventDispatcher {
         return printing;
     }
 
+    public List<Expression> getGuide() {
+        return guide;
+    }
+
     private String getCarot() {
         if (blink) {
             blink = false;
@@ -105,7 +109,7 @@ public class Tutor extends JComponent implements KeyEventDispatcher {
         }
     }
 
-    private int operate(int term1, int term2, char operator) {
+    public int operate(int term1, int term2, char operator) {
         switch (operator) {
             case '+':
                 term1 += term2;
