@@ -20,8 +20,9 @@ public abstract class Button extends JButton {
     private Color fc1;
     private Color bc1;
     private Color bc2;
+    private int fontSize;
 
-    public Button(String label, int x, int y, int w, int h, Color fc1, Color bc1, Color bc2) {
+    public Button(String label, int x, int y, int w, int h, Color fc1, Color bc1, Color bc2, int fontSize) {
         this.label = label;
         this.x = x - w / 2; // center
         this.y = y;
@@ -30,6 +31,7 @@ public abstract class Button extends JButton {
         this.fc1 = fc1;
         this.bc1 = bc1;
         this.bc2 = bc2;
+        this.fontSize = fontSize;
         setDefaultColor();
         setButtonSpecs();
 
@@ -49,7 +51,7 @@ public abstract class Button extends JButton {
     }
 
     private void setButtonSpecs() {
-        setFont(new Font("Impact", 20, 20));
+        setFont(new Font("Impact", this.fontSize, this.fontSize));
         setOpaque(true);
         setBorderPainted(false);
         setFocusPainted(false);

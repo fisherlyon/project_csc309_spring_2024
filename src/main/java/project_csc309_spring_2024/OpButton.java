@@ -11,8 +11,8 @@ import java.awt.Color;
  */
 public class OpButton extends Button {
 
-    public OpButton(String label, int x, int y, int w, int h, Color fc1, Color bc1, Color bc2) {
-        super(label, x, y, w, h, fc1, bc1, bc2);
+    public OpButton(String label, int x, int y, int w, int h, Color fc1, Color bc1, Color bc2, int fontSize) {
+        super(label, x, y, w, h, fc1, bc1, bc2, fontSize);
     }
 
     public int doOp(int x, int y) {

@@ -22,7 +22,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         setLayout(null);
         String[] ops = { "+", "-", "*", "/" };
         for (int i = 0; i < ops.length; i++) {
-            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray);
+            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray, 20);
             button.addActionListener(this);
             button.addSelf(this);
         }

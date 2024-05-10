@@ -20,14 +20,14 @@ public class MapPanel extends JPanel implements ActionListener {
         earth = new ImageIcon(getClass().getResource("/earth.png")).getImage();
         setLayout(null);
         setPreferredSize(new Dimension(earth.getWidth(null), earth.getHeight(null)));
-        addButton(70, 40, 55, 25, "x");
-        addButton(270, 50, 55, 25, "-");
-        addButton(100, 150, 55, 25, "+");
-        addButton(230, 300, 55, 25, "/");
+        addButton(70, 40,80, 25, "Moon");
+        addButton(270, 50, 110, 25, "North Pole");
+        addButton(100, 150, 100, 25, "CSC 309");
+        addButton(230, 300, 80, 25, "Brazil");
     }
 
     private void addButton(int x, int y, int width, int height, String text) {
-        GenericButton button = new GenericButton(text, x, y, width, height, Color.black, Color.white, Color.lightGray);
+        GenericButton button = new GenericButton(text, x, y, width, height, Color.black, Color.white, Color.lightGray, 15);
         button.addActionListener(this);
         add(button);
     }
@@ -47,16 +47,16 @@ public class MapPanel extends JPanel implements ActionListener {
             GenericButton button = (GenericButton) e.getSource();
             LevelPanel lp = GameData.getInstance().getLevelPanel();
             switch (button.getText()) {
-                case "x": 
+                case "Moon": 
                     lp.setBackgroundImage("/moon.png");
                     break;
-                case "-":
+                case "North Pole":
                     lp.setBackgroundImage("/northPole.png");
                     break;
-                case "+":
+                case "CSC 309":
                     lp.setBackgroundImage("/csc309.png");
                     break;
-                case "/":
+                case "Brazil":
                     lp.setBackgroundImage("/brazil.png");
                     break;
             }

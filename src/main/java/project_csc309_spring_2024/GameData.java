@@ -81,11 +81,6 @@ public class GameData extends PropertyChangeSupport {
         panel.revalidate();
     }
 
-    public void setMainPanel(JFrame main, JPanel panel) {
-        main.getContentPane().removeAll();
-        main.getContentPane().add(panel);
-    }
-
     public Block getSelectedBlock() { return selectedBlock; }
     public void setSelectedBlock(Block block) { this.selectedBlock = block; }
     public List<Block> getLockedBlocks() { return lockedBlocks; }

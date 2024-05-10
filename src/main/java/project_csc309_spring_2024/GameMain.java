@@ -19,7 +19,7 @@ public class GameMain extends JFrame implements ActionListener {
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
-        GenericButton playButton = new GenericButton("PRESS TO START", 600, 400, 200, 60, Color.white, Color.blue, Color.red);
+        GenericButton playButton = new GenericButton("PRESS TO START", 600, 400, 200, 60, Color.white, Color.blue, Color.red, 20);
         playButton.addSelf(startPanel);
         playButton.addActionListener(this);
         startScreen.add(startPanel);
@@ -29,7 +29,7 @@ public class GameMain extends JFrame implements ActionListener {
         levelPanel = new LevelPanel();
         levelScreen.add(levelPanel);
         MapPanel mapPanel = new MapPanel();
-        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 500, 150, 40, Color.black, Color.white, Color.lightGray);
+        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 500, 150, 40, Color.black, Color.white, Color.lightGray, 20);
         selectButton.addSelf(mapPanel);
         selectButton.addActionListener(this);
         levelScreen.add(mapPanel);
