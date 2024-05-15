@@ -45,21 +45,7 @@ public class MapPanel extends JPanel implements ActionListener {
         }    
         if (e.getSource() instanceof GenericButton) {
             GenericButton button = (GenericButton) e.getSource();
-            LevelPanel lp = GameData.getInstance().getLevelPanel();
-            switch (button.getText()) {
-                case "Moon": 
-                    lp.setBackgroundImage("/moon.png");
-                    break;
-                case "North Pole":
-                    lp.setBackgroundImage("/northPole.png");
-                    break;
-                case "CSC 309":
-                    lp.setBackgroundImage("/csc309.png");
-                    break;
-                case "Brazil":
-                    lp.setBackgroundImage("/brazil.png");
-                    break;
-            }
+            GameData.getInstance().setSceneSelectionString(button.getText());
         }    
     }
 }

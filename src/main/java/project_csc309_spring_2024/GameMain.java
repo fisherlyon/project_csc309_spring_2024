@@ -27,7 +27,7 @@ public class GameMain extends JFrame implements ActionListener {
         startScreen.add(startPanel);
 
         // ---- CREATE : Level Select Screen
-        levelScreen.setLayout(new GridLayout(1, 2));
+        levelScreen.setLayout(new GridLayout(1, 3));
         levelPanel = new LevelPanel();
         levelScreen.add(levelPanel);
         MapPanel mapPanel = new MapPanel();
@@ -35,6 +35,7 @@ public class GameMain extends JFrame implements ActionListener {
         selectButton.addSelf(mapPanel);
         selectButton.addActionListener(this);
         levelScreen.add(mapPanel);
+        levelScreen.add(new WeatherPanel());
 
         // ---- CREATE : Gameplay Screen
         playScreen.setLayout(new GridLayout(1, 2));
