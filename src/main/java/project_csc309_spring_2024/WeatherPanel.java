@@ -13,14 +13,20 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
   private String locKey = null;
 
   public WeatherPanel() {
-    setBackground(Color.GRAY);
-    setLayout(new GridLayout(1, 1));
-    JLabel blankLabel = new JLabel("Waiting for location...");
-    blankLabel.setFont(new Font("Arial", 1, 20));
-    blankLabel.setForeground(Color.BLACK);
-    add(blankLabel);
+    setBackground(Color.black);
     GameData.getInstance().addPropertyChangeListener(this);
   }
+
+  @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (locKey == null) {
+            g.setFont(new Font("Impact", 20, 20));
+            g.setColor(Color.white);
+            g.drawString("Press buttons on the world map to display scene preview.", 0, 30);
+        }
+        
+    }
 
   private void updateWeather() {
     removeAll();
@@ -46,7 +52,7 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
 
   private double getTemperature() throws Exception {
 
-    String apiKey = "BguRW30F9IVjlLAu73qaneIAf3BtkGug";
+    String apiKey = "GD2OCnvs0m7gxx2NAK1KVEascluzgGT8";
     String urlStr = "http://dataservice.accuweather.com/currentconditions/v1/"
       + locKey
       + "?apikey=" + apiKey;
@@ -75,7 +81,7 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
   }
 
   private double getFahrenheit(double c) {
-    return (c * (9/5)) + 32;
+    return ((9/5) * c) + 32;
   }
 
   @Override
@@ -83,16 +89,16 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
         if ("sceneButtonPressed".equals(evt.getPropertyName())) {
             switch ((String) evt.getNewValue()) {
                 case "Moon": 
-                    locKey = "317705"; // based on Pamukkale, Turkey
+                    locKey = "317705"; // Pamukkale, Turkey
                     break;
                 case "North Pole":
-                    locKey = "336714";
+                    locKey = "2163165";
                     break;
                 case "CSC 309":
-                    locKey = "331999"; // based on SLO, California
+                    locKey = "331999"; // SLO, California
                     break;
                 case "Brazil":
-                    locKey = "1122443";
+                    locKey = "45449"; // Rio de Janeiro, Brazil
                     break;
             }
             updateWeather();
