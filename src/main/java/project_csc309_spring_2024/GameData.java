@@ -48,15 +48,6 @@ public class GameData extends PropertyChangeSupport {
                     instance = new GameData();
                 }
         return instance;
-
-        //         if (instance == null) {
-        //     synchronized (GameData.class) {
-        //         if (instance == null) {
-        //             instance = new GameData();
-        //         }
-        //     }
-        // }
-        // return instance;
     }
 
     public void recalculate() {
