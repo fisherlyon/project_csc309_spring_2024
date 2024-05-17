@@ -151,7 +151,7 @@ public class Tutor extends JComponent implements KeyEventDispatcher {
         List<String> messages = new ArrayList<String>();
         Random rand = new Random();
         for (int i = 0; i < amount; i++) {
-            int msgIndex = rand.nextInt(0, pool.size());
+            int msgIndex = rand.nextInt(pool.size());
             String messageToAppend = pool.get(msgIndex);
 
             if (i == 0) {

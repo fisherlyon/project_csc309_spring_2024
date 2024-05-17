@@ -3,6 +3,10 @@ package project_csc309_spring_2024;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * ...
  *
@@ -16,6 +20,8 @@ public class DuelPanel extends JPanel {
     private PlayerHealth playerHealth;
     private int prevUserHealth;
     private int prevCpuHealth;
+    private Timer timer;
+    private int timeRemaining = 5;
 
 
     public DuelPanel(UserPlayer player, CpuPlayer cpu, CpuHealth cpuHealth, PlayerHealth playerHealth) {
@@ -26,6 +32,20 @@ public class DuelPanel extends JPanel {
         backgroundImage = new ImageIcon(getClass().getResource("/stage1.png")).getImage();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null)));
+
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (timeRemaining > 0) {
+                    timeRemaining--;
+                } else {
+                    timer.stop();
+                }
+                repaint();
+            }
+        });
+        timer.start();
+
     }
 
     public Image getBackgroundImage() {
@@ -81,6 +101,10 @@ public class DuelPanel extends JPanel {
         g.setColor(Color.black);
         g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight); // Player Health Bar
         g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight); // CPU Health Bar
+
+        g.setFont(new Font("Minecraftia-Regular", Font.PLAIN, 18));
+        g.setColor(Color.red);
+        g.drawString("CPU ATTACK IN: " + timeRemaining, 10, 20);
 
         prevUserHealth = userHealth;
         prevCpuHealth = cpuHealth;
