@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class GameMain extends JFrame implements ActionListener {
 
@@ -16,13 +18,17 @@ public class GameMain extends JFrame implements ActionListener {
     LevelPanel levelPanel;
     DuelPanel duelPanel;
 
+    Font customFont;
+
     public GameMain() {
+        loadCustomFont();
 
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
         GenericButton playButton = new GenericButton("PRESS TO START", 600, 400, 200, 60, Color.white, Color.blue, Color.red, 20);
         playButton.addSelf(startPanel);
+        playButton.setFont(customFont.deriveFont(12f));
         playButton.addActionListener(this);
         startScreen.add(startPanel);
 
@@ -36,6 +42,7 @@ public class GameMain extends JFrame implements ActionListener {
         levelScreen.add(mapPanel);
         GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 450, 150, 40, Color.black, Color.white, Color.lightGray, 20);
         selectButton.addSelf(mapPanel);
+        selectButton.setFont(customFont.deriveFont(12f));
         selectButton.addActionListener(this);
         WeatherPanel weatherPanel = new WeatherPanel();
         weatherPanel.setBounds(600, 500, 600, 100); 
@@ -62,6 +69,23 @@ public class GameMain extends JFrame implements ActionListener {
         mathPanel.addMouseMotionListener(controller);
 
         GameData.getInstance().addPropertyChangeListener(mathPanel);
+    }
+
+    private void loadCustomFont() {
+        try {
+            InputStream is = getClass().getResourceAsStream("/fonts/Minecraftia-Regular.ttf");
+            if (is == null) {
+                System.out.println("Font file not found");
+                return;
+            }
+
+            customFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(12f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+            System.out.println("Font loaded successfully");
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
