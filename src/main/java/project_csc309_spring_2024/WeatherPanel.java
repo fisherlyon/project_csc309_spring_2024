@@ -28,12 +28,12 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
         
     }
 
-  private void updateWeather() {
+  private void updateWeather(String loc) {
     removeAll();
     try {
         if (locKey != null) {
             double value = getTemperature();
-            JLabel label = new JLabel(" " + value);
+            JLabel label = new JLabel(loc + ": " + value + "°F");
             label.setFont(new Font("Arial", 1, 50));
             label.setForeground(Color.RED);
             add(label);
@@ -101,7 +101,7 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
                     locKey = "45449"; // Rio de Janeiro, Brazil
                     break;
             }
-            updateWeather();
+            updateWeather((String) evt.getNewValue());
         }
     }
 }
