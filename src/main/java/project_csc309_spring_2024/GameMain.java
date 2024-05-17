@@ -16,12 +16,18 @@ public class GameMain extends JFrame implements ActionListener {
     LevelPanel levelPanel;
     DuelPanel duelPanel;
 
+    Client client;
+    String host = "localhost";
     public GameMain() {
+        client = new Client(host, 5555);
 
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
         GenericButton playButton = new GenericButton("PRESS TO START", 600, 400, 200, 60, Color.white, Color.blue, Color.red, 20);
+        GenericButton networkButton = new GenericButton("NETWORK DUEL", 600, 480, 200, 60, Color.white, Color.blue, Color.red, 20);
+        startPanel.add(networkButton);
+        networkButton.addActionListener(this);
         playButton.addSelf(startPanel);
         playButton.addActionListener(this);
         startScreen.add(startPanel);
@@ -43,11 +49,15 @@ public class GameMain extends JFrame implements ActionListener {
   
         UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
         CpuPlayer cpu = new CpuPlayer(325, 200,  100);
+
+        Duel computerDuel = new Duel(player, cpu);
+        Level level = new Level(computerDuel, 0);
+
+        GameData.getInstance().setLevel(level);
+        // We need to change DuelPanel to pull current Duel from GameData
         duelPanel = new DuelPanel(player, cpu, chealth, phealth);
         playScreen.add(duelPanel);
-        //UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
-        //CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);
-        //MapLevel mapLevel = new MapLevel(duelPanel);
+
         MathPanel mathPanel = new MathPanel();
         playScreen.add(mathPanel);
         add(startScreen);
@@ -76,7 +86,21 @@ public class GameMain extends JFrame implements ActionListener {
                 getContentPane().removeAll();
                 getContentPane().add(levelScreen);
                 revalidate(); 
-            } else if (button.getLabel() == "SELECT SCENE") {
+            } 
+            else if(button.getLabel().equals("NETWORK DUEL")){
+                client.start();
+                while(!client.isReady()){
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                getContentPane().removeAll();
+                getContentPane().add(playScreen);
+                revalidate();
+            } 
+            else if (button.getLabel() == "SELECT SCENE") {
                 duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
                 getContentPane().removeAll();
                 getContentPane().add(playScreen);

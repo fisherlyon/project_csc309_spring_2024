@@ -57,7 +57,7 @@ public class DuelPanel extends JPanel {
         }
 
         if (cpuPlayer != null) {
-            g.drawImage(cpuPlayer.getPlayerTwo(), cpuPlayer.getcpuX(), cpuPlayer.getcpuY(), this);
+            g.drawImage(cpuPlayer.getPlayerTwo(), cpuPlayer.getplayerX(), cpuPlayer.getplayerY(), this);
         }
         if (playerHealth != null) {
             g.drawImage(playerHealth.getPlayerhealthbar(), playerHealth.getUserHealthBarX(), playerHealth.getUserHealthBarY(), this);
@@ -66,8 +66,8 @@ public class DuelPanel extends JPanel {
             g.drawImage(cpuHealth.getCpuhealthbar(), cpuHealth.getCpuHealthBarX(), cpuHealth.getCpuHealthBarY(), this);
         }
 
-        int userHealth = userPlayer.getPlayerHealth();
-        int cpuHealth = cpuPlayer.getCpuHealth();
+        int userHealth = userPlayer.getHealth();
+        int cpuHealth = cpuPlayer.getHealth();
 
         int maxHealthBarWidth = 200;
         int healthBarHeight = 38;

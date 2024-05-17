@@ -102,9 +102,10 @@ public class GameController implements MouseListener, MouseMotionListener {
 
                 if (selectedBlock.getValue() != targetAnswer){
                     tutor.help();
-                    // need to get minus 10 here for player
-                    int newHealth = userPlayer.getPlayerHealth() - 10;
-                    userPlayer.setPlayerHealth(newHealth);
+                    Duel d = level.getDuel();
+
+                    d.castAttack(d.getPlayer2(), d.getPlayer1());
+
                     answerBox.setBoxColor(Color.red);
 
                     Image tempGramps = cpuPlayer.getPlayerTwo();
@@ -135,13 +136,15 @@ public class GameController implements MouseListener, MouseMotionListener {
                 else  {
                     level.nextProblem();
                     tutor.setVisible(false);
+
+                    Duel d = level.getDuel();
+                    d.castAttack(d.getPlayer1(), d.getPlayer2());
+
                     answerBox.setBoxColor(Color.green);
                     GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
                     answerBox.setAnswerBlock(null);
                     answerBox.setFilled(false);
                     // need to get minus 10 here for cpu
-                    int newCpuHealth = cpuPlayer.getCpuHealth() - 10;
-                    cpuPlayer.setCpuHealth(newCpuHealth);
 
                     Image tempBobby = userPlayer.getPlayerOne();
                     userPlayer.setPlayerOne(bobbyattack);

@@ -30,6 +30,7 @@ public class GameData extends PropertyChangeSupport {
     private Button pressedButton = null;
     private Level level;
     private LevelPanel levelPanel;
+      //private static final Object lock = new Object();
 
     private GameData() {
         super(new Object());
@@ -38,15 +39,24 @@ public class GameData extends PropertyChangeSupport {
         answerBox = new AnswerBox(300, 520);
         trashBin = new TrashBin(520, 510);
         tutor = new Tutor(50, 50);
-        level = new Level(0);
+
         this.recalculate();
     }
 
     public static GameData getInstance() {
         if (instance == null) {
-          instance = new GameData();
-        }
+                    instance = new GameData();
+                }
         return instance;
+
+        //         if (instance == null) {
+        //     synchronized (GameData.class) {
+        //         if (instance == null) {
+        //             instance = new GameData();
+        //         }
+        //     }
+        // }
+        // return instance;
     }
 
     public void recalculate() {
@@ -98,5 +108,6 @@ public class GameData extends PropertyChangeSupport {
     public void setPressedButton(Button button) { pressedButton = button; }
     public Level getLevel() { return level; }
     public void setLevelPanel(LevelPanel l) { levelPanel = l; }   
+    public void setLevel(Level level) {this.level = level;}
     public LevelPanel getLevelPanel() { return levelPanel; }
 }
