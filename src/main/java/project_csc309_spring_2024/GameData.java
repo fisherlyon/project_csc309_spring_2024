@@ -29,7 +29,6 @@ public class GameData extends PropertyChangeSupport {
     private int NUM_LOCKED_BLOCKS = 10;
     private Button pressedButton = null;
     private Level level;
-    private LevelPanel levelPanel;
 
     private GameData() {
         super(new Object());
@@ -65,6 +64,10 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("repaint", null, null);
     }
 
+    public void setSceneSelectionString(String str) {
+        firePropertyChange("sceneButtonPressed", null, str);
+    }
+
     public void doButtonAction(JPanel panel, Button button) {
 
         if (pressedButton == null) {
@@ -97,6 +100,4 @@ public class GameData extends PropertyChangeSupport {
     public Button getPressedButton() { return pressedButton; }
     public void setPressedButton(Button button) { pressedButton = button; }
     public Level getLevel() { return level; }
-    public void setLevelPanel(LevelPanel l) { levelPanel = l; }   
-    public LevelPanel getLevelPanel() { return levelPanel; }
 }

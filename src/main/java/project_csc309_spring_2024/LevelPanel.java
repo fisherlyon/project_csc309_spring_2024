@@ -2,6 +2,8 @@ package project_csc309_spring_2024;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * A panel that displays scene previews based on
@@ -9,13 +11,13 @@ import java.awt.*;
  * 
  * @author Fisher and Leo
  */
-public class LevelPanel extends JPanel {
+public class LevelPanel extends JPanel implements PropertyChangeListener {
 
     private Image backgroundImage = null;
 
     public LevelPanel() {
         setBackground(Color.black);
-        GameData.getInstance().setLevelPanel(this);
+        GameData.getInstance().addPropertyChangeListener(this);
     }
 
     public void setBackgroundImage(String imagePath) {
@@ -39,6 +41,26 @@ public class LevelPanel extends JPanel {
             g.drawString("Press buttons on the world map to display scene preview.", 60, 300);
         }
         
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("sceneButtonPressed".equals(evt.getPropertyName())) {
+            switch ((String) evt.getNewValue()) {
+                case "Moon": 
+                    setBackgroundImage("/moon.png");
+                    break;
+                case "North Pole":
+                    setBackgroundImage("/northPole.png");
+                    break;
+                case "CSC 309":
+                    setBackgroundImage("/csc309.png");
+                    break;
+                case "Brazil":
+                    setBackgroundImage("/brazil.png");
+                    break;
+            }
+        }
     }
 
     public Image getBackgroundImage() { return backgroundImage; }

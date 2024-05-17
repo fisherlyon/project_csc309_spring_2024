@@ -27,14 +27,19 @@ public class GameMain extends JFrame implements ActionListener {
         startScreen.add(startPanel);
 
         // ---- CREATE : Level Select Screen
-        levelScreen.setLayout(new GridLayout(1, 2));
+        levelScreen.setLayout(null); // Use null layout
         levelPanel = new LevelPanel();
+        levelPanel.setBounds(0, 0, 600, 600); // Set the bounds for levelPanel
         levelScreen.add(levelPanel);
         MapPanel mapPanel = new MapPanel();
-        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 500, 150, 40, Color.black, Color.white, Color.lightGray, 20);
+        mapPanel.setBounds(600, 0, 600, 500); // Set the bounds for mapPanel
+        levelScreen.add(mapPanel);
+        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 450, 150, 40, Color.black, Color.white, Color.lightGray, 20);
         selectButton.addSelf(mapPanel);
         selectButton.addActionListener(this);
-        levelScreen.add(mapPanel);
+        WeatherPanel weatherPanel = new WeatherPanel();
+        weatherPanel.setBounds(600, 500, 600, 100); // Set the bounds for weatherPanel
+        levelScreen.add(weatherPanel);
 
         // ---- CREATE : Gameplay Screen
         playScreen.setLayout(new GridLayout(1, 2));
