@@ -4,7 +4,6 @@ package project_csc309_spring_2024;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
 
 /**
  * Our singleton implementation
@@ -27,8 +26,8 @@ public class GameData extends PropertyChangeSupport {
     private TrashBin trashBin;
     private Tutor tutor;
     private int NUM_LOCKED_BLOCKS = 10;
-    private Button pressedButton = null;
     private Level level;
+    private String operationString;
 
     private GameData() {
         super(new Object());
@@ -68,22 +67,6 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("sceneButtonPressed", null, str);
     }
 
-    public void doButtonAction(JPanel panel, Button button) {
-
-        if (pressedButton == null) {
-            setPressedButton(button);
-        } else {
-            pressedButton.setDefaultColor();
-            panel.repaint();
-            panel.revalidate();
-        }
-
-        setPressedButton(button);
-        pressedButton.setPressedColor();
-        panel.repaint();
-        panel.revalidate();
-    }
-
     public Block getSelectedBlock() { return selectedBlock; }
     public void setSelectedBlock(Block block) { this.selectedBlock = block; }
     public List<Block> getLockedBlocks() { return lockedBlocks; }
@@ -97,7 +80,7 @@ public class GameData extends PropertyChangeSupport {
     public int getAnswerBoxYOffset() { return answerBoxYOffset; }
     public TrashBin getTrashBin(){return trashBin;}
     public Tutor getTutor() {return tutor;}
-    public Button getPressedButton() { return pressedButton; }
-    public void setPressedButton(Button button) { pressedButton = button; }
     public Level getLevel() { return level; }
+    public String getOperationString() { return operationString; }
+    public void setOperationString(String str) { operationString = str; }
 }

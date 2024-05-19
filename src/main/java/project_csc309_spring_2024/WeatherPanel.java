@@ -52,7 +52,7 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
 
   private double getTemperature() throws Exception {
 
-    String apiKey = "GD2OCnvs0m7gxx2NAK1KVEascluzgGT8";
+    String apiKey = "rJEvuvU82cc0iY220RmTYipXO5ulcQPG";
     String urlStr = "http://dataservice.accuweather.com/currentconditions/v1/"
       + locKey
       + "?apikey=" + apiKey;
@@ -89,10 +89,10 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
         if ("sceneButtonPressed".equals(evt.getPropertyName())) {
             switch ((String) evt.getNewValue()) {
                 case "Moon": 
-                    locKey = "317705"; // Pamukkale, Turkey
+                    locKey = "1-337853_1_AL"; // Mauna Loa, Hawaii
                     break;
                 case "North Pole":
-                    locKey = "2163165";
+                    locKey = "336714"; // North Pole, Alaska
                     break;
                 case "CSC 309":
                     locKey = "331999"; // SLO, California

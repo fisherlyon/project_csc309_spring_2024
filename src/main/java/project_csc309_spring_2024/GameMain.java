@@ -26,7 +26,8 @@ public class GameMain extends JFrame implements ActionListener {
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
         StartPanel startPanel = new StartPanel();
-        GenericButton playButton = new GenericButton("PRESS TO START", 600, 400, 200, 60, Color.white, Color.blue, Color.red, 20);
+        Button playButton = new Button("PRESS TO START", 600, 400, 200, 60);
+        playButton.setButtonColor(Color.blue, Color.white);
         playButton.addSelf(startPanel);
         playButton.setFont(customFont.deriveFont(12f));
         playButton.addActionListener(this);
@@ -40,7 +41,7 @@ public class GameMain extends JFrame implements ActionListener {
         MapPanel mapPanel = new MapPanel();
         mapPanel.setBounds(600, 0, 600, 500); 
         levelScreen.add(mapPanel);
-        GenericButton selectButton = new GenericButton("SELECT SCENE", 300, 450, 150, 40, Color.black, Color.white, Color.lightGray, 20);
+        Button selectButton = new Button("SELECT SCENE", 300, 450, 150, 40);
         selectButton.addSelf(mapPanel);
         selectButton.setFont(customFont.deriveFont(12f));
         selectButton.addActionListener(this);
@@ -99,8 +100,8 @@ public class GameMain extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
       
-        if (e.getSource() instanceof GenericButton) {
-            GenericButton button = (GenericButton) e.getSource();
+        if (e.getSource() instanceof Button) {
+            Button button = (Button) e.getSource();
             if (button.getLabel() == "PRESS TO START") {
                 getContentPane().removeAll();
                 getContentPane().add(levelScreen);

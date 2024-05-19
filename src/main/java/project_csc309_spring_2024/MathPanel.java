@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
  */
 public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 
+    private Button pressedButton = null;
     boolean buttonPressed = false;
 
     public MathPanel() {
@@ -23,8 +24,10 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         add(GameData.getInstance().getTutor());
         String[] ops = { "+", "-", "*", "/" };
         for (int i = 0; i < ops.length; i++) {
-            OpButton button = new OpButton(ops[i], i * 70 + 180, 10, 55, 55, Color.white, Color.darkGray, Color.gray, 20);
+            Button button = new Button(ops[i], i * 70 + 180, 10, 55, 55);
             button.addActionListener(this);
+            button.setButtonColor(Color.lightGray, Color.black);
+            button.setPressedColor(Color.gray);
             button.addSelf(this);
         }
     }
@@ -75,12 +78,17 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof Button) {
-            GameData.getInstance().doButtonAction(this, (Button) e.getSource());
-        }
-        if (e.getSource() instanceof OpButton) {
             buttonPressed = true;
-            OpButton button = (OpButton) e.getSource();
-            GameData.getInstance().setPressedButton(button);
+            Button button = (Button) e.getSource();
+
+            if (pressedButton != null) {
+                pressedButton.setToDefaultColor();
+            }
+
+            button.setToPressedColor();
+            pressedButton = button;
+
+            GameData.getInstance().setOperationString(button.getLabel());
         }
     }
 }

@@ -15,21 +15,25 @@ import java.awt.event.ActionListener;
 public class MapPanel extends JPanel implements ActionListener {
 
     private final Image earth; 
+    private Button pressedButton = null;
+    boolean buttonPressed = false;
 
     public MapPanel() {
         earth = new ImageIcon(getClass().getResource("/earth.png")).getImage();
         setLayout(null);
         setPreferredSize(new Dimension(earth.getWidth(null), earth.getHeight(null)));
-        addButton(70, 40,80, 25, "Moon");
-        addButton(270, 50, 110, 25, "North Pole");
-        addButton(100, 150, 100, 25, "CSC 309");
-        addButton(230, 300, 80, 25, "Brazil");
+        addButton("Moon", 70, 40,80, 25);
+        addButton("North Pole", 270, 50, 110, 25);
+        addButton("CSC 309", 100, 150, 100, 25);
+        addButton("Brazil", 230, 300, 80, 25);
     }
 
-    private void addButton(int x, int y, int width, int height, String text) {
-        GenericButton button = new GenericButton(text, x, y, width, height, Color.black, Color.white, Color.lightGray, 15);
+    private void addButton(String text, int x, int y, int width, int height) {
+        Button button = new Button(text, x, y, width, height);
         button.addActionListener(this);
-        add(button);
+        button.setButtonColor(Color.white, Color.black);
+        button.setPressedColor(Color.lightGray);
+        button.addSelf(this);
     }
 
     @Override
@@ -41,11 +45,17 @@ public class MapPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof Button) {
-            GameData.getInstance().doButtonAction(this, (Button) e.getSource());
-        }    
-        if (e.getSource() instanceof GenericButton) {
-            GenericButton button = (GenericButton) e.getSource();
-            GameData.getInstance().setSceneSelectionString(button.getText());
-        }    
+            buttonPressed = true;
+            Button button = (Button) e.getSource();
+
+            if (pressedButton != null) {
+                pressedButton.setToDefaultColor();
+            }
+
+            button.setToPressedColor();
+            pressedButton = button;
+
+            GameData.getInstance().setSceneSelectionString(button.getLabel());
+        }  
     }
 }

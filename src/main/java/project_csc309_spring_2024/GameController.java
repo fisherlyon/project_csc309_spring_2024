@@ -2,6 +2,8 @@ package project_csc309_spring_2024;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.awt.*;
 
 /**
@@ -18,6 +20,7 @@ public class GameController implements MouseListener, MouseMotionListener {
     private Image bobbyattack = new ImageIcon(getClass().getResource("/bobbyattack.png")).getImage();
     private Image grampshit = new ImageIcon(getClass().getResource("/grampsdamaged.png")).getImage();
     private Image grampsattack = new ImageIcon(getClass().getResource("/grampsattack.png")).getImage();
+    MergeMath mm = new MergeMath();
 
     public GameController(UserPlayer userPlayer, CpuPlayer cpuPlayer) {
         this.userPlayer = userPlayer;
@@ -57,11 +60,11 @@ public class GameController implements MouseListener, MouseMotionListener {
 
             for (Block block : data.getUnlockedBlocks()) {
                 if (!block.isSelected() && block.contains(e.getX(), e.getY())) {
-                    Button pressedButton = GameData.getInstance().getPressedButton();
-                    if (pressedButton != null) {
+                    String operationString = GameData.getInstance().getOperationString();
+                    if (operationString != null) {
                         int mergeVal;
                         try {
-                            mergeVal = ((OpButton) pressedButton).doOp(block.getValue(), selectedBlock.getValue());
+                            mergeVal = mm.doOperation(operationString, block.getValue(), selectedBlock.getValue());
                         } catch (ArithmeticException er) {
                             System.out.println("div by zero");
                             break;
@@ -186,7 +189,6 @@ public class GameController implements MouseListener, MouseMotionListener {
         }
     }
 
-
     @Override
     public void mouseDragged(MouseEvent e) {
         if (data.getSelectedBlock() != null) {
@@ -200,5 +202,4 @@ public class GameController implements MouseListener, MouseMotionListener {
     @Override public void mouseClicked(MouseEvent e) {}
     @Override public void mouseEntered(MouseEvent e) {}
     @Override public void mouseExited(MouseEvent e) {}
-
 }
