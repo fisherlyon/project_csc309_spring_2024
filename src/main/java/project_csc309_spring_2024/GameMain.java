@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GameMain extends JFrame implements ActionListener {
+public class GameMain extends JFrame implements ActionListener, PropertyChangeListener {
 
     JPanel startScreen = new JPanel();
     JPanel levelScreen = new JPanel();
@@ -17,6 +19,7 @@ public class GameMain extends JFrame implements ActionListener {
 
     LevelPanel levelPanel;
     DuelPanel duelPanel;
+    ModePanel modePanel;
 
     Font customFont;
 
@@ -32,6 +35,13 @@ public class GameMain extends JFrame implements ActionListener {
         playButton.setFont(customFont.deriveFont(12f));
         playButton.addActionListener(this);
         startScreen.add(startPanel);
+
+        // ---- CREATE : Mode Select Screen
+        modePanel = new ModePanel();
+        Button continueButton = new Button("CONTINUE", 300, 450, 150, 40);
+        continueButton.setButtonColor(Color.orange, Color.white);
+        continueButton.addSelf(modePanel.getButtonSidePanel());
+        continueButton.addActionListener(this);
 
         // ---- CREATE : Level Select Screen
         levelScreen.setLayout(null); 
@@ -99,19 +109,37 @@ public class GameMain extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      
         if (e.getSource() instanceof Button) {
             Button button = (Button) e.getSource();
-            if (button.getLabel() == "PRESS TO START") {
-                getContentPane().removeAll();
-                getContentPane().add(levelScreen);
-                revalidate(); 
-            } else if (button.getLabel() == "SELECT SCENE") {
-                duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
-                getContentPane().removeAll();
-                getContentPane().add(playScreen);
-                revalidate();
+            String label = button.getLabel();
+
+            getContentPane().removeAll();
+
+            switch (label) {
+                case "PRESS TO START":
+                    getContentPane().add(modePanel);
+                    break;
+                case "CONTINUE":
+                    getContentPane().add(levelScreen);
+                    break;
+                case "SELECT SCENE":
+                    duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
+                    getContentPane().add(playScreen);
+                    break;
+                default:
+                    break;
             }
-        } 
+            revalidate();
+            repaint();
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("gameOver".equals(evt.getPropertyName())) {
+            boolean isWinner = (boolean) evt.getNewValue();
+            EndGameDialog endGameDialog = new EndGameDialog(this, isWinner);
+            add(endGameDialog);
+        }
     }
 }

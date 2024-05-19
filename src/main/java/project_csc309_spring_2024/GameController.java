@@ -20,7 +20,7 @@ public class GameController implements MouseListener, MouseMotionListener {
     private Image bobbyattack = new ImageIcon(getClass().getResource("/bobbyattack.png")).getImage();
     private Image grampshit = new ImageIcon(getClass().getResource("/grampsdamaged.png")).getImage();
     private Image grampsattack = new ImageIcon(getClass().getResource("/grampsattack.png")).getImage();
-    MergeMath mm = new MergeMath();
+    private MergeMath mm = new MergeMath();
 
     public GameController(UserPlayer userPlayer, CpuPlayer cpuPlayer) {
         this.userPlayer = userPlayer;

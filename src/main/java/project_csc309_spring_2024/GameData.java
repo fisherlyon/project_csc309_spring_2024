@@ -67,6 +67,10 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("sceneButtonPressed", null, str);
     }
 
+    public void setGameOver(boolean isWinner) {
+        firePropertyChange("gameOver", null, isWinner);
+    }
+
     public Block getSelectedBlock() { return selectedBlock; }
     public void setSelectedBlock(Block block) { this.selectedBlock = block; }
     public List<Block> getLockedBlocks() { return lockedBlocks; }
