@@ -1,7 +1,6 @@
 package project_csc309_spring_2024;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
@@ -10,8 +9,11 @@ public class ModePanel extends JPanel implements ActionListener {
 
     private JPanel buttonSide = new JPanel();
     private JPanel descriptionSide = new JPanel();
+    private JLabel descriptionLabel = new JLabel();
     private Button pressedButton = null;
-    boolean buttonPressed = false;
+    private boolean buttonPressed = false;
+    private PropertyReader propertyReader = new PropertyReader("gamemodes.properties");
+    private String[] labels = {"Tutor Mode", "Time Attack", "CPU PvP", "Start PvP Game", "Join PvP Game"};
 
     private int PANEL_DIM = 600;
     private int BUTTON_WIDTH = 150;
@@ -27,7 +29,6 @@ public class ModePanel extends JPanel implements ActionListener {
 
     private void initButtonSide() {
         buttonSide.setBounds(0, 0, PANEL_DIM, PANEL_DIM);
-        String[] labels = {"Tutor Mode", "Time Attack", "CPU PvP", "Start PvP Game", "Join PvP Game"};
         buttonSide.setLayout(null);
         buttonSide.setBackground(Color.black);
 
@@ -47,7 +48,14 @@ public class ModePanel extends JPanel implements ActionListener {
     }
 
     private void initDescriptionSide() {
-        descriptionSide.setBounds(0, PANEL_DIM, PANEL_DIM, PANEL_DIM);
+        descriptionSide.setBounds(PANEL_DIM, 0, PANEL_DIM, PANEL_DIM);
+        descriptionSide.setLayout(new BorderLayout());
+        descriptionSide.setBackground(Color.darkGray);
+        descriptionLabel.setForeground(Color.white);
+        descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
+        descriptionSide.add(descriptionLabel, BorderLayout.CENTER);
     }
 
     @Override
@@ -59,6 +67,9 @@ public class ModePanel extends JPanel implements ActionListener {
             if (pressedButton != null) {
                 pressedButton.setToDefaultColor();
             }
+
+            String description = propertyReader.getDescription(button.getLabel());
+            descriptionLabel.setText("<html><div style='text-align: center;'>" + description + "</div></html>");
 
             button.setToPressedColor();
             pressedButton = button;

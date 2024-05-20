@@ -95,11 +95,6 @@ public class DuelPanel extends JPanel {
         int playerBarWidth = Math.min(maxHealthBarWidth, (20 * (100 - userHealth)) / 10);
         int cpuBarWidth = Math.min(maxHealthBarWidth, (20 * (100 - cpuHealth)) / 10);
 
-        if (playerBarWidth == maxHealthBarWidth || cpuBarWidth == maxHealthBarWidth) {
-            boolean isWinner = (cpuBarWidth == maxHealthBarWidth);
-            GameData.getInstance().setGameOver(isWinner);
-        }
-
         int playerHealthX = 210 - playerBarWidth;
         int cpuHealthX = 560 - cpuBarWidth;
 

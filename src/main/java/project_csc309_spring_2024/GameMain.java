@@ -11,7 +11,7 @@ import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GameMain extends JFrame implements ActionListener, PropertyChangeListener {
+public class GameMain extends JFrame implements ActionListener {
 
     JPanel startScreen = new JPanel();
     JPanel levelScreen = new JPanel();
@@ -101,7 +101,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     public static void main(String[] args) {
         GameMain main = new GameMain();
-        main.setTitle("Mathematical Madness");
+        main.setTitle("Math Madness");
         main.setSize(1200, 600);
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setVisible(true);
@@ -131,15 +131,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
             }
             revalidate();
             repaint();
-        }
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if ("gameOver".equals(evt.getPropertyName())) {
-            boolean isWinner = (boolean) evt.getNewValue();
-            EndGameDialog endGameDialog = new EndGameDialog(this, isWinner);
-            add(endGameDialog);
         }
     }
 }
