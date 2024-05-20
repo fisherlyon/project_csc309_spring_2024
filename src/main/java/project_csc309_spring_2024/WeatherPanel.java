@@ -11,6 +11,7 @@ import org.json.*;
 public class WeatherPanel extends JPanel implements PropertyChangeListener {
 
   private String locKey = null;
+  private PropertyReader pr = new PropertyReader("weather.properties");
 
   public WeatherPanel() {
     setBackground(Color.black);
@@ -52,10 +53,9 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
 
   private double getTemperature() throws Exception {
 
-    String apiKey = "rJEvuvU82cc0iY220RmTYipXO5ulcQPG";
-    String urlStr = "http://dataservice.accuweather.com/currentconditions/v1/"
+    String urlStr = pr.getDescription("URL")
       + locKey
-      + "?apikey=" + apiKey;
+      + "?apikey=" + pr.getDescription("KEY");
 
     URL url = new URL(urlStr);
     URLConnection connection = url.openConnection();
