@@ -28,6 +28,7 @@ public class GameData extends PropertyChangeSupport {
     private int NUM_LOCKED_BLOCKS = 10;
     private Level level;
     private String operationString;
+    private String gameMode;
 
     private GameData() {
         super(new Object());
@@ -87,4 +88,6 @@ public class GameData extends PropertyChangeSupport {
     public Level getLevel() { return level; }
     public String getOperationString() { return operationString; }
     public void setOperationString(String str) { operationString = str; }
+    public String getGameMode() { return gameMode; }
+    public void setGameMode(String mode) { gameMode = mode; }
 }

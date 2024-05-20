@@ -73,6 +73,7 @@ public class ModePanel extends JPanel implements ActionListener {
 
             button.setToPressedColor();
             pressedButton = button;
+            GameData.getInstance().setGameMode(button.getLabel());
         }
     }
 
