@@ -23,7 +23,11 @@ public class GameMain extends JFrame implements ActionListener {
 
     Font customFont;
 
+    String host = "unix4.csc.calpoly.edu";
+    int port = 3091;
+    Client client = new Client(host, port);
     public GameMain() {
+        GameData data = GameData.getInstance();
         loadCustomFont();
 
         // ---- CREATE : Start Screen
@@ -44,33 +48,34 @@ public class GameMain extends JFrame implements ActionListener {
         continueButton.addActionListener(this);
 
         // ---- CREATE : Level Select Screen
-        levelScreen.setLayout(null); 
+        levelScreen.setLayout(null);
         levelPanel = new LevelPanel();
         levelPanel.setBounds(0, 0, 600, 600);
         levelScreen.add(levelPanel);
         MapPanel mapPanel = new MapPanel();
-        mapPanel.setBounds(600, 0, 600, 500); 
+        mapPanel.setBounds(600, 0, 600, 500);
         levelScreen.add(mapPanel);
         Button selectButton = new Button("SELECT SCENE", 300, 450, 150, 40);
         selectButton.addSelf(mapPanel);
         selectButton.setFont(customFont.deriveFont(12f));
         selectButton.addActionListener(this);
         WeatherPanel weatherPanel = new WeatherPanel();
-        weatherPanel.setBounds(600, 500, 600, 100); 
+        weatherPanel.setBounds(600, 500, 600, 100);
         levelScreen.add(weatherPanel);
+
+        // ---- CREATE : Default Duel
+        UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
+        CpuPlayer cpu = new CpuPlayer(325, 200, 100);
+
+        Duel computerDuel = new Duel(player, cpu);
+        Level level = new Level(computerDuel, 0);
+        data.setLevel(level);
+        duelPanel = new DuelPanel(data.getLevel().getDuel());
 
         // ---- CREATE : Gameplay Screen
         playScreen.setLayout(new GridLayout(1, 2));
-        PlayerHealth phealth = new PlayerHealth(15, 25);
-        CpuHealth chealth = new CpuHealth(365, 25);
-  
-        UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
-        CpuPlayer cpu = new CpuPlayer(325, 200,  100);
-        duelPanel = new DuelPanel(player, cpu, chealth, phealth);
         playScreen.add(duelPanel);
-        //UserPlayer player2 = new UserPlayer(75, 200, "player 1", 100);
-        //CpuPlayer cpu2 = new CpuPlayer(325, 200,  100);
-        //MapLevel mapLevel = new MapLevel(duelPanel);
+
         MathPanel mathPanel = new MathPanel();
         playScreen.add(mathPanel);
         add(startScreen);
@@ -123,6 +128,17 @@ public class GameMain extends JFrame implements ActionListener {
                     getContentPane().add(levelScreen);
                     break;
                 case "SELECT SCENE":
+                    if (GameData.getInstance().getGameMode().equals("Join PvP Game")) {
+                        client.start();
+                        while (!client.isReady()) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                    }
+                    duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
                     duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
                     getContentPane().add(playScreen);
                     break;

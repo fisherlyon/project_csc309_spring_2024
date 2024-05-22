@@ -12,23 +12,26 @@ import java.awt.event.ActionListener;
  *
  * @author Leo Rivera
  */
-public class DuelPanel extends JPanel {
+public class DuelPanel extends JPanel implements DuelListener {
     private Image backgroundImage;
-    private UserPlayer userPlayer;
-    private CpuPlayer cpuPlayer;
+    private Player userPlayer;
+    private Player enemyPlayer;
     private CpuHealth cpuHealth;
     private PlayerHealth playerHealth;
     private int prevUserHealth;
     private int prevCpuHealth;
     private Timer timer;
     private int timeRemaining = 5;
+    private Duel duel;
 
-
-    public DuelPanel(UserPlayer player, CpuPlayer cpu, CpuHealth cpuHealth, PlayerHealth playerHealth) {
-        this.cpuPlayer = cpu;
-        this.userPlayer = player;
-        this.cpuHealth = cpuHealth;
-        this.playerHealth = playerHealth;
+    public DuelPanel(Duel duel){
+        this.duel = duel;
+        duel.addDuelListener(this);
+        userPlayer = duel.getPlayer1();
+        enemyPlayer = duel.getPlayer2();
+        add(userPlayer);
+        add(enemyPlayer);
+        
         backgroundImage = new ImageIcon(getClass().getResource("/stage1.png")).getImage();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null)));
@@ -72,13 +75,11 @@ public class DuelPanel extends JPanel {
         g.setColor(Color.black);
         g.fillRect(365, 28, 200, 38);
 
-        if (userPlayer != null) {
-            g.drawImage(userPlayer.getPlayerOne(), userPlayer.getplayerX(), userPlayer.getplayerY(), this);
-        }
 
-        if (cpuPlayer != null) {
-            g.drawImage(cpuPlayer.getPlayerTwo(), cpuPlayer.getcpuX(), cpuPlayer.getcpuY(), this);
-        }
+        /* -------------------------------------------------------------------------- */
+        /*                  Paint players in own class paintComponent                 */
+        /* -------------------------------------------------------------------------- */
+
         if (playerHealth != null) {
             g.drawImage(playerHealth.getPlayerhealthbar(), playerHealth.getUserHealthBarX(), playerHealth.getUserHealthBarY(), this);
         }
@@ -86,8 +87,8 @@ public class DuelPanel extends JPanel {
             g.drawImage(cpuHealth.getCpuhealthbar(), cpuHealth.getCpuHealthBarX(), cpuHealth.getCpuHealthBarY(), this);
         }
 
-        int userHealth = userPlayer.getPlayerHealth();
-        int cpuHealth = cpuPlayer.getCpuHealth();
+        int userHealth = userPlayer.getHealth();
+        int cpuHealth = enemyPlayer.getHealth();
 
         int maxHealthBarWidth = 200;
         int healthBarHeight = 38;
@@ -111,5 +112,30 @@ public class DuelPanel extends JPanel {
         repaint();
 
 
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                     Handle events and  repaint in these methods below                       */
+    /* -------------------------------------------------------------------------- */
+
+    @Override
+    public void onPlayerAttack(Player attacker, Player attacked) {
+        System.out.println("Player attack");
+    }
+
+    @Override
+    public void onDuelEnd(Player winner, Player loser) {
+        System.out.println("Duel End");
+    }
+
+    public void setDuel(Duel duelToSet){
+        duel.getListeners().remove(this);
+        removeAll();
+
+        duelToSet.addDuelListener(this);
+        userPlayer = duel.getPlayer1();
+        enemyPlayer = duel.getPlayer2();
+        add(userPlayer);
+        add(enemyPlayer);
     }
 }

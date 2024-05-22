@@ -37,14 +37,14 @@ public class GameData extends PropertyChangeSupport {
         answerBox = new AnswerBox(300, 520);
         trashBin = new TrashBin(520, 510);
         tutor = new Tutor(50, 50);
-        level = new Level(0);
+
         this.recalculate();
     }
 
     public static GameData getInstance() {
         if (instance == null) {
-          instance = new GameData();
-        }
+                    instance = new GameData();
+                }
         return instance;
     }
 
@@ -86,6 +86,7 @@ public class GameData extends PropertyChangeSupport {
     public TrashBin getTrashBin(){return trashBin;}
     public Tutor getTutor() {return tutor;}
     public Level getLevel() { return level; }
+    public void setLevel(Level level) {  this.level = level; }
     public String getOperationString() { return operationString; }
     public void setOperationString(String str) { operationString = str; }
     public String getGameMode() { return gameMode; }

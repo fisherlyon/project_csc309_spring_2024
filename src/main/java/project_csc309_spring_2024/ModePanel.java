@@ -13,7 +13,7 @@ public class ModePanel extends JPanel implements ActionListener {
     private Button pressedButton = null;
     private boolean buttonPressed = false;
     private PropertyReader propertyReader = new PropertyReader("gamemodes.properties");
-    private String[] labels = {"Tutor Mode", "Time Attack", "CPU PvP", "Start PvP Game", "Join PvP Game"};
+    private String[] labels = {"Tutor Mode", "Time Attack", "CPU PvP", "Join PvP Game"};
 
     private int PANEL_DIM = 600;
     private int BUTTON_WIDTH = 150;

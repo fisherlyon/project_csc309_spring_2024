@@ -9,25 +9,17 @@ import java.awt.*;
  *
  * @author Leo Rivera
  */
-public class UserPlayer {
+public class UserPlayer extends Player{
     private Image playerone;
     private String name;
-    private int health;
-    private  int x;
-    private int y;
-
-
+    private boolean isLocalPlayer;
     public UserPlayer(int x, int y, String name, int health) {
-        this.x = x;
-        this.y = y;
+        super(x,y, health );
         this.name = name;
-        this.health = health;
         playerone = new ImageIcon(getClass().getResource("/bobby.png")).getImage();
 
     }
 
-    public int getplayerX() { return x; }
-    public int getplayerY() { return y; }
     public Image getPlayerOne() { return playerone; }
     public void setPlayerOne(Image playerone){
         this.playerone = playerone;
@@ -35,6 +27,10 @@ public class UserPlayer {
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public int getPlayerHealth() { return health; }
-    public void setPlayerHealth(int health) { this.health = health; }
+    public boolean isLocalPlayer() {
+        return isLocalPlayer;
+    }
+    public void setLocalPlayer(){
+        isLocalPlayer = true; 
+    }
 }
