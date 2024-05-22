@@ -188,17 +188,6 @@ public class GameController implements MouseListener, MouseMotionListener {
             data.setSelectedBlock(null);
             data.repaint();
         }
-
-        checkHealthStatus();
-    }
-
-    private void checkHealthStatus() {
-        Duel duel = data.getLevel().getDuel();
-        if (duel.getPlayer1().getHealth() <= 0) {
-            data.setGameOver(false);
-        } else if (duel.getPlayer2().getHealth() <= 0) {
-            data.setGameOver(true);
-        }
     }
 
     @Override

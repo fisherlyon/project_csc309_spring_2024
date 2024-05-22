@@ -146,6 +146,15 @@ public class DuelPanel extends JPanel implements DuelListener {
     @Override
     public void onDuelEnd(Player winner, Player loser) {
         System.out.println("Duel End");
+        if (winner instanceof UserPlayer) {
+            if (((UserPlayer) winner).isLocalPlayer()) {
+                GameData.getInstance().setGameOver(true);
+            }
+        } else if (loser instanceof UserPlayer) {
+            if (((UserPlayer) loser).isLocalPlayer()) {
+                GameData.getInstance().setGameOver(false);
+            }
+        }
     }
 
     public void setDuel(Duel duelToSet){

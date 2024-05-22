@@ -53,6 +53,7 @@ public class GameData extends PropertyChangeSupport {
     }
 
     public void recalculate() {
+        answerBox.setFilled(false);
         lockedBlocks.clear();
         unlockedBlocks.clear();
         for (int i = 0; i < NUM_LOCKED_BLOCKS; i++) {

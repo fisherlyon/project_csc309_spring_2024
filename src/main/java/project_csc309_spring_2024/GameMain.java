@@ -78,6 +78,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
         // ---- CREATE : Default Duel
         UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
+        player.setLocalPlayer();
         CpuPlayer cpu = new CpuPlayer(325, 200, 100);
 
         Duel computerDuel = new Duel(player, cpu);
@@ -89,6 +90,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         playScreen.setLayout(new GridLayout(1, 2));
         playScreen.add(duelPanel);
 
+        GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
         playScreen.add(mathPanel);
         add(startScreen);

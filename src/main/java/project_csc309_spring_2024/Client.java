@@ -120,7 +120,7 @@ public class Client extends Thread implements DuelListener {
             e.printStackTrace();
         }
         isReady = true;
-        System.exit(0);
+        //System.exit(0);
     }
 
     public boolean isReady() {
