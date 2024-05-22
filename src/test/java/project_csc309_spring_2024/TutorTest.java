@@ -51,7 +51,7 @@ public class TutorTest {
 
         GameData data = GameData.getInstance();
         Tutor tutor = data.getTutor();
-
+        data.setLevel(new Level(null, 0));
         tutor.help();
         for (Expression expr : tutor.getGuide()) {
             assertEquals(tutor.operate(expr.getTerm1(), expr.getTerm2(), expr.getOp()), expr.getRes());
@@ -64,6 +64,7 @@ public class TutorTest {
         GameData data = GameData.getInstance();
         Tutor tutor = data.getTutor();
 
+        data.setLevel(new Level(null, 0));
         tutor.help();
         data.getLevel().setDifficulty(50);
         for (Expression expr : tutor.getGuide()) {
