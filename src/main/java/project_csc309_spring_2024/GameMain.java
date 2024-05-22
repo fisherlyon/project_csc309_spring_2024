@@ -4,14 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GameMain extends JFrame implements ActionListener {
+public class GameMain extends JFrame implements ActionListener, PropertyChangeListener {
 
     JPanel startScreen = new JPanel();
     JPanel levelScreen = new JPanel();
@@ -27,6 +26,7 @@ public class GameMain extends JFrame implements ActionListener {
     int port = 3091;
     Client client = new Client(host, port);
     public GameMain() {
+        GameData.getInstance().addPropertyChangeListener(this);
         GameData data = GameData.getInstance();
         loadCustomFont();
 
@@ -42,7 +42,7 @@ public class GameMain extends JFrame implements ActionListener {
 
         // ---- CREATE : Mode Select Screen
         modePanel = new ModePanel();
-        Button continueButton = new Button("CONTINUE", 300, 450, 150, 40);
+        Button continueButton = new Button("CONTINUE", 300, 390, 150, 40);
         continueButton.setButtonColor(Color.orange, Color.white);
         continueButton.addSelf(modePanel.getButtonSidePanel());
         continueButton.addActionListener(this);
@@ -110,6 +110,14 @@ public class GameMain extends JFrame implements ActionListener {
         main.setSize(1200, 600);
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setVisible(true);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("gameOver".equals(evt.getPropertyName())) {
+            boolean isWinner = (boolean) evt.getNewValue();
+            new GameOverDialog(this, isWinner);
+        }
     }
 
     @Override

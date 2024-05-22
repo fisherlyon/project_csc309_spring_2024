@@ -1,8 +1,6 @@
 package project_csc309_spring_2024;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TutorTest {
