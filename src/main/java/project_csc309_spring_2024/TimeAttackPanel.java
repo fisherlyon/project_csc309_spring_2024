@@ -17,13 +17,6 @@ import java.beans.PropertyChangeEvent;
 public class TimeAttackPanel extends JPanel implements ActionListener {
 
     public TimeAttackPanel() {
-        setLayout(new GridLayout(1, 1));
-        MathPanel mp = new MathPanel();
-        add(mp);
-        GameController controller = new GameController(null, null);
-        mp.addMouseListener(controller);
-        mp.addMouseMotionListener(controller);
-        GameData.getInstance().addPropertyChangeListener(mp);
     }
     
     @Override
@@ -39,5 +32,4 @@ public class TimeAttackPanel extends JPanel implements ActionListener {
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
 }
