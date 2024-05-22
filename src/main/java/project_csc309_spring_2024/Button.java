@@ -19,7 +19,10 @@ public class Button extends JButton {
     private Color defaultColor;
     private Color pressedColor;
 
+    private Font customFont;
+
     public Button(String label, int x, int y, int w, int h) {
+        this.customFont = GameData.getInstance().getCustomFont();
         this.label = label;
         this.x = x - w / 2; // center
         this.y = y;
@@ -33,6 +36,7 @@ public class Button extends JButton {
     }
 
     public void setButtonColor(Color bc, Color fc) {
+        setFont(customFont.deriveFont(11f));
         setBackground(bc);
         setForeground(fc);
         this.defaultColor = bc;

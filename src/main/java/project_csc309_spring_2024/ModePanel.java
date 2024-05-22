@@ -43,6 +43,7 @@ public class ModePanel extends JPanel implements ActionListener {
 
         for (int i = 0; i < labels.length; i++) {
             Button button = new Button(labels[i], (PANEL_DIM/2), (i*60) + 150, BUTTON_WIDTH, BUTTON_HEIGHT);
+            button.setFont(customFont.deriveFont(12f));
             button.addSelf(buttonSide);
             button.setButtonColor(Color.red, Color.white);
             button.setPressedColor(Color.MAGENTA);

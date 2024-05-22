@@ -50,7 +50,7 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if ("sceneButtonPressed".equals(evt.getPropertyName())) {
             switch ((String) evt.getNewValue()) {
-                case "Moon": 
+                case "Moon":
                     setBackgroundImage("/moon.png");
                     break;
                 case "North Pole":
