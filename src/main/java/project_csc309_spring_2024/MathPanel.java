@@ -19,7 +19,15 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
     private Button pressedButton = null;
     boolean buttonPressed = false;
 
+    private Font customFont;
+    private AudioPlayer audioPlayer;
+    private boolean audioPlayed;  // Add a flag to track audio playback
+    private Block previousSelectedBlock = null;  // Track the previously selected block
+
     public MathPanel() {
+        this.customFont = GameData.getInstance().getCustomFont();
+        this.audioPlayer = GameData.getInstance().getAudioPlayer();
+        this.audioPlayed = false;  // Initialize the flag
         setLayout(null);
         add(GameData.getInstance().getTutor());
         String[] ops = { "+", "-", "*", "/" };
@@ -40,7 +48,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         GameData.getInstance().getTrashBin().paintComponent(g);
         
         int targetAnswer = GameData.getInstance().getLevel().getTarget();
-        g.setFont(new Font("Ariel", Font.PLAIN, 50));
+        g.setFont(customFont.deriveFont(25f)); // Use custom font here
         g.drawString(Integer.toString(targetAnswer), 25, 50);
 
         for (Block block : GameData.getInstance().getLockedBlocks()) {
@@ -55,14 +63,23 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         }
 
         Block selectedBlock = GameData.getInstance().getSelectedBlock();
+        if (selectedBlock != null && selectedBlock != previousSelectedBlock) {
+            audioPlayer.play("select");
+            audioPlayed = true;  // Set the flag to true after playing the audio
+        } else if (selectedBlock == null && previousSelectedBlock != null) {
+            audioPlayer.play("drop");
+        }
         if (selectedBlock != null) {
             selectedBlock.draw(g);
         }
 
+        previousSelectedBlock = selectedBlock;  // Update the previously selected block
+
+
         g.setColor(Color.black);
-        g.setFont(new Font("Impact", 15, 15));
+        g.setFont(customFont.deriveFont(12f)); // Use custom font here
         if (!buttonPressed) {
-            g.drawString("Press buttons above to choose between different operations.", 80, 85);
+            g.drawString("Press buttons above to choose between different operations.", 20, 85);
         }
 
         if (GameData.getInstance().getAnswerBox().getAnswerBlock() == null) {
@@ -89,6 +106,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
             pressedButton = button;
 
             GameData.getInstance().setOperationString(button.getLabel());
+            audioPlayer.play("select");
         }
     }
 }

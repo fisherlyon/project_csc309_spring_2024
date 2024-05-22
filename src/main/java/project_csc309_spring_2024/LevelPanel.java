@@ -15,7 +15,10 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
 
     private Image backgroundImage = null;
 
+    private Font customFont;
+
     public LevelPanel() {
+        this.customFont = GameData.getInstance().getCustomFont();
         setBackground(Color.black);
         GameData.getInstance().addPropertyChangeListener(this);
     }
@@ -36,7 +39,7 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         } else {
-            g.setFont(new Font("Impact", 20, 20));
+            g.setFont(customFont.deriveFont(15f));  // use custom font here
             g.setColor(Color.white);
             g.drawString("Press buttons on the world map to display scene preview.", 60, 300);
         }

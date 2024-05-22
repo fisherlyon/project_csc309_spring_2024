@@ -20,15 +20,27 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
     DuelPanel duelPanel;
     ModePanel modePanel;
 
-    Font customFont;
-
     String host = "unix4.csc.calpoly.edu";
     int port = 3091;
     Client client = new Client(host, port);
+
+    Font customFont;
+    AudioPlayer audioPlayer;
+
+
     public GameMain() {
         GameData.getInstance().addPropertyChangeListener(this);
         GameData data = GameData.getInstance();
-        loadCustomFont();
+
+
+
+        audioPlayer = new AudioPlayer();
+        customFont = FontLoader.loadCustomFont("/fonts/Minecraftia-Regular.ttf", 12f);
+        SoundLoader.loadSounds(audioPlayer);
+
+        GameData.getInstance().setCustomFont(customFont);
+        GameData.getInstance().setAudioPlayer(audioPlayer);
+
 
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
@@ -44,6 +56,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         modePanel = new ModePanel();
         Button continueButton = new Button("CONTINUE", 300, 390, 150, 40);
         continueButton.setButtonColor(Color.orange, Color.white);
+        continueButton.setFont(customFont.deriveFont(12f));
         continueButton.addSelf(modePanel.getButtonSidePanel());
         continueButton.addActionListener(this);
 
@@ -87,22 +100,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         GameData.getInstance().addPropertyChangeListener(mathPanel);
     }
 
-    private void loadCustomFont() {
-        try {
-            InputStream is = getClass().getResourceAsStream("/fonts/Minecraftia-Regular.ttf");
-            if (is == null) {
-                System.out.println("Font file not found");
-                return;
-            }
-
-            customFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(12f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(customFont);
-            System.out.println("Font loaded successfully");
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String[] args) {
         GameMain main = new GameMain();
@@ -130,9 +127,11 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
             switch (label) {
                 case "PRESS TO START":
+                    audioPlayer.play("select");
                     getContentPane().add(modePanel);
                     break;
                 case "CONTINUE":
+                    audioPlayer.play("select");
                     getContentPane().add(levelScreen);
                     break;
                 case "SELECT SCENE":
@@ -146,6 +145,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                             }
                         }
                     }
+                    audioPlayer.play("select");
                     duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
                     duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
                     getContentPane().add(playScreen);

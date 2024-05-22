@@ -13,16 +13,20 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
   private String locKey = null;
   private PropertyReader pr = new PropertyReader("weather.properties");
 
-  public WeatherPanel() {
+    private Font customFont;
+
+
+    public WeatherPanel() {
     setBackground(Color.black);
     GameData.getInstance().addPropertyChangeListener(this);
   }
 
   @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+      this.customFont = GameData.getInstance().getCustomFont();
+      super.paintComponent(g);
         if (locKey == null) {
-            g.setFont(new Font("Impact", 20, 20));
+            g.setFont(customFont.deriveFont(16f));  // use custom font here
             g.setColor(Color.white);
             g.drawString("Press buttons on the world map to display scene preview.", 0, 30);
         }
@@ -35,12 +39,12 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
         if (locKey != null) {
             double value = getTemperature();
             JLabel label = new JLabel(loc + ": " + value + "°F");
-            label.setFont(new Font("Arial", 1, 50));
+            label.setFont(customFont.deriveFont(50f));  // use custom font here
             label.setForeground(Color.RED);
             add(label);
         } else {
             JLabel waitingLabel = new JLabel("Waiting for location...");
-            waitingLabel.setFont(new Font("Arial", 1, 20));
+            waitingLabel.setFont(customFont.deriveFont(20f));  // use custom font here
             waitingLabel.setForeground(Color.BLACK);
             add(waitingLabel);
         }

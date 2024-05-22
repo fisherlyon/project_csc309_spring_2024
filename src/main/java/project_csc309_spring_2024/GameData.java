@@ -1,6 +1,7 @@
 package project_csc309_spring_2024;
 
 
+import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ public class GameData extends PropertyChangeSupport {
     private Level level;
     private String operationString;
     private String gameMode;
+
+    private Font customFont;
+    private AudioPlayer audioPlayer;
 
     private GameData() {
         super(new Object());
@@ -91,4 +95,11 @@ public class GameData extends PropertyChangeSupport {
     public void setOperationString(String str) { operationString = str; }
     public String getGameMode() { return gameMode; }
     public void setGameMode(String mode) { gameMode = mode; }
+
+    public Font getCustomFont() { return customFont; }
+    public void setCustomFont(Font font) { this.customFont = font; }
+
+    public AudioPlayer getAudioPlayer() { return audioPlayer; }
+    public void setAudioPlayer(AudioPlayer player) { this.audioPlayer = player; }
+
 }
