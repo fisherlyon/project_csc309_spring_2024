@@ -19,7 +19,10 @@ public class ModePanel extends JPanel implements ActionListener {
     private int BUTTON_WIDTH = 150;
     private int BUTTON_HEIGHT = 40;
 
+    private Font customFont;
+
     public ModePanel() {
+        this.customFont = GameData.getInstance().getCustomFont();
         setLayout(null);
         initButtonSide();
         initDescriptionSide();
@@ -34,7 +37,7 @@ public class ModePanel extends JPanel implements ActionListener {
 
         JLabel label = new JLabel("SELECT GAME MODE");
         label.setForeground(Color.white);
-        label.setFont(new Font("Impact", Font.PLAIN, 40));
+        label.setFont(customFont.deriveFont(25f)); // Use custom font here
         label.setBounds(150, 80, 350, 40);
         buttonSide.add(label);
 
@@ -52,7 +55,8 @@ public class ModePanel extends JPanel implements ActionListener {
         descriptionSide.setLayout(new BorderLayout());
         descriptionSide.setBackground(Color.darkGray);
         descriptionLabel.setForeground(Color.white);
-        descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        descriptionLabel.setFont(customFont.deriveFont(24f)); // Use custom font here
+
         descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
         descriptionSide.add(descriptionLabel, BorderLayout.CENTER);
