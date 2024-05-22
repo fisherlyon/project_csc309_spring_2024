@@ -5,54 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project_csc309_spring_2024.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project_csc309_spring_2024.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/block9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bobby.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/brazil.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cpuhealth.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/csc309.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/earth.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gramps.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/math-madness2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/moon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/northpole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/DuelPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/DuelPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/MergeMathTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/MergeMathTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/TutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/TutorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/AnswerBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/AudioPlayer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Block.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Button.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/CpuHealth.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/CpuPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Expression.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/FontLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$4.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameData.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GenericButton.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Level.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MapLevel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/LevelPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MapPanel.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MathPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/OpButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MergeMath.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/PlayerHealth.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/ProblemGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/SoundLoader.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/StartPanel.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/TrashBin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Tutor$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Tutor.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/UserPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/stage1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/trash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/userhealth.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/project_csc309_spring_2024/OpButtonTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/WeatherPanel.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +111,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/leori/Downloads/csc309/sprint2",
+    "last_opened_file_path": "C:/Users/leori/Downloads/copyofwhatineed/project_csc309_spring_2024",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -137,7 +124,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.GameMain">
+  <component name="RunManager" selected="Application.project_csc309_spring_2024.GameMain">
     <configuration name="GameMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="MAIN_CLASS_NAME" value="GameMain" />
@@ -176,8 +163,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GameMain" />
         <item itemvalue="Application.project_csc309_spring_2024.GameMain" />
+        <item itemvalue="Application.GameMain" />
       </list>
     </recent_temporary>
   </component>
@@ -203,6 +190,11 @@
       <workItem from="1714281953817" duration="11013000" />
       <workItem from="1714523857129" duration="5271000" />
       <workItem from="1715023337894" duration="677000" />
+      <workItem from="1716225276146" duration="6253000" />
+      <workItem from="1716246654028" duration="1562000" />
+      <workItem from="1716354360433" duration="21000" />
+      <workItem from="1716405548635" duration="183000" />
+      <workItem from="1716405741870" duration="3692000" />
     </task>
     <servers />
   </component>

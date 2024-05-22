@@ -24,8 +24,22 @@ public class DuelPanel extends JPanel implements DuelListener {
     private int timeRemaining = 5;
     private Duel duel;
 
+    private Font customFont;
+
+    private PlayerHealth phealth;
+    private CpuHealth chealth;
+
+    private UserPlayer player;
+    private CpuPlayer cpu;
+
+
     public DuelPanel(Duel duel){
+        player  = new UserPlayer(75, 200, "player 1", 100);
+        cpu  = new CpuPlayer(325, 200, 100);
+        phealth = new PlayerHealth(15, 25);
+        chealth = new CpuHealth(365, 25);
         this.duel = duel;
+        this.customFont = GameData.getInstance().getCustomFont();
         duel.addDuelListener(this);
         userPlayer = duel.getPlayer1();
         enemyPlayer = duel.getPlayer2();
@@ -80,6 +94,12 @@ public class DuelPanel extends JPanel implements DuelListener {
         /*                  Paint players in own class paintComponent                 */
         /* -------------------------------------------------------------------------- */
 
+        g.drawImage(player.getPlayerOne(), 75, 200, this);
+        g.drawImage(cpu.getPlayerTwo(), 325, 200, this);
+        g.drawImage(phealth.getPlayerhealthbar(), 15, 25, this);
+        g.drawImage(chealth.getCpuhealthbar(), 365, 25, this);
+
+
         if (playerHealth != null) {
             g.drawImage(playerHealth.getPlayerhealthbar(), playerHealth.getUserHealthBarX(), playerHealth.getUserHealthBarY(), this);
         }
@@ -103,9 +123,9 @@ public class DuelPanel extends JPanel implements DuelListener {
         g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight); // Player Health Bar
         g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight); // CPU Health Bar
 
-        g.setFont(new Font("Minecraftia-Regular", Font.PLAIN, 18));
+        g.setFont(customFont.deriveFont(16f));
         g.setColor(Color.red);
-        g.drawString("CPU ATTACK IN: " + timeRemaining, 10, 20);
+        g.drawString("CPU ATTACK IN: " + timeRemaining, 10, 30);
 
         prevUserHealth = userHealth;
         prevCpuHealth = cpuHealth;
@@ -115,7 +135,7 @@ public class DuelPanel extends JPanel implements DuelListener {
     }
 
     /* -------------------------------------------------------------------------- */
-    /*                     Handle events and  repaint in these methods below                       */
+    /*           Handle events and  repaint in these methods below                */
     /* -------------------------------------------------------------------------- */
 
     @Override
