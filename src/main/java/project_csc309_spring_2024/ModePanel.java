@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 
 public class ModePanel extends JPanel implements ActionListener {
-
     private JPanel buttonSide = new JPanel();
     private JPanel descriptionSide = new JPanel();
     private JLabel descriptionLabel = new JLabel();
