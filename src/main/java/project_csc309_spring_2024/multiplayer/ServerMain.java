@@ -5,7 +5,7 @@ package project_csc309_spring_2024.multiplayer;
  */
 public class ServerMain {
     public static void main(String[] args) {
-        int PORT = 5555; 
+        int PORT = 3091; 
         Server server = new Server(PORT);
  
         System.out.println("Starting server...");

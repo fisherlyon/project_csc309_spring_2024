@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
 
+import javax.print.DocFlavor.SERVICE_FORMATTED;
+
 import project_csc309_spring_2024.multiplayer.*;
 
 /**
@@ -46,7 +48,7 @@ public class Client extends Thread implements DuelListener {
                 level);
 
         isReady = true;
-        while (socket.isConnected() && isReady) {
+        while (isReady && !socket.isClosed()) {
             try {
                 if (reader.available() > 0) {
                     ServerEvent serverResponse = new ServerEvent(reader.readUTF());
@@ -75,7 +77,7 @@ public class Client extends Thread implements DuelListener {
             reader = new DataInputStream(socket.getInputStream());
 
             System.out.println("Waiting for another player to join...");
-            while (socket.isConnected()) {
+            while (!socket.isClosed()) {
                 if (reader.available() > 0) {
                     String serverResponse = reader.readUTF();
                     ServerEvent event = new ServerEvent(serverResponse);
@@ -95,7 +97,7 @@ public class Client extends Thread implements DuelListener {
 
     @Override
     public void onPlayerAttack(Player attacker, Player attacked) {
-        if (socket.isConnected()) {
+        if (!socket.isClosed()) {
             try {
                 // Network Duel so we can safely cast to UserPlayer
                 if (((UserPlayer) attacker).isLocalPlayer()) {
@@ -114,13 +116,13 @@ public class Client extends Thread implements DuelListener {
 
     @Override
     public void onDuelEnd(Player winner, Player loser) {
+        isReady = false;
         try {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Failed to close socket."); 
         }
-        isReady = true;
-        //System.exit(0);
     }
 
     public boolean isReady() {

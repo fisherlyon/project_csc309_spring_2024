@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.Stack;
 
 /**
- * Handles the network communication 
+ * Handles the network communication
  * between two players for a duel.
  * 
  * @author Eric Berber
@@ -42,34 +42,37 @@ public class NetworkDriver implements ServerListener, Runnable {
     @Override
     public void run() {
         try {
-            DataInputStream client1DataInputStream = new DataInputStream(player1.getInputStream());
-            DataInputStream client2DataInputStream = new DataInputStream(player2.getInputStream());
+            DataInputStream player1InputStream = new DataInputStream(player1.getInputStream());
+            DataInputStream player2InputStream = new DataInputStream(player2.getInputStream());
 
-            DataOutputStream client1PrintWriter = new DataOutputStream(player1.getOutputStream());
-            DataOutputStream client2PrintWriter = new DataOutputStream(player2.getOutputStream());
+            DataOutputStream player1OutputStream = new DataOutputStream(player1.getOutputStream());
+            DataOutputStream player2OutputStream = new DataOutputStream(player2.getOutputStream());
 
             ServerEvent duelIntiateEvent = new ServerEvent(ServerEvent.DUEL_INTIATED, 0);
 
-            //Notify clients;
-            client1PrintWriter.writeUTF(duelIntiateEvent.toString());
-            client2PrintWriter.writeUTF(duelIntiateEvent.toString());
+            // Notify clients;
+            player1OutputStream.writeUTF(duelIntiateEvent.toString());
+            player2OutputStream.writeUTF(duelIntiateEvent.toString());
 
-            while (player1.isConnected() && player2.isConnected()) {
-
-                if (client1DataInputStream.available() > 0) {
-                    ServerEvent event = new ServerEvent(client1DataInputStream.readUTF());
-
-                    client2PrintWriter.writeUTF(event.toString());
-                }
-                if (client2DataInputStream.available() > 0) {
-                    ServerEvent event = new ServerEvent(client2DataInputStream.readUTF());
-
-                    client1PrintWriter.writeUTF(event.toString());
-                }
+            while (!player1.isClosed() && !player2.isClosed()) {
+                handlePlayerInput(player1InputStream, player1OutputStream, player2OutputStream);
+                handlePlayerInput(player2InputStream, player2OutputStream, player1OutputStream);
             }
+
+            //Clean up sockets
+            server.closeConnection(player1);
+            server.closeConnection(player2);
         } catch (IOException e) {
             e.getStackTrace();
             System.out.println("Failed to connect with clients.");
+        }
+    }
+
+    private void handlePlayerInput(DataInputStream playerInputStream, DataOutputStream playerOutputStream,
+            DataOutputStream opponentOutputStream) throws IOException {
+        if (playerInputStream.available() > 0) {
+            ServerEvent event = new ServerEvent(playerInputStream.readUTF());
+            opponentOutputStream.writeUTF(event.toString());
         }
     }
 

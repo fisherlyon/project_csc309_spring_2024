@@ -1,6 +1,5 @@
 package project_csc309_spring_2024;
 
-
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.Timer;
@@ -45,7 +44,7 @@ public class DuelPanel extends JPanel implements DuelListener {
         enemyPlayer = duel.getPlayer2();
         add(userPlayer);
         add(enemyPlayer);
-        
+
         backgroundImage = new ImageIcon(getClass().getResource("/stage1.png")).getImage();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null)));
@@ -150,7 +149,8 @@ public class DuelPanel extends JPanel implements DuelListener {
             if (((UserPlayer) winner).isLocalPlayer()) {
                 GameData.getInstance().setGameOver(true);
             }
-        } else if (loser instanceof UserPlayer) {
+        }
+        if (loser instanceof UserPlayer) {
             if (((UserPlayer) loser).isLocalPlayer()) {
                 GameData.getInstance().setGameOver(false);
             }

@@ -10,6 +10,7 @@ public class ServerEvent {
     public static int ENEMY_ATTACK = 2;
     public static int TARGET_CHANGE = 3;
     public static int RECALCULATE = 4;
+    public static int TERMINATE = 5;
     private int type;
     private int id;
     private String payload;

@@ -13,11 +13,13 @@ public class Server {
 
     final private int PORT;
     Stack<Socket> pool;
+    ArrayList<Socket> connections;
     ArrayList<ServerListener> serverLisenters;
 
     public Server(int PORT) {
         this.PORT = PORT;
         this.serverLisenters = new ArrayList<>();
+        this.connections = new ArrayList<>();
         this.pool = new Stack<>();
     }
 
@@ -30,6 +32,7 @@ public class Server {
                 clientSocket = serverSocket.accept();
                 System.out.println("Got Connection...");
                 pool.add(clientSocket);
+                connections.add(clientSocket);
 
                 ServerEvent clientConnectionEvent = new ServerEvent(ServerEvent.CLIENT_CONNECTED, 1234);
                 notifyAllLisenters(clientConnectionEvent);
@@ -38,6 +41,16 @@ public class Server {
             System.out.println("Failed to start server: " + e.getMessage());
         }
 
+    }
+
+    public void closeConnection(Socket socket){
+        connections.remove(socket);
+        try {
+            socket.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
     }
 
     public void notifyAllLisenters(ServerEvent event) {
