@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 
 public class ModePanel extends JPanel implements ActionListener {
-
     private JPanel buttonSide = new JPanel();
     private JPanel descriptionSide = new JPanel();
     private JLabel descriptionLabel = new JLabel();
@@ -21,7 +20,11 @@ public class ModePanel extends JPanel implements ActionListener {
 
     private Font customFont;
 
+    private AudioPlayer audioPlayer;
+
+
     public ModePanel() {
+        this.audioPlayer = GameData.getInstance().getAudioPlayer();
         this.customFont = GameData.getInstance().getCustomFont();
         setLayout(null);
         initButtonSide();
@@ -66,6 +69,7 @@ public class ModePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof Button) {
+            audioPlayer.play("select");
             buttonPressed = true;
             Button button = (Button) e.getSource();
 

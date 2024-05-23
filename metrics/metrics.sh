@@ -1,7 +1,7 @@
 #!/bin/bash
 
-dir1="./src/main/java/project_csc309_spring_2024"
-dir2="./src/main/java/project_csc309_spring_2024/multiplayer"
+dir1="../src/main/java/project_csc309_spring_2024"
+dir2="../src/main/java/project_csc309_spring_2024/multiplayer"
 
 for file in "$dir1"/*.java; 
 do

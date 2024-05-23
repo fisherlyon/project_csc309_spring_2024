@@ -31,6 +31,10 @@ public class DuelPanel extends JPanel implements DuelListener {
     private UserPlayer player;
     private CpuPlayer cpu;
 
+    private Image bobbyhit = new ImageIcon(getClass().getResource("/bobbydamaged.png")).getImage();
+    private Image bobbyattack = new ImageIcon(getClass().getResource("/bobbyattack.png")).getImage();
+    private Image grampshit = new ImageIcon(getClass().getResource("/grampsdamaged.png")).getImage();
+    private Image grampsattack = new ImageIcon(getClass().getResource("/grampsattack.png")).getImage();
 
     public DuelPanel(Duel duel){
         player  = new UserPlayer(75, 200, "player 1", 100);
@@ -140,8 +144,63 @@ public class DuelPanel extends JPanel implements DuelListener {
     @Override
     public void onPlayerAttack(Player attacker, Player attacked) {
         System.out.println("Player attack");
-    }
+        if (attacker instanceof UserPlayer){
+            Image tempGramps = cpu.getPlayerTwo();
+            cpu.setPlayerTwo(grampsattack);
+            Timer timer2 = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cpu.setPlayerTwo(tempGramps);
+                }
+            });
 
+            timer2.setRepeats(false);
+            timer2.start();
+
+
+            Image temp = player.getPlayerOne();
+            player.setPlayerOne(bobbyhit);
+            Timer timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    player.setPlayerOne(temp);
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+        else{
+            Image tempBobby = player.getPlayerOne();
+            player.setPlayerOne(bobbyattack);
+            Timer timer2 = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    player.setPlayerOne(tempBobby);
+                }
+            });
+
+            timer2.setRepeats(false);
+            timer2.start();
+
+
+
+            Image tempGramps = cpu.getPlayerTwo();
+            cpu.setPlayerTwo(grampshit);
+            Timer timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cpu.setPlayerTwo(tempGramps);
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+
+
+        }
+
+
+
+    }
     @Override
     public void onDuelEnd(Player winner, Player loser) {
         System.out.println("Duel End");
