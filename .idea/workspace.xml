@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

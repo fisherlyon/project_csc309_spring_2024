@@ -21,6 +21,8 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     LevelPanel levelPanel;
     DuelPanel duelPanel;
+
+    DuelPanel duelPanel1;
     ModePanel modePanel;
     TimeScorePanel timeScorePanel;
 
@@ -89,20 +91,18 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         Level level = new Level(computerDuel, 0);
         data.setLevel(level);
         duelPanel = new DuelPanel(data.getLevel().getDuel());
+        duelPanel1 = new DuelPanel(data.getLevel().getDuel());
 
         // ---- CREATE : Tutor Mode Screen
         tutorModeScreen.setLayout(new GridLayout(1, 2));
         tutorModeScreen.add(duelPanel);
-
         GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
         tutorModeScreen.add(mathPanel);
         add(startScreen);
-
         GameController controller = new GameController(player, cpu);
         mathPanel.addMouseListener(controller);
         mathPanel.addMouseMotionListener(controller);
-
         GameData.getInstance().addPropertyChangeListener(mathPanel);
 
         // ---- CREATE : Time Attack Screen
@@ -122,7 +122,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
         // ---- CREATE : Cpu Pvp Screen
         cpuPvpScreen.setLayout(new GridLayout(1, 2));
-        cpuPvpScreen.add(duelPanel);
+        cpuPvpScreen.add(duelPanel1);
         GameData.getInstance().recalculate();
         MathPanel mathPanel1 = new MathPanel();
         cpuPvpScreen.add(mathPanel1);

@@ -14,10 +14,7 @@ public class GameController implements MouseListener, MouseMotionListener {
     GameData data = GameData.getInstance();
     private UserPlayer userPlayer;
     private CpuPlayer cpuPlayer;
-    private Image bobbyhit = new ImageIcon(getClass().getResource("/bobbydamaged.png")).getImage();
-    private Image bobbyattack = new ImageIcon(getClass().getResource("/bobbyattack.png")).getImage();
-    private Image grampshit = new ImageIcon(getClass().getResource("/grampsdamaged.png")).getImage();
-    private Image grampsattack = new ImageIcon(getClass().getResource("/grampsattack.png")).getImage();
+
     private MergeMath mm = new MergeMath();
 
     public GameController(UserPlayer userPlayer, CpuPlayer cpuPlayer) {
@@ -112,30 +109,6 @@ public class GameController implements MouseListener, MouseMotionListener {
 
                     answerBox.setBoxColor(new Color(255, 105, 97));
 
-                    Image tempGramps = cpuPlayer.getPlayerTwo();
-                    cpuPlayer.setPlayerTwo(grampsattack);
-                    Timer timer2 = new Timer(1000, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            cpuPlayer.setPlayerTwo(tempGramps);
-                        }
-                    });
-
-                    timer2.setRepeats(false);
-                    timer2.start();
-
-
-                    Image temp = userPlayer.getPlayerOne();
-                    userPlayer.setPlayerOne(bobbyhit);
-                    Timer timer = new Timer(2000, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            userPlayer.setPlayerOne(temp);
-                        }
-                    });
-                    timer.setRepeats(false);
-                    timer.start();
-
                 }
                 else  {
                     if (data.getGameMode().equals("Time Attack"))
@@ -151,33 +124,6 @@ public class GameController implements MouseListener, MouseMotionListener {
                     answerBox.setAnswerBlock(null);
                     answerBox.setFilled(false);
                     // need to get minus 10 here for cpu
-
-                    Image tempBobby = userPlayer.getPlayerOne();
-                    userPlayer.setPlayerOne(bobbyattack);
-                    Timer timer2 = new Timer(1000, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            userPlayer.setPlayerOne(tempBobby);
-                        }
-                    });
-
-                    timer2.setRepeats(false);
-                    timer2.start();
-
-
-
-                    Image tempGramps = cpuPlayer.getPlayerTwo();
-                    cpuPlayer.setPlayerTwo(grampshit);
-                    Timer timer = new Timer(2000, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            cpuPlayer.setPlayerTwo(tempGramps);
-                        }
-                    });
-                    timer.setRepeats(false);
-                    timer.start();
-
-
 
                 }
             }
