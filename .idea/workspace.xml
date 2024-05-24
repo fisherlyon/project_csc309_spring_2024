@@ -6,40 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/DuelPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/DuelPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/MergeMathTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/MergeMathTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/TutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project_csc309_spring_2024/TutorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/AnswerBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/AudioPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Block.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Button.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/CpuHealth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/CpuPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Expression.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/FontLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/GameMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Level.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/LevelPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MapPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MathPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/MergeMath.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/PlayerHealth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/ProblemGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/SoundLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/StartPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/TrashBin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Tutor$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/Tutor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/UserPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/WeatherPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +74,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.GameMain (1).executor": "Run",
     "Application.GameMain.executor": "Run",
+    "Application.project_csc309_spring_2024.GameMain.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
