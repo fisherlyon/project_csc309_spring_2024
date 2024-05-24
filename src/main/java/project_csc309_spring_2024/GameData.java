@@ -42,10 +42,6 @@ public class GameData extends PropertyChangeSupport {
         super(new Object());
         lockedBlocks = new ArrayList<Block>();
         unlockedBlocks = new ArrayList<Block>();
-        answerBox = new AnswerBox(300, 520);
-        trashBin = new TrashBin(520, 510);
-        tutor = new Tutor(50, 50);
-
         this.recalculate();
     }
 
@@ -62,6 +58,10 @@ public class GameData extends PropertyChangeSupport {
         for (int i = 0; i < NUM_LOCKED_BLOCKS; i++) {
             lockedBlocks.add(new Block(550, (i * 50) + 30, 40, i));
         }
+        answerBox = new AnswerBox(300, 520);
+        answerBox.setBoxColor(Color.white);
+        trashBin = new TrashBin(520, 510);
+        tutor = new Tutor(50, 50);
     }
 
     public void removeUnlockedBlock(Block block){

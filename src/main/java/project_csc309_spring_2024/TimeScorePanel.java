@@ -53,13 +53,15 @@ public class TimeScorePanel extends JPanel implements ActionListener, PropertyCh
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        if (timeLeft > 0) {
+        if (timeLeft > 1) {
             timeLeft--;
             timerLabel.setText("Time Remaining: " + timeLeft);
         } else {
+            timeLeft = 0;
+            timerLabel.setText("Time Remaining: " + timeLeft);
             timer.stop();
             GameData.getInstance().setTimeAttackScore(score);
-            GameData.getInstance().setGameOver(false);
+            GameData.getInstance().setGameOver(true);
         }
     }
 
@@ -68,7 +70,7 @@ public class TimeScorePanel extends JPanel implements ActionListener, PropertyCh
         if ("correctAnswer".equals(evt.getPropertyName())) {
             boolean correctAnswer = (boolean) evt.getNewValue();
             if (correctAnswer) {
-                startTimer();
+                timeLeft = 11;
                 score++;
                 scoreLabel.setText("Score: " + score);
             } else {

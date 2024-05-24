@@ -43,10 +43,11 @@ public class GameOverDialog {
     private void restartGame() {
         parentFrame.dispose();
         GameMain main = new GameMain();
+        GameData.getInstance().recalculate();
         GameData.getInstance().setMainFrame(main);
         main.setTitle("Math Madness");
         main.setSize(1200, 600);
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setVisible(true);
-    }
+    }   
 }

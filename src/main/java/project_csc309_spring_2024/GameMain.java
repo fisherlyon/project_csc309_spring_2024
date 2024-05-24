@@ -112,9 +112,10 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         mathPanelTT.addMouseMotionListener(controller);
         GameData.getInstance().addPropertyChangeListener(mathPanelTT);
         timeScorePanel = new TimeScorePanel();
-        leftPanel.add(timeScorePanel);
+        //leftPanel.add(timeScorePanel);
         /// add other thing
-        timeAttackScreen.add(leftPanel);
+        //timeAttackScreen.add(leftPanel);
+        timeAttackScreen.add(timeScorePanel);
         timeAttackScreen.add(mathPanelTT);
 
     }
@@ -151,7 +152,12 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                     break;
                 case "CONTINUE":
                     audioPlayer.play("select");
-                    getContentPane().add(levelScreen);
+                    if (gameMode.equals("Time Attack")) {
+                        getContentPane().add(timeAttackScreen);
+                        timeScorePanel.startTimer();
+                    } else {
+                        getContentPane().add(levelScreen);
+                    }
                     break;
                 case "SELECT SCENE":
                     if (gameMode.equals("Join PvP Game")) {

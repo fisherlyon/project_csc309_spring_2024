@@ -1,0 +1,59 @@
+public void recalculate() {
+        lockedBlocks.clear();
+        unlockedBlocks.clear();
+        for (int i = 0; i < NUM_LOCKED_BLOCKS; i++) {
+            lockedBlocks.add(new Block(550, (i * 50) + 30, 40, i));
+        }
+        answerBox = new AnswerBox(300, 520);
+        answerBox.setBoxColor(Color.white);
+        trashBin = new TrashBin(520, 510);
+        tutor = new Tutor(50, 50);
+}
+
+private GameData() {
+        super(new Object());
+        lockedBlocks = new ArrayList<Block>();
+        unlockedBlocks = new ArrayList<Block>();
+        this.recalculate();
+}
+
+private void restartGame() {
+        parentFrame.dispose();
+        GameMain main = new GameMain();
+        GameData.getInstance().recalculate();
+        GameData.getInstance().setMainFrame(main);
+        main.setTitle("Math Madness");
+        main.setSize(1200, 600);
+        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main.setVisible(true);
+}
+
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        if (timeLeft > 1) {
+            timeLeft--;
+            timerLabel.setText("Time Remaining: " + timeLeft);
+        } else {
+            timeLeft = 0;
+            timerLabel.setText("Time Remaining: " + timeLeft);
+            timer.stop();
+            GameData.getInstance().setTimeAttackScore(score);
+            GameData.getInstance().setGameOver(true);
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("correctAnswer".equals(evt.getPropertyName())) {
+            boolean correctAnswer = (boolean) evt.getNewValue();
+            if (correctAnswer) {
+                timeLeft = 11;
+                score++;
+                scoreLabel.setText("Score: " + score);
+            } else {
+                timeLeft-=2;
+                timerLabel.setText("Time Remaining: " + timeLeft);
+            }
+        }
+    }
+}
