@@ -37,8 +37,8 @@ public class Client extends Thread implements DuelListener {
 
         findNetworkPlayer();
 
-        userPlayer = new UserPlayer(0, 0, "Local Player", 100);
-        networkPlayer = new UserPlayer(0, 0, "Network Player", 100);
+        userPlayer = new UserPlayer(75, 200, "Local Player", 100);
+        networkPlayer = new UserPlayer(325, 200, "Network Player", 100);
         userPlayer.setLocalPlayer();
 
         Duel networkDuel = new Duel(userPlayer, networkPlayer);
