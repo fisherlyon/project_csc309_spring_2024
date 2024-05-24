@@ -34,12 +34,11 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
 
     public GameMain() {
+
+        GameData.getInstance().setMainFrame(this);
         GameData.getInstance().addPropertyChangeListener(this);
         GameData data = GameData.getInstance();
 //        GameData data1 = GameData.getInstance();
-
-
-
 
         audioPlayer = new AudioPlayer();
         customFont = FontLoader.loadCustomFont("/fonts/Minecraftia-Regular.ttf", 12f);
@@ -47,7 +46,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
         GameData.getInstance().setCustomFont(customFont);
         GameData.getInstance().setAudioPlayer(audioPlayer);
-
 
         // ---- CREATE : Start Screen
         startScreen.setLayout(new GridLayout(1, 1));
@@ -151,9 +149,9 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if ("gameOver".equals(evt.getPropertyName())) {
+        if ("gameOver".equals(evt.getPropertyName()) && GameData.getInstance().getMainFrame() == this) {
             boolean isWinner = (boolean) evt.getNewValue();
-            new GameOverDialog(this, isWinner);
+            new GameOverDialog(GameData.getInstance().getMainFrame(), isWinner);
         }
     }
 

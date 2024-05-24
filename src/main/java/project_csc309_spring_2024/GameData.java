@@ -6,6 +6,8 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 /**
  * Our singleton implementation
  * for storing data of all kinds.
@@ -15,6 +17,7 @@ import java.util.List;
 public class GameData extends PropertyChangeSupport {
     
     private static GameData instance;
+    private JFrame mainFrame = null;
 
     private List<Block> lockedBlocks;
     private List<Block> unlockedBlocks;
@@ -108,5 +111,8 @@ public class GameData extends PropertyChangeSupport {
 
     public AudioPlayer getAudioPlayer() { return audioPlayer; }
     public void setAudioPlayer(AudioPlayer player) { this.audioPlayer = player; }
+
+    public JFrame getMainFrame() { return mainFrame; }
+    public void setMainFrame(JFrame frame) { mainFrame = frame; }
 
 }

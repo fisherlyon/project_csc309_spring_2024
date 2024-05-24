@@ -7,21 +7,21 @@ import javax.swing.*;
  * the game is over and provides
  * escapability or replayability.
  * 
- * @authoer Fisher
+ * @author Fisher
  */
 public class GameOverDialog {
 
     private JFrame parentFrame;
-    
+
     public GameOverDialog(JFrame parentFrame, boolean isWinner) {
-        
+
         this.parentFrame = parentFrame;
-        
+
         String message;
 
         if (GameData.getInstance().getGameMode().equals("Time Attack")) {
-            message = "Congragts! Your score was " + 
-            Integer.toString(GameData.getInstance().getTimeAttackScore()) + 
+            message = "Congrats! Your score was " +
+            Integer.toString(GameData.getInstance().getTimeAttackScore()) +
             ". Play again?";
         } else {
             if (isWinner) {
@@ -32,7 +32,7 @@ public class GameOverDialog {
         }
 
         int response = JOptionPane.showConfirmDialog(parentFrame, message, "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
+
         if (response == JOptionPane.YES_OPTION) {
             restartGame();
         } else {
@@ -42,8 +42,8 @@ public class GameOverDialog {
 
     private void restartGame() {
         parentFrame.dispose();
-        GameData.getInstance().recalculate();
         GameMain main = new GameMain();
+        GameData.getInstance().setMainFrame(main);
         main.setTitle("Math Madness");
         main.setSize(1200, 600);
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
