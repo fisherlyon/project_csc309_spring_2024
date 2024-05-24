@@ -21,7 +21,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     LevelPanel levelPanel;
     DuelPanel duelPanel;
-
     DuelPanel duelPanel1;
     ModePanel modePanel;
     TimeScorePanel timeScorePanel;
@@ -37,6 +36,8 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
     public GameMain() {
         GameData.getInstance().addPropertyChangeListener(this);
         GameData data = GameData.getInstance();
+//        GameData data1 = GameData.getInstance();
+
 
 
 
@@ -91,18 +92,22 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         Level level = new Level(computerDuel, 0);
         data.setLevel(level);
         duelPanel = new DuelPanel(data.getLevel().getDuel());
-        duelPanel1 = new DuelPanel(data.getLevel().getDuel());
+
+//        duelPanel1 = new DuelPanel(data1.getLevel().getDuel());
 
         // ---- CREATE : Tutor Mode Screen
         tutorModeScreen.setLayout(new GridLayout(1, 2));
         tutorModeScreen.add(duelPanel);
+
         GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
         tutorModeScreen.add(mathPanel);
         add(startScreen);
+
         GameController controller = new GameController(player, cpu);
         mathPanel.addMouseListener(controller);
         mathPanel.addMouseMotionListener(controller);
+
         GameData.getInstance().addPropertyChangeListener(mathPanel);
 
         // ---- CREATE : Time Attack Screen
@@ -121,16 +126,16 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         timeAttackScreen.add(mathPanelTT);
 
         // ---- CREATE : Cpu Pvp Screen
-        cpuPvpScreen.setLayout(new GridLayout(1, 2));
-        cpuPvpScreen.add(duelPanel1);
-        GameData.getInstance().recalculate();
-        MathPanel mathPanel1 = new MathPanel();
-        cpuPvpScreen.add(mathPanel1);
-        add(startScreen);
-        GameController controller1 = new GameController(player, cpu);
-        mathPanel1.addMouseListener(controller1);
-        mathPanel1.addMouseMotionListener(controller1);
-        GameData.getInstance().addPropertyChangeListener(mathPanel1);
+//        cpuPvpScreen.setLayout(new GridLayout(1, 2));
+//        cpuPvpScreen.add(duelPanel1);
+//        GameData.getInstance().recalculate();
+//        MathPanel mathPanel1 = new MathPanel();
+//        cpuPvpScreen.add(mathPanel1);
+//        add(startScreen);
+//        GameController controller1 = new GameController(player, cpu);
+//        mathPanel1.addMouseListener(controller1);
+//        mathPanel1.addMouseMotionListener(controller1);
+//        GameData.getInstance().addPropertyChangeListener(mathPanel1);
 
 
     }
@@ -185,10 +190,12 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                         getContentPane().add(timeAttackScreen);
                         timeScorePanel.startTimer();
                     }
-                    else if (GameData.getInstance().getGameMode().equals("CPU PvP")){
-                        getContentPane().add(cpuPvpScreen);
-//                        timeScorePanel.startTimer();
-                    }
+//                    else if (GameData.getInstance().getGameMode().equals("CPU PvP")){
+//                        getContentPane().add(cpuPvpScreen);
+//                        duelPanel1.setDuel(GameData.getInstance().getLevel().getDuel());
+//                        duelPanel1.setBackgroundImage(levelPanel.getBackgroundImage());
+////                        timeScorePanel.startTimer();
+//                    }
                     audioPlayer.play("select");
                     duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
                     duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
