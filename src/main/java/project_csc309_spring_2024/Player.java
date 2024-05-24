@@ -1,5 +1,7 @@
 package project_csc309_spring_2024;
 
+import java.awt.Image;
+
 import javax.swing.JComponent;
 
 /**
@@ -26,4 +28,8 @@ public abstract class Player extends JComponent {
 
     public int getplayerX() { return x; }
     public int getplayerY() { return y; }
+
+    public abstract Image getCurrentImage();
+    public abstract void attackAnimation();
+    public abstract void damageAnimation();
 }

@@ -14,14 +14,12 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     JPanel startScreen = new JPanel();
     JPanel levelScreen = new JPanel();
-    JPanel tutorModeScreen = new JPanel();
     JPanel timeAttackScreen = new JPanel();
+    JPanel duelScreen = new JPanel();
 
-    JPanel cpuPvpScreen = new JPanel();
 
     LevelPanel levelPanel;
     DuelPanel duelPanel;
-    DuelPanel duelPanel1;
     ModePanel modePanel;
     TimeScorePanel timeScorePanel;
 
@@ -38,7 +36,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         GameData.getInstance().setMainFrame(this);
         GameData.getInstance().addPropertyChangeListener(this);
         GameData data = GameData.getInstance();
-//        GameData data1 = GameData.getInstance();
 
         audioPlayer = new AudioPlayer();
         customFont = FontLoader.loadCustomFont("/fonts/Minecraftia-Regular.ttf", 12f);
@@ -91,15 +88,8 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         data.setLevel(level);
         duelPanel = new DuelPanel(data.getLevel().getDuel());
 
-//        duelPanel1 = new DuelPanel(data1.getLevel().getDuel());
-
-        // ---- CREATE : Tutor Mode Screen
-        tutorModeScreen.setLayout(new GridLayout(1, 2));
-        tutorModeScreen.add(duelPanel);
-
         GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
-        tutorModeScreen.add(mathPanel);
         add(startScreen);
 
         GameController controller = new GameController(player, cpu);
@@ -107,6 +97,10 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         mathPanel.addMouseMotionListener(controller);
 
         GameData.getInstance().addPropertyChangeListener(mathPanel);
+        
+        duelScreen.setLayout(new GridLayout(1, 2));
+        duelScreen.add(duelPanel);
+        duelScreen.add(mathPanel);
 
         // ---- CREATE : Time Attack Screen
         timeAttackScreen.setLayout(new GridLayout(1, 2));
@@ -122,19 +116,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         /// add other thing
         timeAttackScreen.add(leftPanel);
         timeAttackScreen.add(mathPanelTT);
-
-        // ---- CREATE : Cpu Pvp Screen
-//        cpuPvpScreen.setLayout(new GridLayout(1, 2));
-//        cpuPvpScreen.add(duelPanel1);
-//        GameData.getInstance().recalculate();
-//        MathPanel mathPanel1 = new MathPanel();
-//        cpuPvpScreen.add(mathPanel1);
-//        add(startScreen);
-//        GameController controller1 = new GameController(player, cpu);
-//        mathPanel1.addMouseListener(controller1);
-//        mathPanel1.addMouseMotionListener(controller1);
-//        GameData.getInstance().addPropertyChangeListener(mathPanel1);
-
 
     }
 
@@ -162,7 +143,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
             String label = button.getLabel();
 
             getContentPane().removeAll();
-
+            String gameMode = GameData.getInstance().getGameMode();
             switch (label) {
                 case "PRESS TO START":
                     audioPlayer.play("select");
@@ -173,7 +154,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                     getContentPane().add(levelScreen);
                     break;
                 case "SELECT SCENE":
-                    if (GameData.getInstance().getGameMode().equals("Join PvP Game")) {
+                    if (gameMode.equals("Join PvP Game")) {
                         client.start();
                         while (!client.isReady()) {
                             try {
@@ -182,21 +163,20 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                                 e1.printStackTrace();
                             }
                         }
-                    } else if (GameData.getInstance().getGameMode().equals("Tutor Mode")) {
-                        getContentPane().add(tutorModeScreen);
-                    } else if (GameData.getInstance().getGameMode().equals("Time Attack")) {
+                        duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
+                        duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
+                        getContentPane().add(duelScreen) ;
+                    } else if (gameMode.equals("Time Attack")) {
                         getContentPane().add(timeAttackScreen);
                         timeScorePanel.startTimer();
                     }
-//                    else if (GameData.getInstance().getGameMode().equals("CPU PvP")){
-//                        getContentPane().add(cpuPvpScreen);
-//                        duelPanel1.setDuel(GameData.getInstance().getLevel().getDuel());
-//                        duelPanel1.setBackgroundImage(levelPanel.getBackgroundImage());
-////                        timeScorePanel.startTimer();
-//                    }
+                    else{
+                        duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
+                        duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
+                        getContentPane().add(duelScreen) ;
+                    }
+
                     audioPlayer.play("select");
-                    duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
-                    duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
                     break;
                 default:
                     break;
