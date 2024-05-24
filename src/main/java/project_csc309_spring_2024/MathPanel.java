@@ -25,6 +25,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
     private Block previousSelectedBlock = null;  // Track the previously selected block
 
     public MathPanel() {
+        setBackground(new Color(250,240,230));
         this.customFont = GameData.getInstance().getCustomFont();
         this.audioPlayer = GameData.getInstance().getAudioPlayer();
         this.audioPlayed = false;  // Initialize the flag

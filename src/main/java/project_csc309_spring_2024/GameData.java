@@ -30,6 +30,7 @@ public class GameData extends PropertyChangeSupport {
     private Level level;
     private String operationString;
     private String gameMode;
+    private int timeAttackScore;
 
     private Font customFont;
     private AudioPlayer audioPlayer;
@@ -53,7 +54,6 @@ public class GameData extends PropertyChangeSupport {
     }
 
     public void recalculate() {
-        answerBox.setFilled(false);
         lockedBlocks.clear();
         unlockedBlocks.clear();
         for (int i = 0; i < NUM_LOCKED_BLOCKS; i++) {
@@ -77,6 +77,10 @@ public class GameData extends PropertyChangeSupport {
         firePropertyChange("gameOver", null, isWinner);
     }
 
+    public void setCorrectAnswer(boolean correctAnswer) {
+        firePropertyChange("correctAnswer", null, correctAnswer);
+    }
+
     public Block getSelectedBlock() { return selectedBlock; }
     public void setSelectedBlock(Block block) { this.selectedBlock = block; }
     public List<Block> getLockedBlocks() { return lockedBlocks; }
@@ -96,6 +100,8 @@ public class GameData extends PropertyChangeSupport {
     public void setOperationString(String str) { operationString = str; }
     public String getGameMode() { return gameMode; }
     public void setGameMode(String mode) { gameMode = mode; }
+    public int getTimeAttackScore() { return timeAttackScore; }
+    public void setTimeAttackScore(int score) { timeAttackScore = score; }
 
     public Font getCustomFont() { return customFont; }
     public void setCustomFont(Font font) { this.customFont = font; }

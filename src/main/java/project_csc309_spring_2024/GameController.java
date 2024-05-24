@@ -102,10 +102,13 @@ public class GameController implements MouseListener, MouseMotionListener {
                 Level level = data.getLevel();
 
                 if (selectedBlock.getValue() != targetAnswer){
+                    if (data.getGameMode().equals("Time Attack"))
+                        data.setCorrectAnswer(false);
                     tutor.help();
                     Duel d = level.getDuel();
 
-                    d.castAttack(d.getPlayer2(), d.getPlayer1());
+                    if (!(data.getGameMode().equals("Time Attack")))
+                        d.castAttack(d.getPlayer2(), d.getPlayer1());
 
                     answerBox.setBoxColor(Color.red);
 
@@ -135,12 +138,15 @@ public class GameController implements MouseListener, MouseMotionListener {
 
                 }
                 else  {
+                    if (data.getGameMode().equals("Time Attack"))
+                        data.setCorrectAnswer(true);
                     level.nextProblem();
                     tutor.setVisible(false);
 
                     Duel d = level.getDuel();
-                    d.castAttack(d.getPlayer1(), d.getPlayer2());
-
+                    if (!(data.getGameMode().equals("Time Attack")))
+                        d.castAttack(d.getPlayer1(), d.getPlayer2());
+                        
                     answerBox.setBoxColor(Color.green);
                     GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
                     answerBox.setAnswerBlock(null);

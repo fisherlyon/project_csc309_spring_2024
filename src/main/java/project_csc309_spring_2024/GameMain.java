@@ -14,11 +14,13 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     JPanel startScreen = new JPanel();
     JPanel levelScreen = new JPanel();
-    JPanel playScreen = new JPanel();
+    JPanel tutorModeScreen = new JPanel();
+    JPanel timeAttackScreen = new JPanel();
 
     LevelPanel levelPanel;
     DuelPanel duelPanel;
     ModePanel modePanel;
+    TimeScorePanel timeScorePanel;
 
     String host = "unix4.csc.calpoly.edu";
     int port = 3091;
@@ -55,7 +57,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         // ---- CREATE : Mode Select Screen
         modePanel = new ModePanel();
         Button continueButton = new Button("CONTINUE", 300, 390, 150, 40);
-        continueButton.setButtonColor(Color.orange, Color.white);
+        continueButton.setButtonColor(Color.white, Color.black);
         continueButton.setFont(customFont.deriveFont(12f));
         continueButton.addSelf(modePanel.getButtonSidePanel());
         continueButton.addActionListener(this);
@@ -86,13 +88,13 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         data.setLevel(level);
         duelPanel = new DuelPanel(data.getLevel().getDuel());
 
-        // ---- CREATE : Gameplay Screen
-        playScreen.setLayout(new GridLayout(1, 2));
-        playScreen.add(duelPanel);
+        // ---- CREATE : Tutor Mode Screen
+        tutorModeScreen.setLayout(new GridLayout(1, 2));
+        tutorModeScreen.add(duelPanel);
 
         GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
-        playScreen.add(mathPanel);
+        tutorModeScreen.add(mathPanel);
         add(startScreen);
 
         GameController controller = new GameController(player, cpu);
@@ -100,6 +102,21 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         mathPanel.addMouseMotionListener(controller);
 
         GameData.getInstance().addPropertyChangeListener(mathPanel);
+
+        // ---- CREATE : Time Attack Screen
+        timeAttackScreen.setLayout(new GridLayout(1, 2));
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(2, 1));
+        MathPanel mathPanelTT = new MathPanel();
+        mathPanelTT.remove(GameData.getInstance().getTutor());
+        mathPanelTT.addMouseListener(controller);
+        mathPanelTT.addMouseMotionListener(controller);
+        GameData.getInstance().addPropertyChangeListener(mathPanelTT);
+        timeScorePanel = new TimeScorePanel();
+        leftPanel.add(timeScorePanel);
+        /// add other thing
+        timeAttackScreen.add(leftPanel);
+        timeAttackScreen.add(mathPanelTT);
     }
 
 
@@ -146,11 +163,15 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                                 e1.printStackTrace();
                             }
                         }
+                    } else if (GameData.getInstance().getGameMode().equals("Tutor Mode")) {
+                        getContentPane().add(tutorModeScreen);
+                    } else if (GameData.getInstance().getGameMode().equals("Time Attack")) {
+                        getContentPane().add(timeAttackScreen);
+                        timeScorePanel.startTimer();
                     }
                     audioPlayer.play("select");
                     duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
                     duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
-                    getContentPane().add(playScreen);
                     break;
                 default:
                     break;

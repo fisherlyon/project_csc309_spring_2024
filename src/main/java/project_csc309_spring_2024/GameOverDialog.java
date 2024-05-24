@@ -19,10 +19,16 @@ public class GameOverDialog {
         
         String message;
 
-        if (isWinner) {
-            message = "You won! Play again?";
+        if (GameData.getInstance().getGameMode().equals("Time Attack")) {
+            message = "Congragts! Your score was " + 
+            Integer.toString(GameData.getInstance().getTimeAttackScore()) + 
+            ". Play again?";
         } else {
-            message = "You lost! Play again?";
+            if (isWinner) {
+                message = "You won! Play again?";
+            } else {
+                message = "You lost! Play again?";
+            }
         }
 
         int response = JOptionPane.showConfirmDialog(parentFrame, message, "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -36,6 +42,7 @@ public class GameOverDialog {
 
     private void restartGame() {
         parentFrame.dispose();
+        GameData.getInstance().recalculate();
         GameMain main = new GameMain();
         main.setTitle("Math Madness");
         main.setSize(1200, 600);

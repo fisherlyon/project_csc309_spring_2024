@@ -23,9 +23,9 @@ public class MapPanel extends JPanel implements ActionListener {
         setLayout(null);
         setPreferredSize(new Dimension(earth.getWidth(null), earth.getHeight(null)));
         addButton("Moon", 70, 40,80, 25);
-        addButton("North Pole", 270, 50, 110, 25);
+        addButton("North Pole", 270, 50, 120, 25);
         addButton("CSC 309", 100, 150, 100, 25);
-        addButton("Brazil", 230, 300, 80, 25);
+        addButton("Brazil", 230, 300, 90, 25);
     }
 
     private void addButton(String text, int x, int y, int width, int height) {
