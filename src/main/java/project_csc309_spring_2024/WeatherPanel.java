@@ -28,7 +28,7 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
         if (locKey == null) {
             g.setFont(customFont.deriveFont(16f));  // use custom font here
             g.setColor(Color.white);
-            g.drawString("Press buttons on the world map to display scene preview.", 0, 30);
+            g.drawString("Press buttons on the world map to display weather data.", 0, 30);
         }
         
     }
@@ -39,7 +39,7 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
         if (locKey != null) {
             double value = getTemperature();
             JLabel label = new JLabel(loc + ": " + value + "°F");
-            label.setFont(customFont.deriveFont(50f));  // use custom font here
+            label.setFont(customFont.deriveFont(40f));
             label.setForeground(Color.RED);
             add(label);
         } else {

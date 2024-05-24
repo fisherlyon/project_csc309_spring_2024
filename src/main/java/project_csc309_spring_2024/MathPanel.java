@@ -35,8 +35,8 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         for (int i = 0; i < ops.length; i++) {
             Button button = new Button(ops[i], i * 70 + 180, 10, 55, 55);
             button.addActionListener(this);
-            button.setButtonColor(Color.lightGray, Color.black);
-            button.setPressedColor(Color.gray);
+            button.setButtonColor(new Color(210,169,147), Color.black);
+            button.setPressedColor(new Color(175,124,116));
             button.addSelf(this);
         }
     }
@@ -49,8 +49,8 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         GameData.getInstance().getTrashBin().paintComponent(g);
         
         int targetAnswer = GameData.getInstance().getLevel().getTarget();
-        g.setFont(customFont.deriveFont(25f)); // Use custom font here
-        g.drawString(Integer.toString(targetAnswer), 25, 50);
+        g.setFont(customFont.deriveFont(40f)); // Use custom font here
+        g.drawString(Integer.toString(targetAnswer), 25, 80);
 
         for (Block block : GameData.getInstance().getLockedBlocks()) {
             if (!block.isSelected()) {
@@ -80,11 +80,11 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         g.setColor(Color.black);
         g.setFont(customFont.deriveFont(12f)); // Use custom font here
         if (!buttonPressed) {
-            g.drawString("Press buttons above to choose between different operations.", 20, 85);
+            g.drawString("Press buttons above to choose between different operations.", 50, 90);
         }
 
         if (GameData.getInstance().getAnswerBox().getAnswerBlock() == null) {
-            g.drawString("Place your answer in here!", 215, 565);
+            g.drawString("Place your answer in here!", 210, 565);
         }
     }
 

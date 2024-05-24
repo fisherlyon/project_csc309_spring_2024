@@ -27,12 +27,12 @@ public class Block {
 
     public void draw(Graphics g) {
         if (GameData.getInstance().getSelectedBlock() == this) {
-            g.setColor(new Color(128, 0, 128));
+            g.setColor(new Color(69, 52, 32));
             g.fillRect(blockX, blockY, dim, dim);
             g.setColor(Color.BLACK);
             g.drawRect(blockX, blockY, dim, dim);
         } else {
-            g.setColor(new Color(0, 200, 200));
+            g.setColor(new Color(104, 77, 48));
             g.fillRect(blockX, blockY, dim, dim);
             g.setColor(Color.BLACK);
             g.drawRect(blockX, blockY, dim, dim);

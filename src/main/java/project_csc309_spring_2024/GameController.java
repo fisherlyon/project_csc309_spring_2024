@@ -110,7 +110,7 @@ public class GameController implements MouseListener, MouseMotionListener {
                     if (!(data.getGameMode().equals("Time Attack")))
                         d.castAttack(d.getPlayer2(), d.getPlayer1());
 
-                    answerBox.setBoxColor(Color.red);
+                    answerBox.setBoxColor(new Color(255, 105, 97));
 
                     Image tempGramps = cpuPlayer.getPlayerTwo();
                     cpuPlayer.setPlayerTwo(grampsattack);
@@ -146,8 +146,7 @@ public class GameController implements MouseListener, MouseMotionListener {
                     Duel d = level.getDuel();
                     if (!(data.getGameMode().equals("Time Attack")))
                         d.castAttack(d.getPlayer1(), d.getPlayer2());
-                        
-                    answerBox.setBoxColor(Color.green);
+                    answerBox.setBoxColor(new Color(193, 225, 193));
                     GameData.getInstance().getUnlockedBlocks().remove(selectedBlock);
                     answerBox.setAnswerBlock(null);
                     answerBox.setFilled(false);

@@ -41,7 +41,7 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
         } else {
             g.setFont(customFont.deriveFont(15f));  // use custom font here
             g.setColor(Color.white);
-            g.drawString("Press buttons on the world map to display scene preview.", 60, 300);
+            g.drawString("Press buttons on the world map to display scene preview.", 40, 300);
         }
         
     }
