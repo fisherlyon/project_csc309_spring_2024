@@ -34,6 +34,8 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     public GameMain() {
 
+        CharacterManager characterManager = new CharacterManager();
+
         this.musicManager = GameData.getInstance().getMusicManager();
         GameData.getInstance().setMainFrame(this);
         GameData.getInstance().addPropertyChangeListener(this);
@@ -83,8 +85,10 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         // ---- CREATE : Default Duel
         UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
         player.setLocalPlayer();
-        CpuPlayer cpu = new CpuPlayer(325, 200, 100);
+        CharacterImages initialCpuImages = characterManager.getCharacterImages("gramps");
+        CpuPlayer cpu = new CpuPlayer(325, 200, 100, initialCpuImages);
 
+        GameData.getInstance().setCpuPlayer(cpu);
         Duel computerDuel = new Duel(player, cpu);
         Level level = new Level(computerDuel, 0);
         data.setLevel(level);

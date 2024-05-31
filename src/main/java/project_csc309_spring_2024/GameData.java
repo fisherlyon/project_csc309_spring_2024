@@ -39,6 +39,8 @@ public class GameData extends PropertyChangeSupport {
     private AudioPlayer audioPlayer;
     private Music music;
 
+    private CpuPlayer cpuPlayer;
+
 
     private GameData() {
         super(new Object());
@@ -67,6 +69,17 @@ public class GameData extends PropertyChangeSupport {
         tutor = new Tutor(50, 50);
     }
 
+    public void setCharacter(String character) {
+        firePropertyChange("characterSelected", null, character);
+    }
+
+    public void setCpuPlayer(CpuPlayer cpuPlayer) {
+        this.cpuPlayer = cpuPlayer;
+    }
+
+    public CpuPlayer getCpuPlayer() {
+        return cpuPlayer;
+    }
     public MusicManager getMusicManager() {
         return music.getMusicManager();
     }

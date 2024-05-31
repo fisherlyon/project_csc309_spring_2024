@@ -5,22 +5,17 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/**
- * A panel that displays scene previews based on
- * button actions on the MapPanel.
- * 
- * @author Fisher and Leo
- */
 public class LevelPanel extends JPanel implements PropertyChangeListener {
 
     private Image backgroundImage = null;
-
     private Font customFont;
     private MusicManager musicManager;
+    private CharacterManager characterManager;
 
     public LevelPanel() {
         this.customFont = GameData.getInstance().getCustomFont();
         this.musicManager = GameData.getInstance().getMusicManager();
+        this.characterManager = new CharacterManager(); // Initialize CharacterManager
         setBackground(Color.black);
         GameData.getInstance().addPropertyChangeListener(this);
     }
@@ -29,7 +24,7 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
         ImageIcon icon = new ImageIcon(DuelPanel.class.getResource(imagePath));
         if (icon.getImage() != null) {
             backgroundImage = icon.getImage();
-            repaint(); 
+            repaint();
         } else {
             throw new IllegalArgumentException("Image could not be loaded: " + imagePath);
         }
@@ -45,32 +40,45 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
             g.setColor(Color.white);
             g.drawString("Press buttons on the world map to display scene preview.", 40, 300);
         }
-        
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("sceneButtonPressed".equals(evt.getPropertyName())) {
-            switch ((String) evt.getNewValue()) {
+            String scene = (String) evt.getNewValue();
+            switch (scene) {
                 case "Moon":
                     setBackgroundImage("/moon.png");
                     musicManager.playMusic("moon");
+                    updateCpuPlayer("alien");
                     break;
                 case "North Pole":
                     setBackgroundImage("/northPole.png");
                     musicManager.playMusic("christmas");
+                    updateCpuPlayer("elf");
                     break;
                 case "CSC 309":
                     setBackgroundImage("/csc309.png");
                     musicManager.playMusic("classroom");
+                    updateCpuPlayer("jgs");
                     break;
                 case "Brazil":
                     setBackgroundImage("/brazil.png");
                     musicManager.playMusic("brazil");
+                    updateCpuPlayer("gramps");
                     break;
             }
         }
     }
 
-    public Image getBackgroundImage() { return backgroundImage; }
+    private void updateCpuPlayer(String character) {
+        CharacterImages characterImages = characterManager.getCharacterImages(character);
+        if (characterImages != null) {
+            GameData.getInstance().getCpuPlayer().setCharacterImages(characterImages);
+        }
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
 }
