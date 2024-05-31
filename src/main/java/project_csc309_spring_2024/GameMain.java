@@ -29,10 +29,12 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     Font customFont;
     AudioPlayer audioPlayer;
+    private MusicManager musicManager;
 
 
     public GameMain() {
 
+        this.musicManager = GameData.getInstance().getMusicManager();
         GameData.getInstance().setMainFrame(this);
         GameData.getInstance().addPropertyChangeListener(this);
         GameData data = GameData.getInstance();
@@ -147,6 +149,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
             String gameMode = GameData.getInstance().getGameMode();
             switch (label) {
                 case "PRESS TO START":
+                    musicManager.playMusic("background");
                     audioPlayer.play("select");
                     getContentPane().add(modePanel);
                     break;

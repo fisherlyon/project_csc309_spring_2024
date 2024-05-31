@@ -41,6 +41,7 @@ public class GameOverDialog {
     }
 
     private void restartGame() {
+        GameData.getInstance().getMusicManager().stopAllMusic();
         parentFrame.dispose();
         GameMain main = new GameMain();
         GameData.getInstance().recalculate();

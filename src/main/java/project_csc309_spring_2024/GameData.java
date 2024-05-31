@@ -37,11 +37,14 @@ public class GameData extends PropertyChangeSupport {
 
     private Font customFont;
     private AudioPlayer audioPlayer;
+    private Music music;
+
 
     private GameData() {
         super(new Object());
         lockedBlocks = new ArrayList<Block>();
         unlockedBlocks = new ArrayList<Block>();
+        music = new Music();
         this.recalculate();
     }
 
@@ -62,6 +65,10 @@ public class GameData extends PropertyChangeSupport {
         answerBox.setBoxColor(Color.white);
         trashBin = new TrashBin(520, 510);
         tutor = new Tutor(50, 50);
+    }
+
+    public MusicManager getMusicManager() {
+        return music.getMusicManager();
     }
 
     public void removeUnlockedBlock(Block block){

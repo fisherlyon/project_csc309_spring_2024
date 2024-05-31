@@ -16,9 +16,11 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
     private Image backgroundImage = null;
 
     private Font customFont;
+    private MusicManager musicManager;
 
     public LevelPanel() {
         this.customFont = GameData.getInstance().getCustomFont();
+        this.musicManager = GameData.getInstance().getMusicManager();
         setBackground(Color.black);
         GameData.getInstance().addPropertyChangeListener(this);
     }
@@ -52,15 +54,19 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
             switch ((String) evt.getNewValue()) {
                 case "Moon":
                     setBackgroundImage("/moon.png");
+                    musicManager.playMusic("moon");
                     break;
                 case "North Pole":
                     setBackgroundImage("/northPole.png");
+                    musicManager.playMusic("christmas");
                     break;
                 case "CSC 309":
                     setBackgroundImage("/csc309.png");
+                    musicManager.playMusic("classroom");
                     break;
                 case "Brazil":
                     setBackgroundImage("/brazil.png");
+                    musicManager.playMusic("brazil");
                     break;
             }
         }
