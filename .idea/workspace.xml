@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/CharacterImages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/CharacterManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/CpuPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/CpuPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/DuelPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/DuelPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/LevelPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/LevelPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/MathPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/MathPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/ModePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/ModePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/TimeScorePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/TimeScorePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

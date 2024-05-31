@@ -19,14 +19,12 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
     private Button pressedButton = null;
     boolean buttonPressed = false;
 
-    private Font customFont;
     private AudioPlayer audioPlayer;
     private boolean audioPlayed;  // Add a flag to track audio playback
     private Block previousSelectedBlock = null;  // Track the previously selected block
 
     public MathPanel() {
         setBackground(new Color(250,240,230));
-        this.customFont = GameData.getInstance().getCustomFont();
         this.audioPlayer = GameData.getInstance().getAudioPlayer();
         this.audioPlayed = false;  // Initialize the flag
         setLayout(null);
@@ -48,7 +46,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         GameData.getInstance().getTrashBin().paintComponent(g);
         
         int targetAnswer = GameData.getInstance().getLevel().getTarget();
-        g.setFont(customFont.deriveFont(40f)); // Use custom font here
+        g.setFont(GameData.getInstance().getCustomFont().deriveFont(40f)); // Use custom font here
         g.drawString(Integer.toString(targetAnswer), 25, 80);
 
         for (Block block : GameData.getInstance().getLockedBlocks()) {
@@ -77,7 +75,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
 
 
         g.setColor(Color.black);
-        g.setFont(customFont.deriveFont(12f)); // Use custom font here
+        g.setFont(GameData.getInstance().getCustomFont().deriveFont(12f)); // Use custom font here
         if (!buttonPressed) {
             g.drawString("Press buttons above to choose between different operations.", 50, 90);
         }

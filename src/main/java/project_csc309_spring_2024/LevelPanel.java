@@ -8,14 +8,10 @@ import java.beans.PropertyChangeListener;
 public class LevelPanel extends JPanel implements PropertyChangeListener {
 
     private Image backgroundImage = null;
-    private Font customFont;
-    private MusicManager musicManager;
     private CharacterManager characterManager;
 
     public LevelPanel() {
-        this.customFont = GameData.getInstance().getCustomFont();
-        this.musicManager = GameData.getInstance().getMusicManager();
-        this.characterManager = new CharacterManager(); // Initialize CharacterManager
+        this.characterManager = new CharacterManager();
         setBackground(Color.black);
         GameData.getInstance().addPropertyChangeListener(this);
     }
@@ -36,7 +32,7 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         } else {
-            g.setFont(customFont.deriveFont(15f));  // use custom font here
+            g.setFont(GameData.getInstance().getCustomFont().deriveFont(15f));  // use custom font here
             g.setColor(Color.white);
             g.drawString("Press buttons on the world map to display scene preview.", 40, 300);
         }
@@ -49,22 +45,22 @@ public class LevelPanel extends JPanel implements PropertyChangeListener {
             switch (scene) {
                 case "Moon":
                     setBackgroundImage("/moon.png");
-                    musicManager.playMusic("moon");
+                    GameData.getInstance().getMusicManager().playMusic("moon");
                     updateCpuPlayer("alien");
                     break;
                 case "North Pole":
                     setBackgroundImage("/northPole.png");
-                    musicManager.playMusic("christmas");
+                    GameData.getInstance().getMusicManager().playMusic("christmas");
                     updateCpuPlayer("elf");
                     break;
                 case "CSC 309":
                     setBackgroundImage("/csc309.png");
-                    musicManager.playMusic("classroom");
+                    GameData.getInstance().getMusicManager().playMusic("classroom");
                     updateCpuPlayer("jgs");
                     break;
                 case "Brazil":
                     setBackgroundImage("/brazil.png");
-                    musicManager.playMusic("brazil");
+                    GameData.getInstance().getMusicManager().playMusic("brazil");
                     updateCpuPlayer("gramps");
                     break;
             }

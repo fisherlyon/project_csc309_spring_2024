@@ -21,13 +21,11 @@ public class DuelPanel extends JPanel implements DuelListener {
     private int timeRemaining = 5;
     private Duel duel;
 
-    private Font customFont;
 
     public DuelPanel(Duel duel) {
         userPlayerHealth = new PlayerHealth(15, 25);
         enemyPlayerHealth = new CpuHealth(365, 25);
         this.duel = duel;
-        this.customFont = GameData.getInstance().getCustomFont();
         duel.addDuelListener(this);
         userPlayer = duel.getPlayer1();
         enemyPlayer = duel.getPlayer2();
@@ -105,16 +103,10 @@ public class DuelPanel extends JPanel implements DuelListener {
         g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight); // Player Health Bar
         g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight); // CPU Health Bar
 
-        //g.setFont(customFont.deriveFont(16f));
-        //g.setColor(Color.red);
-        //g.drawString("CPU ATTACK IN: " + timeRemaining, 10, 30);
         repaint();
 
     }
 
-    /* -------------------------------------------------------------------------- */
-    /* Handle events and repaint in these methods below */
-    /* -------------------------------------------------------------------------- */
 
     @Override
     public void onPlayerAttack(Player attacker, Player attacked) {

@@ -63,6 +63,7 @@ public class TimeScorePanel extends JPanel implements ActionListener, PropertyCh
             GameData.getInstance().setTimeAttackScore(score);
             GameData.getInstance().setGameOver(true);
         }
+        GameData.getInstance().getMusicManager().playMusic("time_attack");
     }
 
     @Override

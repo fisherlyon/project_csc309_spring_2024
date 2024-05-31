@@ -18,14 +18,12 @@ public class ModePanel extends JPanel implements ActionListener {
     private int BUTTON_WIDTH = 150;
     private int BUTTON_HEIGHT = 40;
 
-    private Font customFont;
 
     private AudioPlayer audioPlayer;
 
 
     public ModePanel() {
         this.audioPlayer = GameData.getInstance().getAudioPlayer();
-        this.customFont = GameData.getInstance().getCustomFont();
         setLayout(null);
         initButtonSide();
         initDescriptionSide();
@@ -40,13 +38,13 @@ public class ModePanel extends JPanel implements ActionListener {
 
         JLabel label = new JLabel("SELECT GAME MODE");
         label.setForeground(Color.white);
-        label.setFont(customFont.deriveFont(25f)); // Use custom font here
+        label.setFont(GameData.getInstance().getCustomFont().deriveFont(25f)); // Use custom font here
         label.setBounds(150, 80, 350, 40);
         buttonSide.add(label);
 
         for (int i = 0; i < labels.length; i++) {
             Button button = new Button(labels[i], (PANEL_DIM/2), (i*60) + 150, BUTTON_WIDTH, BUTTON_HEIGHT);
-            button.setFont(customFont.deriveFont(12f));
+            button.setFont(GameData.getInstance().getCustomFont().deriveFont(12f));
             button.addSelf(buttonSide);
             button.setButtonColor(Color.red, Color.white);
             button.setPressedColor(Color.MAGENTA);
@@ -59,7 +57,7 @@ public class ModePanel extends JPanel implements ActionListener {
         descriptionSide.setLayout(new BorderLayout());
         descriptionSide.setBackground(Color.darkGray);
         descriptionLabel.setForeground(Color.white);
-        descriptionLabel.setFont(customFont.deriveFont(24f)); // Use custom font here
+        descriptionLabel.setFont(GameData.getInstance().getCustomFont().deriveFont(24f)); // Use custom font here
 
         descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         descriptionLabel.setVerticalAlignment(SwingConstants.CENTER);
