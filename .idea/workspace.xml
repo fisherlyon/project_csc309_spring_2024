@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/Music.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/MusicManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/alien.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/alien_attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/alien_damaged.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/elf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/elf_attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/elf_damaged.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/jgs_damaged.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/background_music.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/brazil_music.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/christmas_music.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/classroom_music.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/moon_music.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/time_attack_music.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project_csc309_spring_2024.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameOverDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/GameOverDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/LevelPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project_csc309_spring_2024/LevelPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project_csc309_spring_2024/DuelPanel.class" afterDir="false" />
-    </list>
+    <list default="true" id="4313a58a-12d3-497e-abcc-b8590fdcae49" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -189,6 +165,7 @@
       <workItem from="1716782964336" duration="607000" />
       <workItem from="1717134279971" duration="546000" />
       <workItem from="1717134834401" duration="4159000" />
+      <workItem from="1717139147903" duration="19000" />
     </task>
     <servers />
   </component>
