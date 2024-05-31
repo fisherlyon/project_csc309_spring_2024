@@ -30,7 +30,6 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         this.audioPlayer = GameData.getInstance().getAudioPlayer();
         this.audioPlayed = false;  // Initialize the flag
         setLayout(null);
-        add(GameData.getInstance().getTutor());
         String[] ops = { "+", "-", "*", "/" };
         for (int i = 0; i < ops.length; i++) {
             Button button = new Button(ops[i], i * 70 + 180, 10, 55, 55);

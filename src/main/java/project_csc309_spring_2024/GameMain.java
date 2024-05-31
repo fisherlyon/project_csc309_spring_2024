@@ -96,6 +96,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
         GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
+        mathPanel.add(GameData.getInstance().getTutor());
         add(startScreen);
 
         GameController controller = new GameController(player, cpu);
