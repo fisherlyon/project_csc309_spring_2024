@@ -5,28 +5,24 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.auth.credentials.AnonymousCredentialsProvider;
-
-import javax.swing.*;
-import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.io.*;
 import java.net.*;
-import com.opencsv.*;
+import org.json.*;
 
 public class LeaderBoard {
 
     private static final String BUCKET_NAME = "mathmadness";
-    private static final String OBJECT_KEY = "leaderboard.csv";
+    private static final String OBJECT_KEY = "leaderboard.json";
     private static final Region REGION = Region.US_EAST_1;
 
     public LeaderBoard() {
         //getLeaderboard();
     }
 
-    public static void getLeaderboard() throws Exception {
+    public static String getLeaderboard() throws Exception {
         // here is the link to my s3 bucket!
-        String objectURL = "https://mathmadness.s3.amazonaws.com/leaderboard.csv";
+        String objectURL = "https://mathmadness.s3.amazonaws.com/leaderboard.json";
         URL url = new URL(objectURL);
         URLConnection connection = url.openConnection();
         InputStream inputStream = connection.getInputStream();
@@ -38,14 +34,14 @@ public class LeaderBoard {
             response += inputLine;
         }
         inputStream.close();
-        parse(response);
+        return formatlbes(parse(response));
     }
 
     public static void updateLeaderboard(String oldContent, String newContent) {
         // save content to a temp file
         File tempFile = null;
         try {
-            tempFile = File.createTempFile("leaderboard", ".csv");
+            tempFile = File.createTempFile("leaderboard", ".json");
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
                 writer.write(newContent);
             }
@@ -75,12 +71,31 @@ public class LeaderBoard {
         }
     }
 
-    private static void parse(String response) {
-        System.out.println(response);
+    private static ArrayList<LeaderBoardEntry> parse(String response) {
+        ArrayList<LeaderBoardEntry> lbes = new ArrayList<>();
+        JSONArray jsonResponse = new JSONArray(response);
+        for (Object obj : jsonResponse) {
+            JSONObject jsonObj = (JSONObject) obj;
+            LeaderBoardEntry lbe = 
+                new LeaderBoardEntry(Integer.parseInt(jsonObj.getString("pos")), 
+                                     jsonObj.getString("name"), 
+                                     Integer.parseInt(jsonObj.getString("score")));
+            lbes.add(lbe);
+        }
+
+        return lbes;
+    }
+
+    private static String formatlbes(ArrayList<LeaderBoardEntry> lbes) {
+        String formattedString = "Position\tName\tScore\n";
+        for (LeaderBoardEntry lbe : lbes) {
+            formattedString += lbe.toString() + '\n';
+        }
+        return formattedString;
     }
 
     public static void main(String[] args) throws Exception {
-        getLeaderboard();
+        System.out.println(getLeaderboard());
     }
 
 
