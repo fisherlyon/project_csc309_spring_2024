@@ -21,6 +21,12 @@
   <dependencies>
 
     <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>s3</artifactId>
+      <version>2.25.64</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20240303</version>
@@ -40,7 +46,11 @@
       <version>1.0.1</version>
     </dependency>
 
-
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>4.1</version>
+    </dependency>
   </dependencies>
 
   <build>
