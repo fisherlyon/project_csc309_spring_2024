@@ -28,8 +28,8 @@ public class TimeScorePanel extends JPanel implements ActionListener, PropertyCh
         setBackground(new Color(76,0,164));
         score = 0;
 
-        timerLabel = new JLabel("Time Remaining: " + timeLimit, SwingConstants.CENTER);
-        scoreLabel = new JLabel("Score: " + score, SwingConstants.CENTER);
+        timerLabel = new JLabel("Time Remaining : " + timeLimit, SwingConstants.CENTER);
+        scoreLabel = new JLabel("Score : " + score, SwingConstants.CENTER);
         timerLabel.setForeground(Color.white);
         scoreLabel.setForeground(Color.white);
         Font font = GameData.getInstance().getCustomFont();

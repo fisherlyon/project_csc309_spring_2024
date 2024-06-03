@@ -38,7 +38,8 @@ public class GameData extends PropertyChangeSupport {
     private AudioPlayer audioPlayer;
     private Music music;
     private CpuPlayer cpuPlayer;
-    private ArrayList<LeaderBoardEntry> lbes = null;
+    private ArrayList<LeaderBoardEntry> lbes;
+    private LeaderBoard leaderboard;
 
 
     private GameData() {
@@ -132,5 +133,7 @@ public class GameData extends PropertyChangeSupport {
     public void setMainFrame(JFrame frame) { mainFrame = frame; }
     public ArrayList<LeaderBoardEntry> getlbes() { return lbes; }
     public void setlbes(ArrayList<LeaderBoardEntry> newlbes) { lbes = newlbes; } 
+    public LeaderBoard getLeaderBoard() { return leaderboard; }
+    public void setLeaderBoard(LeaderBoard lb) { leaderboard = lb; }
 
 }

@@ -9,7 +9,7 @@ public class LeaderBoardPanel extends JPanel {
     private LeaderBoard lb;
     
     public LeaderBoardPanel() {
-        setBackground(Color.BLACK);
+        setBackground(new Color(8, 0, 81));
         lb = new LeaderBoard();
     }
 
@@ -19,14 +19,15 @@ public class LeaderBoardPanel extends JPanel {
         ArrayList<LeaderBoardEntry> lbes = GameData.getInstance().getlbes();
         g.setFont(GameData.getInstance().getCustomFont().deriveFont(25f));
         g.setColor(Color.WHITE);
-        g.drawString("Leaderboard", 180, 60);
+        g.drawString("Leaderboard", 180, 55);
         g.setFont(GameData.getInstance().getCustomFont().deriveFont(15f));
+        // g.drawString doesn't account for \n and \t, so I had to format manually
         String[] formattedlbes = lb.formatlbes(lbes).split("\n");
         int len = Math.min(formattedlbes.length, 11);
-        int x = 120;
-        int y = 90;
+        int x = 100;
+        int y = 80;
         int lineHeight = 20;
-        int[] tabStops = {25, 150, 225}; // adjust these positions based on your needs
+        int[] tabStops = {25, 150, 275};
 
         for (int i = 0; i < len; i++) {
             String[] parts = formattedlbes[i].split("\t");

@@ -1,6 +1,7 @@
 package project_csc309_spring_2024;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * A dialog box that appears when
@@ -17,23 +18,36 @@ public class GameOverDialog {
 
         this.parentFrame = parentFrame;
 
-        String message;
+        String message1;
+        int response1;
 
         if (GameData.getInstance().getGameMode().equals("Time Attack")) {
-            message = "Congrats! Your score was " +
-            Integer.toString(GameData.getInstance().getTimeAttackScore()) +
-            ". Play again?";
+            message1 = "Play again?";
+            String message2 = "Congrats! Your score was " +
+            GameData.getInstance().getTimeAttackScore() +
+            ".\nDo you wish to add your score to the leaderboard?";
+
+            NameTextField ntf = new NameTextField(message2);
+            response1 = JOptionPane.showConfirmDialog(parentFrame, ntf, "Save to Leaderboard", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (response1 == JOptionPane.YES_OPTION) {
+                String playerName = ntf.getName();
+                if (!playerName.isEmpty()) {
+                    int score = GameData.getInstance().getTimeAttackScore();
+                    GameData.getInstance().getLeaderBoard().add(new LeaderBoardEntry(0, playerName, score));
+                }
+            }
         } else {
             if (isWinner) {
-                message = "You won! Play again?";
+                message1 = "You won! Play again?";
             } else {
-                message = "You lost! Play again?";
+                message1 = "You lost! Play again?";
             }
         }
 
-        int response = JOptionPane.showConfirmDialog(parentFrame, message, "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int response2 = JOptionPane.showConfirmDialog(parentFrame, message1, "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        if (response == JOptionPane.YES_OPTION) {
+        if (response2 == JOptionPane.YES_OPTION) {
             restartGame();
         } else {
             System.exit(0);

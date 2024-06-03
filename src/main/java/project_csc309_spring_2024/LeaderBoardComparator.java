@@ -5,6 +5,6 @@ import java.util.Comparator;
 public class LeaderBoardComparator implements Comparator<LeaderBoardEntry> {
     @Override
     public int compare(LeaderBoardEntry e1, LeaderBoardEntry e2) {
-        return Integer.compare(e1.getPos(), e2.getPos());
+        return Integer.compare(e2.getScore(), e1.getScore());
     }
 }

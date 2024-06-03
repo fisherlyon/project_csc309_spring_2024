@@ -6,6 +6,8 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.auth.credentials.AnonymousCredentialsProvider;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.io.*;
 import java.net.*;
 import org.json.*;
@@ -17,6 +19,7 @@ public class LeaderBoard {
     private final Region REGION = Region.US_EAST_1;
 
     public LeaderBoard() {
+        GameData.getInstance().setLeaderBoard(this);
         try {
             getLeaderboard();
         } catch (Exception e) {
@@ -95,5 +98,45 @@ public class LeaderBoard {
             formattedString += lbe.toString() + "\n";
         }
         return formattedString;
+    }
+
+    private void recalculatePositions(ArrayList<LeaderBoardEntry> lbes) {
+        Collections.sort(lbes, new LeaderBoardComparator());
+        for (int i = 1; i < lbes.size() + 1; i++) {
+            lbes.get(i-1).setPos(i);
+        }
+    }
+
+    public void add(LeaderBoardEntry entry) {
+        ArrayList<LeaderBoardEntry> lbes = GameData.getInstance().getlbes();
+        
+        Iterator<LeaderBoardEntry> iterator = lbes.iterator();
+        while (iterator.hasNext()) {
+            LeaderBoardEntry existingEntry = iterator.next();
+            if (entry.getName().equals(existingEntry.getName())) {
+                if (entry.getScore() > existingEntry.getScore()) {
+                    iterator.remove(); // Safe removal using iterator
+                } else {
+                    return; // No need to proceed further if existing entry has higher score
+                }
+            }
+        }
+    
+        lbes.add(entry);
+        recalculatePositions(lbes);
+        updateLeaderboard(convertToJson(lbes));
+    }
+    
+
+    private String convertToJson(ArrayList<LeaderBoardEntry> lbes) {
+        JSONArray jsonArray = new JSONArray();
+        for (LeaderBoardEntry lbe : lbes) {
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("pos", Integer.toString(lbe.getPos()));
+            jsonObj.put("name", lbe.getName());
+            jsonObj.put("score", Integer.toString(lbe.getScore()));
+            jsonArray.put(jsonObj);
+        }
+        return jsonArray.toString();
     }
 }
