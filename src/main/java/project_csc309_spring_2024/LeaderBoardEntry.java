@@ -14,7 +14,7 @@ public class LeaderBoardEntry {
 
     @Override
     public String toString() {
-        return this.pos + "\t\t" + this.name + "\t" + this.score;
+        return this.pos + "\t" + this.name + "\t" + this.score;
     }
 
     public int getPos() { return this.pos; }

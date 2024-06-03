@@ -12,17 +12,16 @@ public class WeatherPanel extends JPanel implements PropertyChangeListener {
 
   private String locKey = null;
   private PropertyReader pr = new PropertyReader("weather.properties");
+  private Font customFont;
 
-    private Font customFont;
 
-
-    public WeatherPanel() {
+  public WeatherPanel() {
     setBackground(Color.black);
     GameData.getInstance().addPropertyChangeListener(this);
   }
 
   @Override
-    protected void paintComponent(Graphics g) {
+  protected void paintComponent(Graphics g) {
       this.customFont = GameData.getInstance().getCustomFont();
       super.paintComponent(g);
         if (locKey == null) {

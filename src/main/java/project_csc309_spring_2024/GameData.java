@@ -34,12 +34,11 @@ public class GameData extends PropertyChangeSupport {
     private String operationString;
     private String gameMode;
     private int timeAttackScore;
-
     private Font customFont;
     private AudioPlayer audioPlayer;
     private Music music;
-
     private CpuPlayer cpuPlayer;
+    private ArrayList<LeaderBoardEntry> lbes = null;
 
 
     private GameData() {
@@ -125,14 +124,13 @@ public class GameData extends PropertyChangeSupport {
     public void setGameMode(String mode) { gameMode = mode; }
     public int getTimeAttackScore() { return timeAttackScore; }
     public void setTimeAttackScore(int score) { timeAttackScore = score; }
-
     public Font getCustomFont() { return customFont; }
     public void setCustomFont(Font font) { this.customFont = font; }
-
     public AudioPlayer getAudioPlayer() { return audioPlayer; }
     public void setAudioPlayer(AudioPlayer player) { this.audioPlayer = player; }
-
     public JFrame getMainFrame() { return mainFrame; }
     public void setMainFrame(JFrame frame) { mainFrame = frame; }
+    public ArrayList<LeaderBoardEntry> getlbes() { return lbes; }
+    public void setlbes(ArrayList<LeaderBoardEntry> newlbes) { lbes = newlbes; } 
 
 }

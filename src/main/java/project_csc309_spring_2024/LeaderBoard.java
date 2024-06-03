@@ -12,15 +12,19 @@ import org.json.*;
 
 public class LeaderBoard {
 
-    private static final String BUCKET_NAME = "mathmadness";
-    private static final String OBJECT_KEY = "leaderboard.json";
-    private static final Region REGION = Region.US_EAST_1;
+    private final String BUCKET_NAME = "mathmadness";
+    private final String OBJECT_KEY = "leaderboard.json";
+    private final Region REGION = Region.US_EAST_1;
 
     public LeaderBoard() {
-        //getLeaderboard();
+        try {
+            getLeaderboard();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static String getLeaderboard() throws Exception {
+    public void getLeaderboard() throws Exception {
         // here is the link to my s3 bucket!
         String objectURL = "https://mathmadness.s3.amazonaws.com/leaderboard.json";
         URL url = new URL(objectURL);
@@ -34,10 +38,10 @@ public class LeaderBoard {
             response += inputLine;
         }
         inputStream.close();
-        return formatlbes(parse(response));
+        GameData.getInstance().setlbes(parse(response));
     }
 
-    public static void updateLeaderboard(String oldContent, String newContent) {
+    public void updateLeaderboard(String newContent) {
         // save content to a temp file
         File tempFile = null;
         try {
@@ -71,7 +75,7 @@ public class LeaderBoard {
         }
     }
 
-    private static ArrayList<LeaderBoardEntry> parse(String response) {
+    private ArrayList<LeaderBoardEntry> parse(String response) {
         ArrayList<LeaderBoardEntry> lbes = new ArrayList<>();
         JSONArray jsonResponse = new JSONArray(response);
         for (Object obj : jsonResponse) {
@@ -82,21 +86,14 @@ public class LeaderBoard {
                                      Integer.parseInt(jsonObj.getString("score")));
             lbes.add(lbe);
         }
-
         return lbes;
     }
 
-    private static String formatlbes(ArrayList<LeaderBoardEntry> lbes) {
+    public String formatlbes(ArrayList<LeaderBoardEntry> lbes) {
         String formattedString = "Position\tName\tScore\n";
         for (LeaderBoardEntry lbe : lbes) {
-            formattedString += lbe.toString() + '\n';
+            formattedString += lbe.toString() + "\n";
         }
         return formattedString;
     }
-
-    public static void main(String[] args) throws Exception {
-        System.out.println(getLeaderboard());
-    }
-
-
 }

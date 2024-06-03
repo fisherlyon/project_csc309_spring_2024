@@ -4,11 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class GameMain extends JFrame implements ActionListener, PropertyChangeListener {
 
@@ -117,10 +114,9 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         mathPanelTT.addMouseMotionListener(controller);
         GameData.getInstance().addPropertyChangeListener(mathPanelTT);
         timeScorePanel = new TimeScorePanel();
-        //leftPanel.add(timeScorePanel);
-        /// add other thing
-        //timeAttackScreen.add(leftPanel);
-        timeAttackScreen.add(timeScorePanel);
+        leftPanel.add(timeScorePanel);
+        leftPanel.add(new LeaderBoardPanel());
+        timeAttackScreen.add(leftPanel);
         timeAttackScreen.add(mathPanelTT);
 
     }
