@@ -21,9 +21,19 @@ Upon running, you will encounter this start screen where you simply click the "P
   <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/home.png" WIDTH=600>
 </p>
 
-Then, you will be faced with a selection of game modes with their descriptions on the right side of the screen. Simply select one and click "Continue" to proceed. <br>
+Then, you will be faced with a selection of game modes with their descriptions on the right side of the screen. Simply select one and click the "Continue" button to proceed. <br>
 <p align="center">
   <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/gamemode.png" WIDTH=600>
+</p>
+
+Proceeding the game mode select, the user will be given the option of what scene/map they would like to play on. Simply click the buttons on the globe on the right side of the screen to toggle between the different locations! To proceed, click the "Select Scene" button.
+<p align="center">
+  <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/sceneselect.png" WIDTH=600>
+</p>
+
+Finally, we have made it to the gameplay screen. This screen may look different depending on which game mode selected. To play, the user can toggle betweenn the different mathematical operators at the top of the right panel and then drag and drop number blocks onto each other for the operations to actually occur. You are given a target number in the top left of the right panel and your goal is to reach that number using various mathematical operations. Once you obtain the target number, place it in the answer box at the bottom of the right panel. If the answer was correct, the number block will disappear and the answer box will turn green. If the answer was incorrect, the number block will remain in the answer box and the answer box will turn red. The goal is to knock-out your opponent by getting correct answers. Have fun playing!
+<p align="center">
+  <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/gameplay.png" WIDTH=600>
 </p>
 
 ## Taiga
