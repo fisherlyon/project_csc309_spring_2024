@@ -36,6 +36,9 @@ Finally, we have made it to the gameplay screen. This screen may look different 
   <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/gameplay.png" WIDTH=600>
 </p>
 
+## Running PvP
+"insert Berber description here"
+
 ## Taiga
 Link to Taiga - https://tree.taiga.io/project/fwlyon-csc309-project
 
