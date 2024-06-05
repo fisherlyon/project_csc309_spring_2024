@@ -10,7 +10,7 @@ Download the latest .jar release. <br>
 After downloading the latest release, double click the download in File Explorer... and voila!
 
 ### Running on Mac:
-After downloading the latest release, open the terminal run the following command... and voila!
+After downloading the latest release, open the terminal and run the following command... and voila!
 ```
 java -jar Downloads/project_csc309_spring_2024-1.0-SNAPSHOT.jar
 ```
