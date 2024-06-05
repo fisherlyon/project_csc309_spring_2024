@@ -12,6 +12,8 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
     JPanel startScreen = new JPanel();
     JPanel levelScreen = new JPanel();
     JPanel timeAttackScreen = new JPanel();
+
+    JPanel cpuPvp = new JPanel();
     JPanel duelScreen = new JPanel();
 
 
@@ -99,7 +101,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         mathPanel.addMouseMotionListener(controller);
 
         GameData.getInstance().addPropertyChangeListener(mathPanel);
-        
+
         duelScreen.setLayout(new GridLayout(1, 2));
         duelScreen.add(duelPanel);
         duelScreen.add(mathPanel);
@@ -118,6 +120,20 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         leftPanel.add(new LeaderBoardPanel());
         timeAttackScreen.add(leftPanel);
         timeAttackScreen.add(mathPanelTT);
+
+
+
+        // ---- CREATE : Cpu PVP Screen
+        cpuPvp.setLayout(new GridLayout(1, 2));
+        JPanel lPanel = new JPanel();
+        lPanel.setLayout(new GridLayout(2, 1));
+        MathPanel mpanel = new MathPanel();
+        mpanel.remove(GameData.getInstance().getTutor());
+        mpanel.addMouseListener(controller);
+        mpanel.addMouseMotionListener(controller);
+        GameData.getInstance().addPropertyChangeListener(mpanel);
+        cpuPvp.add(lPanel);
+        cpuPvp.add(mpanel);
 
     }
 
@@ -174,7 +190,8 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                         duelPanel.setDuel(GameData.getInstance().getLevel().getDuel());
                         duelPanel.setBackgroundImage(levelPanel.getBackgroundImage());
                         getContentPane().add(duelScreen) ;
-                    } else if (gameMode.equals("Time Attack")) {
+                    }
+                    else if (gameMode.equals("Time Attack")) {
                         getContentPane().add(timeAttackScreen);
                         timeScorePanel.startTimer();
                     }

@@ -2,25 +2,28 @@ package project_csc309_spring_2024;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 /**
- * ...
+ * A panel that displays the duel between players.
  *
  * @author Leo Rivera
  */
-public class DuelPanel extends JPanel implements DuelListener {
+public class DuelPanel extends JPanel implements DuelListener, ActionListener {
     private Image backgroundImage;
     private Player userPlayer;
     private Player enemyPlayer;
     private CpuHealth enemyPlayerHealth;
     private PlayerHealth userPlayerHealth;
-    private Timer timer;
-    private int timeRemaining = 5;
     private Duel duel;
 
+    private Timer timer;
+    private int timeRemaining = 10;
+    private boolean timerStarted = false;
+    private boolean gameEnded = false; // Flag to check if the game has ended
+    private Random random = new Random(); // Create an instance of Random
 
     public DuelPanel(Duel duel) {
         userPlayerHealth = new PlayerHealth(15, 25);
@@ -33,20 +36,6 @@ public class DuelPanel extends JPanel implements DuelListener {
         backgroundImage = new ImageIcon(getClass().getResource("/stage1.png")).getImage();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(backgroundImage.getWidth(null), backgroundImage.getHeight(null)));
-
-        timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (timeRemaining > 0) {
-                    timeRemaining--;
-                } else {
-                    timer.stop();
-                }
-                repaint();
-            }
-        });
-        timer.start();
-
     }
 
     public Image getBackgroundImage() {
@@ -72,11 +61,10 @@ public class DuelPanel extends JPanel implements DuelListener {
         g.fillRect(365, 28, 200, 38);
 
         g.drawImage(userPlayer.getCurrentImage(), userPlayer.getplayerX(), userPlayer.getplayerY(), null);
-        if (enemyPlayer instanceof UserPlayer && !((UserPlayer)enemyPlayer).isLocalPlayer()) {
+        if (enemyPlayer instanceof UserPlayer && !((UserPlayer) enemyPlayer).isLocalPlayer()) {
             Image enemyImage = enemyPlayer.getCurrentImage();
             g.drawImage(enemyImage, enemyPlayer.getplayerX() + enemyImage.getWidth(null), enemyPlayer.getplayerY(), -enemyImage.getWidth(null),
                     enemyImage.getHeight(null), null);
-
         } else {
             g.drawImage(enemyPlayer.getCurrentImage(), enemyPlayer.getplayerX(), enemyPlayer.getplayerY(), null);
         }
@@ -103,10 +91,32 @@ public class DuelPanel extends JPanel implements DuelListener {
         g.fillRect(playerHealthX, 28, playerBarWidth, healthBarHeight); // Player Health Bar
         g.fillRect(cpuHealthX, 28, cpuBarWidth, healthBarHeight); // CPU Health Bar
 
-        repaint();
+        if (timer != null) {
+            g.setFont(GameData.getInstance().getCustomFont().deriveFont(24f));
+            g.setColor(Color.RED);
+            g.drawString("CPU ATTACKS IN: " + timeRemaining, 170, 40);
+        }
 
+        repaint();
     }
 
+    private void setupTimer() {
+        timer = new Timer(1000, this);
+        timer.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (!gameEnded) { // Prevent timer action if the game has ended
+            if (timeRemaining > 0) {
+                timeRemaining--;
+            } else {
+                duel.castAttack(enemyPlayer, userPlayer);
+                timeRemaining = random.nextInt(10) + 1; // Generate a random number between 1 and 10
+            }
+            repaint();
+        }
+    }
 
     @Override
     public void onPlayerAttack(Player attacker, Player attacked) {
@@ -119,6 +129,7 @@ public class DuelPanel extends JPanel implements DuelListener {
     @Override
     public void onDuelEnd(Player winner, Player loser) {
         System.out.println("Duel End");
+        gameEnded = true; // Set the flag to indicate the game has ended
         if (winner instanceof UserPlayer) {
             if (((UserPlayer) winner).isLocalPlayer()) {
                 GameData.getInstance().setGameOver(true);
@@ -129,6 +140,9 @@ public class DuelPanel extends JPanel implements DuelListener {
                 GameData.getInstance().setGameOver(false);
             }
         }
+        if (timer != null) {
+            timer.stop();
+        }
     }
 
     public void setDuel(Duel duelToSet) {
@@ -138,5 +152,11 @@ public class DuelPanel extends JPanel implements DuelListener {
         this.duel = duelToSet;
         userPlayer = duel.getPlayer1();
         enemyPlayer = duel.getPlayer2();
+
+        String gameMode = GameData.getInstance().getGameMode();
+        if ("CPU PvP".equals(gameMode) && !timerStarted) {
+            setupTimer();
+            timerStarted = true;
+        }
     }
 }

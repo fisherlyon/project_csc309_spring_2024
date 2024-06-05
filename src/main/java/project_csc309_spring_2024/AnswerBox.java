@@ -1,6 +1,9 @@
 package project_csc309_spring_2024;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * A box that lies on the MathPanel that

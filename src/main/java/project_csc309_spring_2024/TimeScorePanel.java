@@ -56,7 +56,8 @@ public class TimeScorePanel extends JPanel implements ActionListener, PropertyCh
         if (timeLeft > 1) {
             timeLeft--;
             timerLabel.setText("Time Remaining: " + timeLeft);
-        } else {
+        }
+        else {
             timeLeft = 0;
             timerLabel.setText("Time Remaining: " + timeLeft);
             timer.stop();

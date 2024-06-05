@@ -11,13 +11,13 @@ import java.awt.event.ActionListener;
  * A panel that displays the Blocks,
  * Trash Bin, OpButtons, and a couple
  * of helpful messages.
- * 
+ *
  * @author Fisher
  */
 public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 
     private Button pressedButton = null;
-    boolean buttonPressed = false;
+    private boolean buttonPressed = false;
 
     private AudioPlayer audioPlayer;
     private boolean audioPlayed;  // Add a flag to track audio playback
@@ -44,7 +44,7 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
 
         GameData.getInstance().getAnswerBox().draw(g);
         GameData.getInstance().getTrashBin().paintComponent(g);
-        
+
         int targetAnswer = GameData.getInstance().getLevel().getTarget();
         g.setFont(GameData.getInstance().getCustomFont().deriveFont(40f)); // Use custom font here
         g.drawString(Integer.toString(targetAnswer), 25, 80);
@@ -72,7 +72,6 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         }
 
         previousSelectedBlock = selectedBlock;  // Update the previously selected block
-
 
         g.setColor(Color.black);
         g.setFont(GameData.getInstance().getCustomFont().deriveFont(12f)); // Use custom font here
