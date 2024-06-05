@@ -15,6 +15,17 @@ After downloading the latest release, open the terminal and go to the directory 
 java -jar  project_csc309_spring_2024-1.0-SNAPSHOT.jar
 ```
 
+## User Interface
+Upon running, you will encounter this start screen where you simply click the "Press to Start" button. <br>
+<p align="center">
+  <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/home.png" WIDTH=600>
+</p>
+
+Then, you will be faced with a selection of game modes with their descriptions on the right side of the screen. Simply select one and click "Continue" to proceed. <br>
+<p align="center">
+  <IMG SRC="https://github.com/fisherlyon/project_csc309_spring_2024/blob/main/assets/gamemode.png" WIDTH=600>
+</p>
+
 ## Taiga
 Link to Taiga - https://tree.taiga.io/project/fwlyon-csc309-project
 
