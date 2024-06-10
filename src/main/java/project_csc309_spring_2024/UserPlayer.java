@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 public class UserPlayer extends Player{
     private Image currentImage;
     private String name;
+    private int exp;
+    private int userLevel;
     private boolean isLocalPlayer;
     private Image bobbyIdle = new ImageIcon(getClass().getResource("/bobby.png")).getImage();
     private Image bobbyHit = new ImageIcon(getClass().getResource("/bobbydamaged.png")).getImage();
@@ -21,10 +23,20 @@ public class UserPlayer extends Player{
     public UserPlayer(int x, int y, String name, int health) {
         super(x,y, health );
         this.name = name;
+        this.exp = 0;
+        this.userLevel = 0;
         currentImage = bobbyIdle;
         
     }
-
+    public Boolean gainExp(int expToGain){
+        exp += expToGain;
+        if(exp >= 100){
+            this.userLevel ++;
+            this.exp = 0;
+            return true;
+        }
+        return false;
+    }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public boolean isLocalPlayer() {

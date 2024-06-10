@@ -22,26 +22,34 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
     private AudioPlayer audioPlayer;
     private boolean audioPlayed;  // Add a flag to track audio playback
     private Block previousSelectedBlock = null;  // Track the previously selected block
-
     public MathPanel() {
         setBackground(new Color(250,240,230));
         this.audioPlayer = GameData.getInstance().getAudioPlayer();
         this.audioPlayed = false;  // Initialize the flag
         setLayout(null);
+    }
+
+    public void loadOperations(){
         String[] ops = { "+", "-", "*", "/" };
+        Level level = GameData.getInstance().getLevel();
         for (int i = 0; i < ops.length; i++) {
             Button button = new Button(ops[i], i * 70 + 180, 10, 55, 55);
             button.addActionListener(this);
             button.setButtonColor(new Color(210,169,147), Color.black);
             button.setPressedColor(new Color(175,124,116));
             button.addSelf(this);
+            System.out.println(level.isLockedOperation((Character)ops[i].charAt(0)));
+            if(level.isLockedOperation((Character)ops[i].charAt(0))){
+                button.setVisible(false);
+            }
         }
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        loadOperations();
         super.paintComponent(g);
-
         GameData.getInstance().getAnswerBox().draw(g);
         GameData.getInstance().getTrashBin().paintComponent(g);
 

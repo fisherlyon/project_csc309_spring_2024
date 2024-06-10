@@ -55,4 +55,8 @@ public class CpuPlayer extends Player {
         timer.start();
         repaint();
     }
+
+    public CharacterImages getCharacterImages() {
+        return characterImages;
+    }
 }
