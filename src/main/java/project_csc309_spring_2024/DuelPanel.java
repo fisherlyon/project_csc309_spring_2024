@@ -121,7 +121,8 @@ public class DuelPanel extends JPanel implements DuelListener {
         System.out.println("Duel End");
         if (winner instanceof UserPlayer) {
             if (((UserPlayer) winner).isLocalPlayer()) {
-                GameData.getInstance().setGameOver(true);
+                GameMain main = (GameMain)GameData.getInstance().getMainFrame();
+                main.setLevelScreen();
             }
         }
         if (loser instanceof UserPlayer) {
@@ -129,6 +130,8 @@ public class DuelPanel extends JPanel implements DuelListener {
                 GameData.getInstance().setGameOver(false);
             }
         }
+
+        duel.reset();
     }
 
     public void setDuel(Duel duelToSet) {

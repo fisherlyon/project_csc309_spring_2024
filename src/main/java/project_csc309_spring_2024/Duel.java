@@ -31,6 +31,12 @@ public class Duel {
         }
     }
 
+    public void reset(){
+        player1.setHealth(100);
+        player2.setHealth(10);
+        GameData.getInstance().recalculate();
+    }
+
     public void addDuelListener(DuelListener duelListener) {
         listeners.add(duelListener);
     }

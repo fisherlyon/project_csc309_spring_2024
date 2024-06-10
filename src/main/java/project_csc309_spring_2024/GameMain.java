@@ -21,7 +21,9 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
     LevelPanel levelPanel;
     DuelPanel duelPanel;
     ModePanel modePanel;
+    MapPanel mapPanel;
     TimeScorePanel timeScorePanel;
+    Button selectButton;
 
     String host = "unix4.csc.calpoly.edu";
     int port = 3091;
@@ -64,22 +66,6 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         continueButton.addSelf(modePanel.getButtonSidePanel());
         continueButton.addActionListener(this);
 
-        // ---- CREATE : Level Select Screen
-        levelScreen.setLayout(null);
-        levelPanel = new LevelPanel();
-        levelPanel.setBounds(0, 0, 600, 600);
-        levelScreen.add(levelPanel);
-        MapPanel mapPanel = new MapPanel();
-        mapPanel.setBounds(600, 0, 600, 500);
-        levelScreen.add(mapPanel);
-        Button selectButton = new Button("SELECT SCENE", 300, 450, 150, 40);
-        selectButton.addSelf(mapPanel);
-        selectButton.setFont(customFont.deriveFont(12f));
-        selectButton.addActionListener(this);
-        WeatherPanel weatherPanel = new WeatherPanel();
-        weatherPanel.setBounds(600, 500, 600, 100);
-        levelScreen.add(weatherPanel);
-
         // ---- CREATE : Default Duel
         UserPlayer player = new UserPlayer(75, 200, "player 1", 100);
         player.setLocalPlayer();
@@ -91,6 +77,23 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         Level level = new Level(computerDuel, 0);
         data.setLevel(level);
         duelPanel = new DuelPanel(data.getLevel().getDuel());
+
+
+        // ---- CREATE : Level Select Screen
+        levelScreen.setLayout(null);
+        levelPanel = new LevelPanel();
+        levelPanel.setBounds(0, 0, 600, 600);
+        levelScreen.add(levelPanel);
+        mapPanel = new MapPanel();
+        mapPanel.setBounds(600, 0, 600, 500);
+        levelScreen.add(mapPanel);
+        selectButton = new Button("SELECT SCENE", 300, 450, 150, 40);
+        selectButton.addSelf(mapPanel);
+        selectButton.setFont(customFont.deriveFont(12f));
+        selectButton.addActionListener(this);
+        WeatherPanel weatherPanel = new WeatherPanel();
+        weatherPanel.setBounds(600, 500, 600, 100);
+        levelScreen.add(weatherPanel);
 
         GameData.getInstance().recalculate();
         MathPanel mathPanel = new MathPanel();
@@ -125,13 +128,20 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
     }
 
-
     public static void main(String[] args) {
         GameMain main = new GameMain();
         main.setTitle("Math Madness");
         main.setSize(1200, 600);
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setVisible(true);
+    }
+
+    public void setLevelScreen(){
+        getContentPane().removeAll();
+        mapPanel.loadMaps();
+        getContentPane().add(levelScreen);
+        revalidate();
+        repaint();
     }
 
     @Override
@@ -157,6 +167,9 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                     getContentPane().add(modePanel);
                     break;
                 case "CONTINUE":
+                    if(!gameMode.equals("Story Mode")){
+                        GameData.getInstance().getLevel().unlockAllOperations();
+                    }
                     audioPlayer.play("select");
                     if (gameMode.equals("Time Attack")) {
                         getContentPane().add(timeAttackScreen);
@@ -166,6 +179,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                     }
                     break;
                 case "SELECT SCENE":
+
                     if (gameMode.equals("Join PvP Game")) {
                         client.start();
                         while (!client.isReady()) {

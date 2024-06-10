@@ -22,26 +22,33 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
     private AudioPlayer audioPlayer;
     private boolean audioPlayed;  // Add a flag to track audio playback
     private Block previousSelectedBlock = null;  // Track the previously selected block
-
     public MathPanel() {
         setBackground(new Color(250,240,230));
         this.audioPlayer = GameData.getInstance().getAudioPlayer();
         this.audioPlayed = false;  // Initialize the flag
         setLayout(null);
+    }
+
+    public void loadOperations(){
         String[] ops = { "+", "-", "*", "/" };
+        Level level = GameData.getInstance().getLevel();
         for (int i = 0; i < ops.length; i++) {
             Button button = new Button(ops[i], i * 70 + 180, 10, 55, 55);
             button.addActionListener(this);
             button.setButtonColor(new Color(210,169,147), Color.black);
             button.setPressedColor(new Color(175,124,116));
             button.addSelf(this);
+            if(level.isLockedOperation((Character)ops[i].charAt(0))){
+                button.setVisible(false);
+            }
         }
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        loadOperations();
         super.paintComponent(g);
-
         GameData.getInstance().getAnswerBox().draw(g);
         GameData.getInstance().getTrashBin().paintComponent(g);
         
@@ -72,17 +79,6 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
         }
 
         previousSelectedBlock = selectedBlock;  // Update the previously selected block
-
-
-        g.setColor(Color.black);
-        g.setFont(GameData.getInstance().getCustomFont().deriveFont(12f)); // Use custom font here
-        if (!buttonPressed) {
-            g.drawString("Press buttons above to choose between different operations.", 50, 90);
-        }
-
-        if (GameData.getInstance().getAnswerBox().getAnswerBlock() == null) {
-            g.drawString("Place your answer in here!", 210, 565);
-        }
     }
 
     @Override

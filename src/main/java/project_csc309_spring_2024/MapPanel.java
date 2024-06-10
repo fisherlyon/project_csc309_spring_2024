@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A panel that displays the world map with a series
@@ -22,18 +26,33 @@ public class MapPanel extends JPanel implements ActionListener {
         earth = new ImageIcon(getClass().getResource("/earth.png")).getImage();
         setLayout(null);
         setPreferredSize(new Dimension(earth.getWidth(null), earth.getHeight(null)));
-        addButton("Moon", 70, 40,80, 25);
-        addButton("North Pole", 270, 50, 120, 25);
-        addButton("CSC 309", 100, 150, 100, 25);
-        addButton("Brazil", 230, 300, 90, 25);
+        loadMaps();
     }
 
-    private void addButton(String text, int x, int y, int width, int height) {
+    public void loadMaps(){
+        HashMap<Button, Character> mapToOperationBindings = new HashMap<Button, Character>();
+        mapToOperationBindings.put(addButton("Moon", 70, 40,80, 25), '+');
+        mapToOperationBindings.put(addButton("North Pole", 270, 50, 120, 25), '-');
+        mapToOperationBindings.put(addButton("CSC 309", 100, 150, 100, 25), '*');
+        mapToOperationBindings.put(addButton("Brazil", 230, 300, 90, 25), '/');
+        for( Map.Entry<Button, Character> entry : mapToOperationBindings.entrySet()){
+            Level level = GameData.getInstance().getLevel();
+            Button map = entry.getKey();
+            Character linkedOperation = entry.getValue();
+
+            if(level.isLockedOperation(linkedOperation)){
+                map.setVisible(false);
+            }
+        }
+    }
+
+    private Button addButton(String text, int x, int y, int width, int height) {
         Button button = new Button(text, x, y, width, height);
         button.addActionListener(this);
         button.setButtonColor(Color.white, Color.black);
         button.setPressedColor(Color.lightGray);
         button.addSelf(this);
+        return button;
     }
 
     @Override
