@@ -132,8 +132,13 @@ public class DuelPanel extends JPanel implements DuelListener, ActionListener {
         gameEnded = true; // Set the flag to indicate the game has ended
         if (winner instanceof UserPlayer) {
             if (((UserPlayer) winner).isLocalPlayer()) {
-                GameMain main = (GameMain)GameData.getInstance().getMainFrame();
-                main.setLevelScreen();
+                if(GameData.getInstance().getGameMode().equals("Story Mode")){
+                    GameMain main = (GameMain)GameData.getInstance().getMainFrame();
+                    main.setLevelScreen();
+                }
+                else{
+                    GameData.getInstance().setGameOver(true);
+                }
             }
         }
         if (loser instanceof UserPlayer) {

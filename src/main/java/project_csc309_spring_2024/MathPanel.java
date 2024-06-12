@@ -38,7 +38,6 @@ public class MathPanel extends JPanel implements PropertyChangeListener, ActionL
             button.setButtonColor(new Color(210,169,147), Color.black);
             button.setPressedColor(new Color(175,124,116));
             button.addSelf(this);
-            System.out.println(level.isLockedOperation((Character)ops[i].charAt(0)));
             if(level.isLockedOperation((Character)ops[i].charAt(0))){
                 button.setVisible(false);
             }

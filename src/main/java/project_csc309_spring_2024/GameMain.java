@@ -24,7 +24,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
     TimeScorePanel timeScorePanel;
     Button selectButton;
 
-    String host = "unix4.csc.calpoly.edu";
+    String host = "192.168.1.10";
     int port = 3091;
     Client client = new Client(host, port);
 
@@ -193,6 +193,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
                 case "SELECT SCENE":
 
                     if (gameMode.equals("Join PvP Game")) {
+                        GameData.getInstance().getLevel().unlockAllOperations();
                         client.start();
                         while (!client.isReady()) {
                             try {
