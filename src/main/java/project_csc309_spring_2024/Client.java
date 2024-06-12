@@ -129,4 +129,8 @@ public class Client extends Thread implements DuelListener {
         return isReady;
     }
 
+    public void setHost(String host) {
+        this.host = host;
+    }
+
 }

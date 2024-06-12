@@ -1,5 +1,4 @@
 package project_csc309_spring_2024;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +23,7 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
     TimeScorePanel timeScorePanel;
     Button selectButton;
 
-    String host = "192.168.1.10";
+    String host = "localhost";
     int port = 3091;
     Client client = new Client(host, port);
 
@@ -55,6 +54,9 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
         playButton.addSelf(startPanel);
         playButton.setFont(customFont.deriveFont(12f));
         playButton.addActionListener(this);
+        Button changeHost = new Button("Change Host", 80, 10, 110, 20);
+        changeHost.addActionListener(this);
+        startPanel.add(changeHost);
         startScreen.add(startPanel);
 
         // ---- CREATE : Mode Select Screen
@@ -218,11 +220,31 @@ public class GameMain extends JFrame implements ActionListener, PropertyChangeLi
 
                     audioPlayer.play("select");
                     break;
+                case "Change Host":
+                    changeHostDialogue();
                 default:
                     break;
             }
             revalidate();
             repaint();
         }
+    }
+
+
+    public void changeHostDialogue(){
+        String defaultValue = host;
+        JTextField textField = new JTextField(defaultValue);
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.add(new JLabel("Enter Host:"));
+        panel.add(textField);
+
+        int result = JOptionPane.showConfirmDialog(this, panel, "Enter Host:",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION) {
+            String enteredText = textField.getText();
+            client.setHost(enteredText);
+        }
+
+        add(startScreen);
     }
 }

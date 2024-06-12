@@ -37,8 +37,26 @@ Finally, we have made it to the gameplay screen. This screen may look different 
 </p>
 
 ## Running PvP
-"insert Berber description here"
+Unfortunaley processes on Cal Poly unix servers are killed after 24-hours but you can host the multiplayer server locally.
 
+### To Run: 
+
+- Clone Repository
+- Change into Server Directory
+  
+```
+cd src\main\java\project_csc309_spring_2024\multiplayer
+```
+- Build and Run
+  
+```
+make all
+```
+Server will then run on port 3091.
+
+### On Client:
+  Set host through start screen dialogue. 
+  
 ## Taiga
 Link to Taiga - https://tree.taiga.io/project/fwlyon-csc309-project
 
