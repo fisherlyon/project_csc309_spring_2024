@@ -8,6 +8,13 @@ import java.io.*;
 import java.net.*;
 import org.json.*;
 
+
+/**
+ * A JPanel that displays the weather
+ * of specified locations. Uses AccuWeather API.
+ * 
+ * @author Fisher Lyon
+ */
 public class WeatherPanel extends JPanel implements PropertyChangeListener {
 
   private String locKey = null;

@@ -5,6 +5,12 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * A JPanel that displays the chosen
+ * scene/level.
+ * 
+ * @author Fisher Lyon
+ */
 public class LevelPanel extends JPanel implements PropertyChangeListener {
 
     private Image backgroundImage = null;

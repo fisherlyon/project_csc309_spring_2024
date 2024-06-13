@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  * Trash Bin, OpButtons, and a couple
  * of helpful messages.
  *
- * @author Fisher
+ * @author Fisher Lyon
  */
 public class MathPanel extends JPanel implements PropertyChangeListener, ActionListener {
 

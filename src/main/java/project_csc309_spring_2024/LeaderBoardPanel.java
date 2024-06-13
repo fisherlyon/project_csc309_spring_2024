@@ -4,6 +4,12 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Displays the current leaderboard in
+ * a JPanel. Showing the top 10 scores.
+ * 
+ * @author Fisher Lyon
+ */
 public class LeaderBoardPanel extends JPanel {
 
     private LeaderBoard lb;

@@ -1,6 +1,5 @@
 package project_csc309_spring_2024;
 
-
 import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;

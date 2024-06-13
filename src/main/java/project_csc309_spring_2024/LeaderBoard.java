@@ -12,6 +12,13 @@ import java.io.*;
 import java.net.*;
 import org.json.*;
 
+/**
+ * Controls all leaderboard functoinality,
+ * including JSON, URL, and AWS-S3
+ * functionalities.
+ * 
+ * @author Fisher Lyon
+ */
 public class LeaderBoard {
 
     private final String BUCKET_NAME = "mathmadness";
@@ -78,7 +85,7 @@ public class LeaderBoard {
         }
     }
 
-    private ArrayList<LeaderBoardEntry> parse(String response) {
+    public ArrayList<LeaderBoardEntry> parse(String response) {
         ArrayList<LeaderBoardEntry> lbes = new ArrayList<>();
         JSONArray jsonResponse = new JSONArray(response);
         for (Object obj : jsonResponse) {
@@ -100,7 +107,7 @@ public class LeaderBoard {
         return formattedString;
     }
 
-    private void recalculatePositions(ArrayList<LeaderBoardEntry> lbes) {
+    public void recalculatePositions(ArrayList<LeaderBoardEntry> lbes) {
         Collections.sort(lbes, new LeaderBoardComparator());
         for (int i = 1; i < lbes.size() + 1; i++) {
             lbes.get(i-1).setPos(i);
@@ -128,7 +135,7 @@ public class LeaderBoard {
     }
     
 
-    private String convertToJson(ArrayList<LeaderBoardEntry> lbes) {
+    public String convertToJson(ArrayList<LeaderBoardEntry> lbes) {
         JSONArray jsonArray = new JSONArray();
         for (LeaderBoardEntry lbe : lbes) {
             JSONObject jsonObj = new JSONObject();

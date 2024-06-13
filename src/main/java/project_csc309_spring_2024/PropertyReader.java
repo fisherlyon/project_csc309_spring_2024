@@ -4,6 +4,11 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Collects data from a properties file.
+ * 
+ * @author Fisher Lyon
+ */
 public class PropertyReader {
 
     private Properties properties;

@@ -1,14 +1,13 @@
 package project_csc309_spring_2024;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * A dialog box that appears when
  * the game is over and provides
  * escapability or replayability.
  * 
- * @author Fisher
+ * @author Fisher Lyon
  */
 public class GameOverDialog {
 

@@ -5,6 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 
+
+/**
+ * A JPanel that displays the map
+ * with buttons so the user can choose
+ * their preferred scene.
+ * 
+ * @author Fisher Lyon
+ */
 public class ModePanel extends JPanel implements ActionListener {
     private JPanel buttonSide = new JPanel();
     private JPanel descriptionSide = new JPanel();

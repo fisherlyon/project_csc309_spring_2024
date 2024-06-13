@@ -3,6 +3,13 @@ package project_csc309_spring_2024;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A JPanel that gathers text
+ * from the user. More specifically,
+ * their name.
+ * 
+ * @author Fisher Lyon
+ */
 public class NameTextField extends JPanel {
 
    private JTextField nameField;
