@@ -18,7 +18,7 @@ jobs:
           cache: maven
 
       - name: STEP 02. Build with Maven
-        run: mvn clean package
+        run: mvn clean install
 
       - name: STEP 03. Deploy
         run: mkdir staging && cp target/*.jar staging
