@@ -1,5 +1,4 @@
 name: Add JAR to GitHub release
-
 on: 
   release: 
     types: [created]
@@ -22,10 +21,10 @@ jobs:
         run: mvn clean package
 
       - name: STEP 03. Deploy
-        run: mkdir staging && cp target/project_csc309_spring_2024-1.0-SNAPSHOT-shaded.jar staging
+        run: mkdir staging && cp target/*.jar staging
 
       - name: STEP 04. Set Executable Permissions
-        run: chmod +x target/project_csc309_spring_2024-1.0-SNAPSHOT-shaded.jar
+        run: chmod +x target/project_csc309_spring_2024-1.0-SNAPSHOT.jar
 
       - name: STEP 05. Upload JAR to GitHub Release
         uses: actions/upload-release-asset@v1
@@ -33,6 +32,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "target/project_csc309_spring_2024-1.0-SNAPSHOT-shaded.jar"
-          asset_name: "project_csc309_spring_2024-1.0-SNAPSHOT-shaded.jar"
-          asset_content_type: "application/java-archive"
+          asset_path: "target/project_csc309_spring_2024-1.0-SNAPSHOT.jar"
+          asset_name: "project_csc309_spring_2024-1.0-SNAPSHOT.jar"
+          asset_content_type: "applications/java-archive"
