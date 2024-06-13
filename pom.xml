@@ -28,14 +28,27 @@
 
     <dependency>
       <groupId>software.amazon.awssdk</groupId>
-      <artifactId>auth</artifactId>
-      <version>2.17.89</version>
+      <artifactId>s3</artifactId>
+      <version>2.26.0</version>
     </dependency>
 
     <dependency>
       <groupId>software.amazon.awssdk</groupId>
-      <artifactId>s3</artifactId>
-      <version>2.25.64</version>
+      <artifactId>core</artifactId>
+      <version>2.26.0</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>regions</artifactId>
+      <version>2.26.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>auth</artifactId>
+      <version>2.26.0</version>
     </dependency>
 
     <dependency>
