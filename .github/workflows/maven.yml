@@ -28,7 +28,7 @@ jobs:
       run: mvn test
       
     - name: STEP 04 - Deploy
-      run: mkdir staging && cp target/*-shaded.jar staging
+      run: mkdir staging && cp target/project_csc309_spring_2024-1.0-SNAPSHOT-shaded.jar staging
 
     - name: STEP 05 - Set Executable Permissions
       run: chmod +x target/project_csc309_spring_2024-1.0-SNAPSHOT-shaded.jar

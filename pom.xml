@@ -141,6 +141,7 @@
                   <mainClass>project_csc309_spring_2024.GameMain</mainClass>
                 </transformer>
               </transformers>
+              <finalName>${project.artifactId}-${project.version}-shaded</finalName>
             </configuration>
           </execution>
         </executions>
